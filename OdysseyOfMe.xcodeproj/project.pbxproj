@@ -1,0 +1,1021 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */; };
+		F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDAA29147F6100BD4849 /* ContentView.swift */; };
+		F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3EDEDAC29147F6200BD4849 /* Assets.xcassets */; };
+		F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3EDEDAF29147F6200BD4849 /* Preview Assets.xcassets */; };
+		F3EDEDBA29147F6200BD4849 /* OdysseyOfMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDB929147F6200BD4849 /* OdysseyOfMeTests.swift */; };
+		F3EDEDC429147F6200BD4849 /* OdysseyOfMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDC329147F6200BD4849 /* OdysseyOfMeUITests.swift */; };
+		F3EDEDC629147F6200BD4849 /* OdysseyOfMeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDC529147F6200BD4849 /* OdysseyOfMeUITestsLaunchTests.swift */; };
+		F3EDEDCC29147F6200BD4849 /* OdysseyOfMe Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3EDEDCB29147F6200BD4849 /* OdysseyOfMe Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F3EDEDD129147F6200BD4849 /* OdysseyOfMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDD029147F6200BD4849 /* OdysseyOfMeApp.swift */; };
+		F3EDEDD329147F6200BD4849 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDD229147F6200BD4849 /* ContentView.swift */; };
+		F3EDEDD529147F6300BD4849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3EDEDD429147F6300BD4849 /* Assets.xcassets */; };
+		F3EDEDD829147F6300BD4849 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3EDEDD729147F6300BD4849 /* Preview Assets.xcassets */; };
+		F3EDEDE229147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDE129147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift */; };
+		F3EDEDEC29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDEB29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift */; };
+		F3EDEDEE29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3EDEDB629147F6200BD4849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3EDED9D29147F6000BD4849 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3EDEDA429147F6100BD4849;
+			remoteInfo = OdysseyOfMe;
+		};
+		F3EDEDC029147F6200BD4849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3EDED9D29147F6000BD4849 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3EDEDA429147F6100BD4849;
+			remoteInfo = OdysseyOfMe;
+		};
+		F3EDEDCD29147F6200BD4849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3EDED9D29147F6000BD4849 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3EDEDCA29147F6200BD4849;
+			remoteInfo = "OdysseyOfMe Watch App";
+		};
+		F3EDEDDE29147F6300BD4849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3EDED9D29147F6000BD4849 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3EDEDCA29147F6200BD4849;
+			remoteInfo = "OdysseyOfMe Watch App";
+		};
+		F3EDEDE829147F6300BD4849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3EDED9D29147F6000BD4849 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3EDEDCA29147F6200BD4849;
+			remoteInfo = "OdysseyOfMe Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F3EDEDF429147F6300BD4849 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F3EDEDCC29147F6200BD4849 /* OdysseyOfMe Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F3EDEDA529147F6100BD4849 /* OdysseyOfMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OdysseyOfMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeApp.swift; sourceTree = "<group>"; };
+		F3EDEDAA29147F6100BD4849 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F3EDEDAC29147F6200BD4849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3EDEDAF29147F6200BD4849 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F3EDEDB529147F6200BD4849 /* OdysseyOfMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdysseyOfMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDB929147F6200BD4849 /* OdysseyOfMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeTests.swift; sourceTree = "<group>"; };
+		F3EDEDBF29147F6200BD4849 /* OdysseyOfMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdysseyOfMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDC329147F6200BD4849 /* OdysseyOfMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeUITests.swift; sourceTree = "<group>"; };
+		F3EDEDC529147F6200BD4849 /* OdysseyOfMeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F3EDEDCB29147F6200BD4849 /* OdysseyOfMe Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OdysseyOfMe Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDD029147F6200BD4849 /* OdysseyOfMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeApp.swift; sourceTree = "<group>"; };
+		F3EDEDD229147F6200BD4849 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F3EDEDD429147F6300BD4849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3EDEDD729147F6300BD4849 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F3EDEDDD29147F6300BD4849 /* OdysseyOfMe Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OdysseyOfMe Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDE129147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMe_Watch_AppTests.swift; sourceTree = "<group>"; };
+		F3EDEDE729147F6300BD4849 /* OdysseyOfMe Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OdysseyOfMe Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EDEDEB29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMe_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMe_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3EDEDA229147F6100BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDB229147F6200BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDBC29147F6200BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDC829147F6200BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDDA29147F6300BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDE429147F6300BD4849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F3EDED9C29147F6000BD4849 = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDA729147F6100BD4849 /* OdysseyOfMe */,
+				F3EDEDB829147F6200BD4849 /* OdysseyOfMeTests */,
+				F3EDEDC229147F6200BD4849 /* OdysseyOfMeUITests */,
+				F3EDEDCF29147F6200BD4849 /* OdysseyOfMe Watch App */,
+				F3EDEDE029147F6300BD4849 /* OdysseyOfMe Watch AppTests */,
+				F3EDEDEA29147F6300BD4849 /* OdysseyOfMe Watch AppUITests */,
+				F3EDEDA629147F6100BD4849 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F3EDEDA629147F6100BD4849 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDA529147F6100BD4849 /* OdysseyOfMe.app */,
+				F3EDEDB529147F6200BD4849 /* OdysseyOfMeTests.xctest */,
+				F3EDEDBF29147F6200BD4849 /* OdysseyOfMeUITests.xctest */,
+				F3EDEDCB29147F6200BD4849 /* OdysseyOfMe Watch App.app */,
+				F3EDEDDD29147F6300BD4849 /* OdysseyOfMe Watch AppTests.xctest */,
+				F3EDEDE729147F6300BD4849 /* OdysseyOfMe Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3EDEDA729147F6100BD4849 /* OdysseyOfMe */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */,
+				F3EDEDAA29147F6100BD4849 /* ContentView.swift */,
+				F3EDEDAC29147F6200BD4849 /* Assets.xcassets */,
+				F3EDEDAE29147F6200BD4849 /* Preview Content */,
+			);
+			path = OdysseyOfMe;
+			sourceTree = "<group>";
+		};
+		F3EDEDAE29147F6200BD4849 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDAF29147F6200BD4849 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F3EDEDB829147F6200BD4849 /* OdysseyOfMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDB929147F6200BD4849 /* OdysseyOfMeTests.swift */,
+			);
+			path = OdysseyOfMeTests;
+			sourceTree = "<group>";
+		};
+		F3EDEDC229147F6200BD4849 /* OdysseyOfMeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDC329147F6200BD4849 /* OdysseyOfMeUITests.swift */,
+				F3EDEDC529147F6200BD4849 /* OdysseyOfMeUITestsLaunchTests.swift */,
+			);
+			path = OdysseyOfMeUITests;
+			sourceTree = "<group>";
+		};
+		F3EDEDCF29147F6200BD4849 /* OdysseyOfMe Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDD029147F6200BD4849 /* OdysseyOfMeApp.swift */,
+				F3EDEDD229147F6200BD4849 /* ContentView.swift */,
+				F3EDEDD429147F6300BD4849 /* Assets.xcassets */,
+				F3EDEDD629147F6300BD4849 /* Preview Content */,
+			);
+			path = "OdysseyOfMe Watch App";
+			sourceTree = "<group>";
+		};
+		F3EDEDD629147F6300BD4849 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDD729147F6300BD4849 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F3EDEDE029147F6300BD4849 /* OdysseyOfMe Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDE129147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift */,
+			);
+			path = "OdysseyOfMe Watch AppTests";
+			sourceTree = "<group>";
+		};
+		F3EDEDEA29147F6300BD4849 /* OdysseyOfMe Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEDEB29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift */,
+				F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "OdysseyOfMe Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3EDEDA429147F6100BD4849 /* OdysseyOfMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEDF529147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe" */;
+			buildPhases = (
+				F3EDEDA129147F6100BD4849 /* Sources */,
+				F3EDEDA229147F6100BD4849 /* Frameworks */,
+				F3EDEDA329147F6100BD4849 /* Resources */,
+				F3EDEDF429147F6300BD4849 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3EDEDCE29147F6200BD4849 /* PBXTargetDependency */,
+			);
+			name = OdysseyOfMe;
+			productName = OdysseyOfMe;
+			productReference = F3EDEDA529147F6100BD4849 /* OdysseyOfMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3EDEDB429147F6200BD4849 /* OdysseyOfMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEDF829147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMeTests" */;
+			buildPhases = (
+				F3EDEDB129147F6200BD4849 /* Sources */,
+				F3EDEDB229147F6200BD4849 /* Frameworks */,
+				F3EDEDB329147F6200BD4849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3EDEDB729147F6200BD4849 /* PBXTargetDependency */,
+			);
+			name = OdysseyOfMeTests;
+			productName = OdysseyOfMeTests;
+			productReference = F3EDEDB529147F6200BD4849 /* OdysseyOfMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F3EDEDBE29147F6200BD4849 /* OdysseyOfMeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEDFB29147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMeUITests" */;
+			buildPhases = (
+				F3EDEDBB29147F6200BD4849 /* Sources */,
+				F3EDEDBC29147F6200BD4849 /* Frameworks */,
+				F3EDEDBD29147F6200BD4849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3EDEDC129147F6200BD4849 /* PBXTargetDependency */,
+			);
+			name = OdysseyOfMeUITests;
+			productName = OdysseyOfMeUITests;
+			productReference = F3EDEDBF29147F6200BD4849 /* OdysseyOfMeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F3EDEDCA29147F6200BD4849 /* OdysseyOfMe Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEDF129147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch App" */;
+			buildPhases = (
+				F3EDEDC729147F6200BD4849 /* Sources */,
+				F3EDEDC829147F6200BD4849 /* Frameworks */,
+				F3EDEDC929147F6200BD4849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OdysseyOfMe Watch App";
+			productName = "OdysseyOfMe Watch App";
+			productReference = F3EDEDCB29147F6200BD4849 /* OdysseyOfMe Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3EDEDDC29147F6300BD4849 /* OdysseyOfMe Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEDFE29147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch AppTests" */;
+			buildPhases = (
+				F3EDEDD929147F6300BD4849 /* Sources */,
+				F3EDEDDA29147F6300BD4849 /* Frameworks */,
+				F3EDEDDB29147F6300BD4849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3EDEDDF29147F6300BD4849 /* PBXTargetDependency */,
+			);
+			name = "OdysseyOfMe Watch AppTests";
+			productName = "OdysseyOfMe Watch AppTests";
+			productReference = F3EDEDDD29147F6300BD4849 /* OdysseyOfMe Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F3EDEDE629147F6300BD4849 /* OdysseyOfMe Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3EDEE0129147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch AppUITests" */;
+			buildPhases = (
+				F3EDEDE329147F6300BD4849 /* Sources */,
+				F3EDEDE429147F6300BD4849 /* Frameworks */,
+				F3EDEDE529147F6300BD4849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3EDEDE929147F6300BD4849 /* PBXTargetDependency */,
+			);
+			name = "OdysseyOfMe Watch AppUITests";
+			productName = "OdysseyOfMe Watch AppUITests";
+			productReference = F3EDEDE729147F6300BD4849 /* OdysseyOfMe Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3EDED9D29147F6000BD4849 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					F3EDEDA429147F6100BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					F3EDEDB429147F6200BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F3EDEDA429147F6100BD4849;
+					};
+					F3EDEDBE29147F6200BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F3EDEDA429147F6100BD4849;
+					};
+					F3EDEDCA29147F6200BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					F3EDEDDC29147F6300BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F3EDEDCA29147F6200BD4849;
+					};
+					F3EDEDE629147F6300BD4849 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F3EDEDCA29147F6200BD4849;
+					};
+				};
+			};
+			buildConfigurationList = F3EDEDA029147F6000BD4849 /* Build configuration list for PBXProject "OdysseyOfMe" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3EDED9C29147F6000BD4849;
+			productRefGroup = F3EDEDA629147F6100BD4849 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3EDEDA429147F6100BD4849 /* OdysseyOfMe */,
+				F3EDEDB429147F6200BD4849 /* OdysseyOfMeTests */,
+				F3EDEDBE29147F6200BD4849 /* OdysseyOfMeUITests */,
+				F3EDEDCA29147F6200BD4849 /* OdysseyOfMe Watch App */,
+				F3EDEDDC29147F6300BD4849 /* OdysseyOfMe Watch AppTests */,
+				F3EDEDE629147F6300BD4849 /* OdysseyOfMe Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3EDEDA329147F6100BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */,
+				F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDB329147F6200BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDBD29147F6200BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDC929147F6200BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDD829147F6300BD4849 /* Preview Assets.xcassets in Resources */,
+				F3EDEDD529147F6300BD4849 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDDB29147F6300BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDE529147F6300BD4849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3EDEDA129147F6100BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */,
+				F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDB129147F6200BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDBA29147F6200BD4849 /* OdysseyOfMeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDBB29147F6200BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDC629147F6200BD4849 /* OdysseyOfMeUITestsLaunchTests.swift in Sources */,
+				F3EDEDC429147F6200BD4849 /* OdysseyOfMeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDC729147F6200BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDD329147F6200BD4849 /* ContentView.swift in Sources */,
+				F3EDEDD129147F6200BD4849 /* OdysseyOfMeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDD929147F6300BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDE229147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EDEDE329147F6300BD4849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3EDEDEE29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift in Sources */,
+				F3EDEDEC29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3EDEDB729147F6200BD4849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3EDEDA429147F6100BD4849 /* OdysseyOfMe */;
+			targetProxy = F3EDEDB629147F6200BD4849 /* PBXContainerItemProxy */;
+		};
+		F3EDEDC129147F6200BD4849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3EDEDA429147F6100BD4849 /* OdysseyOfMe */;
+			targetProxy = F3EDEDC029147F6200BD4849 /* PBXContainerItemProxy */;
+		};
+		F3EDEDCE29147F6200BD4849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3EDEDCA29147F6200BD4849 /* OdysseyOfMe Watch App */;
+			targetProxy = F3EDEDCD29147F6200BD4849 /* PBXContainerItemProxy */;
+		};
+		F3EDEDDF29147F6300BD4849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3EDEDCA29147F6200BD4849 /* OdysseyOfMe Watch App */;
+			targetProxy = F3EDEDDE29147F6300BD4849 /* PBXContainerItemProxy */;
+		};
+		F3EDEDE929147F6300BD4849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3EDEDCA29147F6200BD4849 /* OdysseyOfMe Watch App */;
+			targetProxy = F3EDEDE829147F6300BD4849 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F3EDEDEF29147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F3EDEDF029147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F3EDEDF229147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OdysseyOfMe Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Accolades.OdysseyOfMe;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F3EDEDF329147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OdysseyOfMe Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.Accolades.OdysseyOfMe;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		F3EDEDF629147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OdysseyOfMe/Preview Content\"";
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F3EDEDF729147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OdysseyOfMe/Preview Content\"";
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3EDEDF929147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OdysseyOfMe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OdysseyOfMe";
+			};
+			name = Debug;
+		};
+		F3EDEDFA29147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OdysseyOfMe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OdysseyOfMe";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3EDEDFC29147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OdysseyOfMe;
+			};
+			name = Debug;
+		};
+		F3EDEDFD29147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Accolades.OdysseyOfMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OdysseyOfMe;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3EDEDFF29147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Accolades.OdysseyOfMe-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OdysseyOfMe Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OdysseyOfMe Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F3EDEE0029147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Accolades.OdysseyOfMe-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OdysseyOfMe Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OdysseyOfMe Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		F3EDEE0229147F6300BD4849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Accolades.OdysseyOfMe-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "OdysseyOfMe Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F3EDEE0329147F6300BD4849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NKAA46P4LV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Accolades.OdysseyOfMe-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "OdysseyOfMe Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3EDEDA029147F6000BD4849 /* Build configuration list for PBXProject "OdysseyOfMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDEF29147F6300BD4849 /* Debug */,
+				F3EDEDF029147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEDF129147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDF229147F6300BD4849 /* Debug */,
+				F3EDEDF329147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEDF529147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDF629147F6300BD4849 /* Debug */,
+				F3EDEDF729147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEDF829147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDF929147F6300BD4849 /* Debug */,
+				F3EDEDFA29147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEDFB29147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDFC29147F6300BD4849 /* Debug */,
+				F3EDEDFD29147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEDFE29147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEDFF29147F6300BD4849 /* Debug */,
+				F3EDEE0029147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3EDEE0129147F6300BD4849 /* Build configuration list for PBXNativeTarget "OdysseyOfMe Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3EDEE0229147F6300BD4849 /* Debug */,
+				F3EDEE0329147F6300BD4849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F3EDED9D29147F6000BD4849 /* Project object */;
+}
