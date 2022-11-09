@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        TabNavView()
     }
 }
 

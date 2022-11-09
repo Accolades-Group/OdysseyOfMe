@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
+		F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3BFA9552917418000059E6C /* ProgressNotes.rtf */; };
+		F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */; };
+		F3BFA95D2918813600059E6C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA95C2918813600059E6C /* DataController.swift */; };
+		F3BFA9602918B0C700059E6C /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA95F2918B0C700059E6C /* TestingView.swift */; };
 		F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */; };
 		F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDAA29147F6100BD4849 /* ContentView.swift */; };
 		F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3EDEDAC29147F6200BD4849 /* Assets.xcassets */; };
@@ -22,6 +27,16 @@
 		F3EDEDE229147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDE129147F6300BD4849 /* OdysseyOfMe_Watch_AppTests.swift */; };
 		F3EDEDEC29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDEB29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift */; };
 		F3EDEDEE29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */; };
+		F3EDEE062914800400BD4849 /* TabNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE052914800400BD4849 /* TabNavView.swift */; };
+		F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE072914812300BD4849 /* CheckinView.swift */; };
+		F3EDEE0A2914816500BD4849 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE092914816500BD4849 /* HistoryView.swift */; };
+		F3EDEE0C2914817F00BD4849 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE0B2914817F00BD4849 /* AccountView.swift */; };
+		F3EDEE0F2914829600BD4849 /* CustomComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE0E2914829600BD4849 /* CustomComponents.swift */; };
+		F3EDEE11291483BE00BD4849 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE10291483BE00BD4849 /* Extensions.swift */; };
+		F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE132914916300BD4849 /* CheckinViewModel.swift */; };
+		F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE152914B62300BD4849 /* UserSettings.swift */; };
+		F3EDEE182914B6C500BD4849 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE172914B6C500BD4849 /* Diagnosis.swift */; };
+		F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +92,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3BFA9532915C51F00059E6C /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
+		F3BFA9552917418000059E6C /* ProgressNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ProgressNotes.rtf; sourceTree = "<group>"; };
+		F3BFA9582917426000059E6C /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
+		F3BFA95C2918813600059E6C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		F3BFA95F2918B0C700059E6C /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
 		F3EDEDA529147F6100BD4849 /* OdysseyOfMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OdysseyOfMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMeApp.swift; sourceTree = "<group>"; };
 		F3EDEDAA29147F6100BD4849 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +117,16 @@
 		F3EDEDE729147F6300BD4849 /* OdysseyOfMe Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OdysseyOfMe Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EDEDEB29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMe_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdysseyOfMe_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F3EDEE052914800400BD4849 /* TabNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavView.swift; sourceTree = "<group>"; };
+		F3EDEE072914812300BD4849 /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
+		F3EDEE092914816500BD4849 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		F3EDEE0B2914817F00BD4849 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		F3EDEE0E2914829600BD4849 /* CustomComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomComponents.swift; sourceTree = "<group>"; };
+		F3EDEE10291483BE00BD4849 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F3EDEE132914916300BD4849 /* CheckinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinViewModel.swift; sourceTree = "<group>"; };
+		F3EDEE152914B62300BD4849 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		F3EDEE172914B6C500BD4849 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
+		F3EDEE19291505F900BD4849 /* StressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +175,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3BFA95E2918B0BB00059E6C /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				F3BFA95F2918B0C700059E6C /* TestingView.swift */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
 		F3EDED9C29147F6000BD4849 = {
 			isa = PBXGroup;
 			children = (
@@ -174,10 +212,15 @@
 		F3EDEDA729147F6100BD4849 /* OdysseyOfMe */ = {
 			isa = PBXGroup;
 			children = (
+				F3BFA95E2918B0BB00059E6C /* Testing */,
+				F3EDEE122914915500BD4849 /* Model */,
+				F3EDEE0D2914827E00BD4849 /* Classes */,
+				F3EDEE0429147FF100BD4849 /* View */,
 				F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */,
 				F3EDEDAA29147F6100BD4849 /* ContentView.swift */,
 				F3EDEDAC29147F6200BD4849 /* Assets.xcassets */,
 				F3EDEDAE29147F6200BD4849 /* Preview Content */,
+				F3BFA9552917418000059E6C /* ProgressNotes.rtf */,
 			);
 			path = OdysseyOfMe;
 			sourceTree = "<group>";
@@ -241,6 +284,40 @@
 				F3EDEDED29147F6300BD4849 /* OdysseyOfMe_Watch_AppUITestsLaunchTests.swift */,
 			);
 			path = "OdysseyOfMe Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		F3EDEE0429147FF100BD4849 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEE052914800400BD4849 /* TabNavView.swift */,
+				F3EDEE072914812300BD4849 /* CheckinView.swift */,
+				F3EDEE092914816500BD4849 /* HistoryView.swift */,
+				F3EDEE0B2914817F00BD4849 /* AccountView.swift */,
+				F3BFA9532915C51F00059E6C /* NavigationTest.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3EDEE0D2914827E00BD4849 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEE0E2914829600BD4849 /* CustomComponents.swift */,
+				F3EDEE10291483BE00BD4849 /* Extensions.swift */,
+				F3EDEE152914B62300BD4849 /* UserSettings.swift */,
+				F3EDEE172914B6C500BD4849 /* Diagnosis.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F3EDEE122914915500BD4849 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDEE132914916300BD4849 /* CheckinViewModel.swift */,
+				F3EDEE19291505F900BD4849 /* StressManager.swift */,
+				F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */,
+				F3BFA95C2918813600059E6C /* DataController.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +495,7 @@
 			files = (
 				F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */,
 				F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */,
+				F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,8 +543,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3EDEE0C2914817F00BD4849 /* AccountView.swift in Sources */,
+				F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */,
+				F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */,
+				F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */,
+				F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */,
+				F3EDEE0F2914829600BD4849 /* CustomComponents.swift in Sources */,
+				F3EDEE11291483BE00BD4849 /* Extensions.swift in Sources */,
 				F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */,
+				F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */,
+				F3EDEE182914B6C500BD4849 /* Diagnosis.swift in Sources */,
+				F3EDEE0A2914816500BD4849 /* HistoryView.swift in Sources */,
 				F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */,
+				F3BFA95D2918813600059E6C /* DataController.swift in Sources */,
+				F3EDEE062914800400BD4849 /* TabNavView.swift in Sources */,
+				F3BFA9602918B0C700059E6C /* TestingView.swift in Sources */,
+				F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1108,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F3BFA9582917426000059E6C /* DataStore.xcdatamodel */,
+			);
+			currentVersion = F3BFA9582917426000059E6C /* DataStore.xcdatamodel */;
+			path = DataStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F3EDED9D29147F6000BD4849 /* Project object */;
 }
