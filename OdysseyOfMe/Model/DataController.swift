@@ -21,7 +21,7 @@ class DataController : ObservableObject {
                 print("Core data failed to load: \(error.localizedDescription)")
             }else{
                 
-             //   self.clearAllData()
+              //  self.clearAllData()
              //   self.createSampleTags()
              //   self.createSampleCheckin()
 

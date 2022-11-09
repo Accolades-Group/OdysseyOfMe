@@ -82,6 +82,7 @@ struct CheckinView: View {
                     
                 }//.toolbar(.hidden, for: .tabBar)
                 .navigationBarBackButtonHidden(true)
+                .navigationTitle(getNavigationTitle(isTitle: route == .stressDetail || route == .stressLevel))
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
                         Button{
@@ -100,6 +101,8 @@ struct CheckinView: View {
                             
                         }
                     }
+                   // Text("Route")
+                    
                     
                 }
                 //TODO: Fix toolbar lag?
@@ -122,6 +125,13 @@ struct CheckinView: View {
                 viewModel.moc = moc
             }
             
+    }
+    func getNavigationTitle(isTitle : Bool) -> String {
+        if isTitle{
+            return "\(viewModel.currentStressObject.category.rawValue.capitalized) Stressor"
+        }else{
+            return ""
+        }
     }
 }
 
@@ -265,7 +275,7 @@ fileprivate struct StressCategorySelectionView : View {
                 Text("Which areas were the most stressful today?")
                     .font(.system(size: 30))
                     .multilineTextAlignment(.center)
-                    .padding(20)
+                    //.padding(10)
                 
                 Spacer()
                 
@@ -332,11 +342,12 @@ fileprivate struct StressDetailView : View {
                         VStack(alignment: .leading){
                             
                             //Time Tags
-                            Text("What time of day did ")
-                            +
-                            Text(viewModel.currentStressObject.category.rawValue.lowercased()).bold().underline()
-                            +
-                            Text(" cause you stress?")
+                            Text("What time of day?")
+//                            Text("What time of day did ")
+//                            +
+//                            Text(viewModel.currentStressObject.category.rawValue.lowercased()).bold().underline()
+//                            +
+//                            Text(" cause you stress?")
                             
                             
                             FlexibleTagView(
@@ -449,75 +460,14 @@ struct TagItemView : View {
     
     var body: some View {
         
-        
-        if String(item) == "+" {
-            
-            
-            
-           TextField("Add +", text: $newTag)
-                .submitLabel(.done)
-                .autocorrectionDisabled(true)
-                .font(.system(size: 16))
-                .padding(8)
-                .foregroundColor(color)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 40)
-                        .stroke(color, lineWidth: 2)
-                        .padding(2)
-                )
-                .onSubmit {
-                    if !newTag.isEmpty {
-                        switch type {
-                        case .times:
-                            viewModel.stressManager.addTimeTag(newTag)
-                            //    viewModel.currentStressObject.times.append(newTag)
-                            
-                        case .activities:
-                            viewModel.stressManager.addActivityTag(newTag)
-                            //   viewModel.currentStressObject.activities.append(newTag)
-                            
-                            
-                        case .physicalSymptoms:
-                            viewModel.stressManager.addSymptomTag(newTag)
-                            //   viewModel.currentStressObject.symptoms.append(newTag)
-                            
-                        case .subjectTypes:
-                            viewModel.stressManager.addSubjectTag(newTag)
-                            //  viewModel.currentStressObject.subjectTypes.append(newTag)
-                            
-                        case .individuals:
-                            viewModel.stressManager.addIndividualsTag(newTag)
-                            //   viewModel.currentStressObject.individuals.append(newTag)
-                            
-                        }
-                    }
-                    
-              //      self.updateColor()
-                    
-                }
-            
-        } else {
-            
-            Button {
+        Group{
+            if String(item) == "+" {
                 
-                switch type {
-                case .times:
-                    viewModel.currentStressObject.toggleTimes(item)
-                case .activities:
-                    viewModel.currentStressObject.toggleActivities(item)
-                case .physicalSymptoms:
-                    viewModel.currentStressObject.toggleSymptoms(item)
-                case .subjectTypes:
-                    viewModel.currentStressObject.toggleSubjectTypes(item)
-                case .individuals:
-                    viewModel.currentStressObject.toggleIndividuals(item)
-                }
                 
-                updateColor()
                 
-            } label : {
-                
-                Text(String(item).capitalized)
+                TextField("Add +", text: $newTag)
+                    .submitLabel(.done)
+                    .autocorrectionDisabled(true)
                     .font(.system(size: 16))
                     .padding(8)
                     .foregroundColor(color)
@@ -526,11 +476,74 @@ struct TagItemView : View {
                             .stroke(color, lineWidth: 2)
                             .padding(2)
                     )
+                    .onSubmit {
+                        if !newTag.isEmpty {
+                            switch type {
+                            case .times:
+                                viewModel.stressManager.addTimeTag(newTag)
+                                    viewModel.currentStressObject.times.append(newTag)
+                                
+                            case .activities:
+                                viewModel.stressManager.addActivityTag(newTag)
+                                   viewModel.currentStressObject.activities.append(newTag)
+                                
+                                
+                            case .physicalSymptoms:
+                                viewModel.stressManager.addSymptomTag(newTag)
+                                   viewModel.currentStressObject.symptoms.append(newTag)
+                                
+                            case .subjectTypes:
+                                viewModel.stressManager.addSubjectTag(newTag)
+                                  viewModel.currentStressObject.subjectTypes.append(newTag)
+                                
+                            case .individuals:
+                                viewModel.stressManager.addIndividualsTag(newTag)
+                                   viewModel.currentStressObject.individuals.append(newTag)
+                                
+                            }
+                        }
+                        
+                             updateColor()
+                        
+                    }
                 
+            } else {
+                
+                Button {
+                    
+                    switch type {
+                    case .times:
+                        viewModel.currentStressObject.toggleTimes(item)
+                    case .activities:
+                        viewModel.currentStressObject.toggleActivities(item)
+                    case .physicalSymptoms:
+                        viewModel.currentStressObject.toggleSymptoms(item)
+                    case .subjectTypes:
+                        viewModel.currentStressObject.toggleSubjectTypes(item)
+                    case .individuals:
+                        viewModel.currentStressObject.toggleIndividuals(item)
+                    }
+                    
+                    updateColor()
+                    
+                } label : {
+                    
+                    Text(String(item).capitalized)
+                        .font(.system(size: 16))
+                        .padding(8)
+                        .foregroundColor(color)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(color, lineWidth: 2)
+                                .padding(2)
+                        )
+                    
+                }
             }
+        }.onAppear{
+            updateColor()
         }
     }
-    
 }
 
 
@@ -578,6 +591,9 @@ struct StressLevelView : View {
 
                 Spacer()
                 
+            }
+            .onAppear{
+                selectedStressVal = viewModel.currentStressObject.rating
             }
             
             Spacer()
@@ -627,6 +643,7 @@ struct CheckinSummaryView : View {
             
             
             Spacer()
+            
             if(!viewModel.stressObjects.isEmpty){
                 VStack(alignment: .center){
                     Text("Stressors")
@@ -643,9 +660,9 @@ struct CheckinSummaryView : View {
                         
                         if(stressors.count > 1){
                             
-                            Rectangle()
-                                .fill(Theme.MainColor)
-                                .frame(width: 2)
+//                            Rectangle()
+//                                .fill(Theme.MainColor)
+//                                .frame(width: 1)
                             
                             
                             StressSummaryView(stressor: stressors[1])
@@ -655,6 +672,7 @@ struct CheckinSummaryView : View {
                         Spacer()
                         
                     }.padding(.horizontal)
+                        
                     
                     
                 }
@@ -662,10 +680,22 @@ struct CheckinSummaryView : View {
                     minWidth: 0,
                     maxWidth: .infinity,
                     minHeight: 0,
-                    maxHeight: 400
+                    maxHeight: 425
                 )
+              //  .background(.pink)
+                
                 
             }
+            Spacer()
+//            VStack{}
+//                .frame(
+//                minWidth: 0,
+//                maxWidth: .infinity,
+//                minHeight: 0,
+//                maxHeight: .infinity
+//            )
+//                .background(.yellow)
+                
 
             
         }
@@ -757,7 +787,7 @@ struct CongratsView : View {
     
     var body: some View{
         VStack{
-            Text("CONGRATULATIONS!")
+            GifImage("congratulations")
             
             Spacer()
         }.onAppear{
@@ -767,43 +797,16 @@ struct CongratsView : View {
 }
 
 
-func buildDemoStressors() -> [StressManager.StressObject]{
-    
-    var retArr : [StressManager.StressObject] = []
-    
-    let stressor = StressManager.StressObject(category: .health)
-    stressor.rating = 2
-    stressor.toggleTimes("Evening")
-    stressor.toggleActivities("Resting")
-    stressor.toggleActivities("Eating")
-    stressor.toggleSymptoms("Increased HR")
-    stressor.toggleSubjectTypes("Family")
-    stressor.toggleSubjectTypes("Stranger")
-    stressor.toggleIndividuals("Tom")
-    stressor.toggleIndividuals("Sarah")
-    
-    let stressor2 = StressManager.StressObject(category: .relationships)
-    stressor2.rating = 3
-    stressor2.toggleTimes("Night")
-    stressor2.toggleActivities("Eating")
-    stressor2.toggleSymptoms("Increased HR")
-    stressor2.toggleSubjectTypes("Family")
-    stressor2.toggleIndividuals("Tom")
-    
-    retArr.append(stressor)
-    retArr.append(stressor2)
-    
-    return retArr
-    
-}
+
 
 struct CheckinView_Previews: PreviewProvider {
     static var previews: some View {
         //CheckinView()
        // StressDetailView()
-        CheckinSummaryView()
+       // CheckinSummaryView()
         //RoseThornBudView()
         //CheckinView()
+        CongratsView()
             .environmentObject(CheckinViewModel())
     }
 }

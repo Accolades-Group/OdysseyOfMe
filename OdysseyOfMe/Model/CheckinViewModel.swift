@@ -42,7 +42,7 @@ final class CheckinViewModel : ObservableObject {
                 Image("sentiment_very_dissatisfied")
                 
             case .dissatisfied : return Image("sentiment_dissatisfied")
-            //default: return Image("sentiment_very_dissatisfied")
+                //default: return Image("sentiment_very_dissatisfied")
             case .neutral:
                 return Image("sentiment_neutral")
             case .satisfied:
@@ -173,7 +173,7 @@ final class CheckinViewModel : ObservableObject {
         case stressLevel
         case summary
         case congratulations
-    
+        
         
         func next() -> Self {
             
@@ -181,7 +181,7 @@ final class CheckinViewModel : ObservableObject {
             let idx = all.firstIndex(of: self)!
             let next = all.index(after: idx)
             return all[next == all.endIndex ? all.startIndex : next]
- 
+            
         }
         
         func isLast() -> Bool {
@@ -200,7 +200,7 @@ final class CheckinViewModel : ObservableObject {
             path = .init()
             
         } else if route == .stressCategorySelection && stressObjects.isEmpty {
-                // Stress Category skipped and no category selected
+            // Stress Category skipped and no category selected
             stressObjects.append(StressManager.StressObject(category: .other))
             
             path.append(route.next())
@@ -223,7 +223,7 @@ final class CheckinViewModel : ObservableObject {
             
             
         } else if route == .summary {
-          
+            
             //submit checkin
             submitCheckin()
             
@@ -233,6 +233,38 @@ final class CheckinViewModel : ObservableObject {
             path.append(route.next())
         }
     }
-
+    
+    
+    //MARK: Testing funcs
+    func buildDemo() {//-> [StressManager.StressObject]{
+        
+      //  var retArr : [StressManager.StressObject] = []
+        
+        let stressor = StressManager.StressObject(category: .health)
+        stressor.rating = 2
+        stressor.toggleTimes("Evening")
+        stressor.toggleActivities("Resting")
+        stressor.toggleActivities("Eating")
+        stressor.toggleSymptoms("Increased HR")
+        stressor.toggleSubjectTypes("Family")
+        stressor.toggleSubjectTypes("Stranger")
+        stressor.toggleIndividuals("Tom")
+        stressor.toggleIndividuals("Sarah")
+        
+        let stressor2 = StressManager.StressObject(category: .relationships)
+        stressor2.rating = 3
+        stressor2.toggleTimes("Night")
+        stressor2.toggleActivities("Eating")
+        stressor2.toggleSymptoms("Increased HR")
+        stressor2.toggleSubjectTypes("Family")
+        stressor2.toggleIndividuals("Tom")
+        
+        stressObjects.append(stressor)
+        stressObjects.append(stressor2)
+        
+        selectedType = .neutral
+       // return retArr
+        
+    }
     
 }

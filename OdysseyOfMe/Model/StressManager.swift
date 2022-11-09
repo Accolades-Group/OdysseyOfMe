@@ -405,8 +405,3 @@ class StressManager {
     
 }
 
-
-
-/**
- On launch, iterate through each past stress, add custom tags to enums
- */
