@@ -30,6 +30,24 @@ class DataController : ObservableObject {
         }
     }
 
+    /*
+    func getAllStressDetailData(_ timeInterval : DataTimeIntervals) -> [StressDetail] {
+        let fetchStressRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "StressDetail")
+        
+        do{
+            let data = try container.viewContext.fetch(fetchStressRequest)
+            return Array(data)
+        }catch let error as NSError {
+            print("Could not fetch stress data. \(error)")
+        }
+
+        return []
+    }
+    
+    enum DataTimeIntervals{
+        case day, week, month, all
+    }
+*/
     
     func clearAllData(){
         

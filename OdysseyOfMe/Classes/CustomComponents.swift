@@ -56,6 +56,12 @@ struct ProgressBar : View {
     var left : CGFloat{
         return pos / total
     }
+    
+    init(pos : Int, total : Int){
+        self.pos = CGFloat(pos)
+        self.total = CGFloat(total)
+    }
+    
     var body: some View {
         GeometryReader{ geo in
             HStack(spacing:0){

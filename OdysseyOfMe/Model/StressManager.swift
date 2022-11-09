@@ -12,7 +12,7 @@ import CoreData
 /**
  The class that manages new stress items/objects
  */
-class StressManager {
+class StressManager : ObservableObject {
     
     //MARK: Default Enum Values
     enum Details : String, CaseIterable {
@@ -76,13 +76,17 @@ class StressManager {
     var StressCategoryTags : [String]
     var IndividualsTags : [String]
     
-    init(stressData : [StressDetail] = []){
+    init(){
         TimeTags = []
         ActivityTags = []
         PhysicalSymptomTags = []
         SubjectTypeTags = []
         StressCategoryTags = []
         IndividualsTags = []
+    }
+    
+    func build(stressData : [StressDetail]){
+
         
         TimesOfDay.allCases.forEach{element in
             TimeTags.append(element.rawValue)
@@ -109,7 +113,6 @@ class StressManager {
         PhysicalSymptomTags.append("+")
         SubjectTypeTags.append("+")
         IndividualsTags.append("+")
-       // StressCategoryTags
         
         stressData.forEach{data in
             
@@ -147,6 +150,7 @@ class StressManager {
                 if !StressCategoryTags.contains(category) { StressCategoryTags.append(category) }
             }
         }
+        
     }
     
     
@@ -166,86 +170,6 @@ class StressManager {
         if !IndividualsTags.contains(tag) { IndividualsTags.insert(tag, at: IndividualsTags.count-1) }
     }
     
-    func updateStressDetails(stressData : [StressDetail]){
-        
-        stressData.forEach{data in
-            
-            if let times = data.timesOfDay{
-                times.forEach{time in
-                    if !TimeTags.contains(time){ TimeTags.append(time) }
-                }
-            }
-            
-            if let activities = data.activities{
-                activities.forEach{activity in
-                    if !ActivityTags.contains(activity) { ActivityTags.append(activity) }
-                }
-            }
-            
-            if let symptoms = data.symptoms{
-                symptoms.forEach{symptom in
-                    if !PhysicalSymptomTags.contains(symptom) { SubjectTypeTags.append(symptom) }
-                }
-            }
-            
-            if let subjects = data.subjectTypes{
-                subjects.forEach{subject in
-                    if !SubjectTypeTags.contains(subject) { SubjectTypeTags.append(subject) }
-                }
-            }
-            
-            if let category = data.category{
-                if !StressCategoryTags.contains(category) { StressCategoryTags.append(category) }
-            }
-            
-            
-        }
-        
-    }
-
-    
-    /*
-     TODO: This
-     **/
-    /*
-    func AddToCoreData(_ stressObjects : [StressObject]) {
-        
-        let moc = DataController.shared.container.viewContext
-        
-        stressObjects.forEach{stressObj in
-            
-            if stressObj.dataIsValid(){
-                
-                //create a new stress object
-                let stressDetail = StressDetail(context: moc)
-                
-                stressDetail.addDate = Date.now
-                stressDetail.id = UUID()
-                stressDetail.activities = stressObj.getActivitiesStrings()
-                stressDetail.category = stressObj.category.rawValue
-                stressDetail.individuals = stressObj.individuals
-                stressDetail.rating = Int16(stressObj.rating)
-                stressDetail.subjectTypes = stressObj.getSubjectTypesStrings()
-                stressDetail.symptoms = stressObj.getSymptomsStrings()
-                stressDetail.timesOfDay = stressObj.times
-                stressDetail.stressDescription = stressObj.description
-                
-                
-                do {
-                    try moc.save()
-                }catch let error {
-                    print("-----")
-                    print("Error saving stress detail!")
-                    print(error)
-                    print("-----")
-                }
-                
-            }
-            
-        }
-        
-    }
-    */
     
     
     class StressObject : ObservableObject, Hashable {

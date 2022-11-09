@@ -10,9 +10,7 @@ import SwiftUI
 struct CheckinView: View {
     
     @StateObject var viewModel : CheckinViewModel = CheckinViewModel()
-    
     @Environment(\.managedObjectContext) var moc
-    
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
 
     
@@ -20,8 +18,147 @@ struct CheckinView: View {
         
         NavigationStack (path: $viewModel.path) {
             
-               VStack{
+            VStack{
+                //Home view
+                CheckinHomeView()
+                
+                //Checkin button and route
+                CheckinButtonRoute()
+                
+                
+                //Avatar button and route
+                //AvatarButtonRoute() Move to profile section?
+                
+            }
             
+        }
+        .environmentObject(viewModel)
+        .onAppear{
+            
+            viewModel.stressManager.build(stressData: Array(stressHistory))
+            viewModel.moc = moc
+            
+        }
+        
+    }
+    
+    fileprivate struct CheckinButtonRoute : View {
+        @EnvironmentObject var viewModel : CheckinViewModel
+        var body: some View{
+            
+            Button("Check-In"){
+                
+                viewModel.path.append(CheckinViewModel.Routing.howWasYourDay)
+                
+            }.navigationDestination(for: CheckinViewModel.Routing.self){route in
+                VStack(spacing: 0){
+                    
+                    CheckinRouteBody(route: route)
+                    
+
+                }
+                .navigationBarBackButtonHidden(true)
+                .navigationTitle(
+                    viewModel.getNavigationTitle(route)
+                )
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Button{
+                            
+                            viewModel.backButton(route)
+                            
+                        } label: {
+                            
+                            Image("back_arrow")
+                                .resizable()
+                                .frame(width: 12, height: 20)
+                                .foregroundColor(Theme.DarkGray)
+                            
+                        }
+                    }
+                }
+                //TODO: Fix toolbar lag?
+                .toolbar(.hidden, for: .tabBar)
+
+            }.buttonStyle(RoundedButtonStyle())
+        }
+    }
+    
+    fileprivate struct AvatarButtonRoute : View {
+        @EnvironmentObject var viewModel : CheckinViewModel
+        var body: some View{
+            Button("Avatar"){
+                //TODO: Routing
+            }.buttonStyle(RoundedButtonStyle())
+        }
+    }
+    
+
+    
+    fileprivate struct CheckinRouteBody : View {
+        @EnvironmentObject var viewModel : CheckinViewModel
+        let route : CheckinViewModel.Routing
+        
+        var body: some View{
+            VStack{
+                ProgressBar(pos: route.pos() + 1 , total: route.totalRoutes - 1 )
+                
+                Text(viewModel.getViewQuestion(route))
+                    .font(.system(size: 30))
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                VStack{
+                    switch route {
+                        
+                    case .howWasYourDay :
+                        HowWasYourDayView()
+                        
+                    case .roseThornBud :
+                        RoseThornBudView()
+                        
+                    case .stressCategorySelection :
+                        StressCategorySelectionView()
+                        
+                    case .stressDetail :
+                        StressDetailView()
+                        
+                    case .stressLevel :
+                        StressLevelView()
+                        
+                    case .summary :
+                        CheckinSummaryView()
+                        
+                    case .congratulations:
+                        GifImage("congratulations")
+                        
+                    }
+                }
+                
+                Spacer()
+                
+                Button(route == .summary ? "Submit" : "Continue"){
+                    viewModel.continueButton(route)
+                }.buttonStyle(RoundedButtonStyle())
+                
+            }
+        }
+    }
+}
+
+
+
+
+/**
+ This is the home view that displays above the checkin button.
+ */
+fileprivate struct CheckinHomeView : View {
+    
+    @EnvironmentObject var viewModel : CheckinViewModel
+    
+    var body : some View {
+        VStack{
             Rectangle()
                 .fill(Color.ERROR_COLOR)
                 .overlay{
@@ -40,116 +177,22 @@ struct CheckinView: View {
                 .padding()
             
             Spacer()
-            
-            Button("Check-In"){
-                
-                viewModel.path.append(CheckinViewModel.Routing.howWasYourDay)
-                
-            }.navigationDestination(for: CheckinViewModel.Routing.self){route in
-                VStack{
-                    switch route {
-                        
-                    case .howWasYourDay :
-                        HowWasYourDayView()
-                        
-                    case .roseThornBud :
-                        RoseThornBudView()
-                        
-                    case .stressCategorySelection :
-                        StressCategorySelectionView()
-                        
-                    case .stressDetail :
-                        StressDetailView()
-                        
-                        
-                        
-                    case .stressLevel :
-                        StressLevelView()
-                        
-                    case .summary :
-                        CheckinSummaryView()
-                        
-                    case .congratulations:
-                        CongratsView()
-                        
-                    }
-                    
-                    Button(route == .summary ? "Submit" : "Continue"){
-                        viewModel.continueButton(route)
-                    }.buttonStyle(RoundedButtonStyle())
-                    
-                    
-                    
-                }//.toolbar(.hidden, for: .tabBar)
-                .navigationBarBackButtonHidden(true)
-                .navigationTitle(getNavigationTitle(isTitle: route == .stressDetail || route == .stressLevel))
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Button{
-                            
-                            if route == .stressDetail {
-                                viewModel.currentStressIndex = max(0, viewModel.currentStressIndex - 1)
-                            }
-                            
-                            viewModel.path.removeLast()
-                        } label: {
-                            
-                            Image("back_arrow")
-                                .resizable()
-                                .frame(width: 12, height: 20)
-                                .foregroundColor(Theme.DarkGray)
-                            
-                        }
-                    }
-                   // Text("Route")
-                    
-                    
-                }
-                //TODO: Fix toolbar lag?
-                //.toolbar(.hidden, for: .tabBar)
-                
-                
-            }.buttonStyle(RoundedButtonStyle())
-            
-            
-            
-            Button("Avatar"){
-                //TODO: Routing
-            }.buttonStyle(RoundedButtonStyle())
-        }
-               
-        }
-        .environmentObject(viewModel)
-            .onAppear{
-                viewModel.stressManager = StressManager(stressData: Array(stressHistory))
-                viewModel.moc = moc
-            }
-            
-    }
-    func getNavigationTitle(isTitle : Bool) -> String {
-        if isTitle{
-            return "\(viewModel.currentStressObject.category.rawValue.capitalized) Stressor"
-        }else{
-            return ""
         }
     }
+    
 }
 
+/**
+ This is the first view shown that asks a user to rank their day from 0-5
+ */
 fileprivate struct HowWasYourDayView : View {
-    
-    
+
     @EnvironmentObject var viewModel : CheckinViewModel
     
     var body: some View {
         
-
         VStack{
-            
-            ProgressBar(pos: 1, total: 6)
-            
-            Text("How was your day?")
-                .font(.system(size: 30))
-            
+
             Spacer()
             
             VStack(spacing: 20){
@@ -167,13 +210,15 @@ fileprivate struct HowWasYourDayView : View {
                 
             }.frame(height: 120)
             
-            
+            Spacer()
             
             HStack{
                 ForEach(CheckinViewModel.Satisfaction_Types.allCases, id: \.self){type in
                     Spacer()
                     Button{
-                        viewModel.selectType(type)
+                        withAnimation{ //TODO: Keep animation? If so, move to vm
+                            viewModel.selectType(type)
+                        }
                     }label:{
                         type.icon
                             .resizable()
@@ -183,10 +228,10 @@ fileprivate struct HowWasYourDayView : View {
                 }
                 Spacer()
             }
-            .padding(.vertical, 75)
+
             
             Spacer()
-            
+            Spacer()
 
 
         }
@@ -202,14 +247,7 @@ fileprivate struct RoseThornBudView : View {
     
     var body: some View{
             VStack{
-                
-                ProgressBar(pos: 2, total: 6)
-                
-                Text("Rose, Thorn, and Bud")
-                    .font(.system(size: 30))
-                
                 Spacer()
-                
                 //Questions
                 VStack{
                     //Rose
@@ -269,14 +307,7 @@ fileprivate struct StressCategorySelectionView : View {
     
     var body: some View{
             VStack{
-                
-                ProgressBar(pos: 3, total: 6)
-                
-                Text("Which areas were the most stressful today?")
-                    .font(.system(size: 30))
-                    .multilineTextAlignment(.center)
-                    //.padding(10)
-                
+
                 Spacer()
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10){
@@ -284,7 +315,7 @@ fileprivate struct StressCategorySelectionView : View {
                     
                     ForEach(StressManager.StressCategories.allCases.filter({$0 != .none}), id: \.self){category in
                         
-                        let isSelected : Bool = viewModel.isStressCategorySelected(category)
+                        let isSelected : Bool = viewModel.stressObjects.contains(where: {$0.category == category})
                         
                         ZStack{
                             
@@ -335,7 +366,6 @@ fileprivate struct StressDetailView : View {
     var body: some View {
         
             VStack{
-                ProgressBar(pos: 4, total: 6)
                 
                 GeometryReader{geo in
                     ScrollView(showsIndicators: false){
@@ -343,11 +373,7 @@ fileprivate struct StressDetailView : View {
                             
                             //Time Tags
                             Text("What time of day?")
-//                            Text("What time of day did ")
-//                            +
-//                            Text(viewModel.currentStressObject.category.rawValue.lowercased()).bold().underline()
-//                            +
-//                            Text(" cause you stress?")
+
                             
                             
                             FlexibleTagView(
@@ -553,31 +579,26 @@ struct StressLevelView : View {
     
     @State var selectedStressVal : Int = 0
     
-    
-    
     var body: some View {
         
-            
             VStack{
-                ProgressBar(pos: 5, total: 6)
-                
-                Text("How Stressful was this experience?")
-                    .font(.system(size: 30))
-                    .multilineTextAlignment(.center)
                 
                 Spacer()
-
+                
                 HStack{
                     
                     ForEach(1..<6){ i in
                         Spacer()
                         Button{
-                            if ( selectedStressVal == i){
-                                selectedStressVal = selectedStressVal - 1
-                            } else {
-                                selectedStressVal = i
+                            //TODO: Keep animation?
+                            withAnimation{
+                                if ( selectedStressVal == i){
+                                    selectedStressVal = selectedStressVal - 1
+                                } else {
+                                    selectedStressVal = i
+                                }
+                                viewModel.currentStressObject.rating = selectedStressVal
                             }
-                            viewModel.currentStressObject.rating = selectedStressVal
                         }label: {
                             Image("fire")
                                 .resizable()
@@ -607,17 +628,8 @@ struct CheckinSummaryView : View {
     
     var body: some View {
 
-        
         VStack(alignment: .center, spacing: 0){
-            
-            ProgressBar(pos: 6, total: 6)
-            
-            
-                Text("Summary")
-                    .font(.title)
-                    .bold()
                     
-            Spacer()
             
             
             if let type = viewModel.selectedType{
@@ -754,7 +766,7 @@ struct StressSummaryView : View {
                     
                     VStack(spacing: 3){
                         ForEach(tags, id: \.self){tag in
-                            Text(tag)
+                            Text(tag.capitalized)
                                 .padding(8)
                                 .foregroundColor(Theme.DarkGray)
                                 .frame(width: width)
@@ -780,33 +792,25 @@ struct StressSummaryView : View {
     }
 }
 
-struct CongratsView : View {
-    
-    @EnvironmentObject var viewModel : CheckinViewModel
 
-    
-    var body: some View{
-        VStack{
-            GifImage("congratulations")
-            
-            Spacer()
-        }.onAppear{
-            viewModel.resetData()
-        }
-    }
-}
 
 
 
 
 struct CheckinView_Previews: PreviewProvider {
     static var previews: some View {
-        //CheckinView()
-       // StressDetailView()
-       // CheckinSummaryView()
-        //RoseThornBudView()
-        //CheckinView()
-        CongratsView()
-            .environmentObject(CheckinViewModel())
+       // CheckinView()
+        VStack{
+            HowWasYourDayView()
+            // StressDetailView()
+            // CheckinSummaryView()
+            //RoseThornBudView()
+            //CheckinView()
+            // CongratsView()
+                .environmentObject(CheckinViewModel())
+            Button("Continue"){
+                
+            }.buttonStyle(RoundedButtonStyle())
+        }
     }
 }

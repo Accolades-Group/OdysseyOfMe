@@ -23,32 +23,21 @@ final class CheckinViewModel : ObservableObject {
         
         var name : String {
             switch self{
-            case .very_dissatisfied:
-                return "Very Dissatisfied"
-            case .dissatisfied:
-                return "Dissatisfied"
-            case .neutral:
-                return "Neutral"
-            case .satisfied:
-                return "Satisfied"
-            case .very_satisfied:
-                return "Very Satisfied"
+            case .very_dissatisfied: return "Very Dissatisfied"
+            case .dissatisfied: return "Dissatisfied"
+            case .neutral: return "Neutral"
+            case .satisfied: return "Satisfied"
+            case .very_satisfied: return "Very Satisfied"
             }
         }
         
         var icon : Image {
             switch self {
-            case .very_dissatisfied : return
-                Image("sentiment_very_dissatisfied")
-                
+            case .very_dissatisfied : return Image("sentiment_very_dissatisfied")
             case .dissatisfied : return Image("sentiment_dissatisfied")
-                //default: return Image("sentiment_very_dissatisfied")
-            case .neutral:
-                return Image("sentiment_neutral")
-            case .satisfied:
-                return Image("sentiment_satisfied")
-            case .very_satisfied:
-                return Image("sentiment_very_satisfied")
+            case .neutral: return Image("sentiment_neutral")
+            case .satisfied: return Image("sentiment_satisfied")
+            case .very_satisfied: return Image("sentiment_very_satisfied")
             }
         }
         
@@ -81,27 +70,26 @@ final class CheckinViewModel : ObservableObject {
         if stressObjects.isEmpty{
             return StressManager.StressObject(category: .none)
         }
-        return stressObjects[currentStressIndex ?? stressObjects.count-1]
+        return stressObjects[min(currentStressIndex , stressObjects.count-1)]
     }
     
     //This stress button is selected
     func stressButtonSelected(_ category : StressManager.StressCategories){
-        if isStressCategorySelected(category){
+        
+        //Toggle if category is already selected
+        if stressObjects.contains(where: {$0.category == category}){
             stressObjects.removeAll(where: {$0.category == category})
-        }else if(stressObjects.count == 2){
             
+            //If 2 selected, remove oldest category selected (max of 2)
+        }else if(stressObjects.count == 2){
             stressObjects.removeFirst()
             stressObjects.append(StressManager.StressObject(category: category))
             
+            //Append category to array
         }else{
             stressObjects.append(StressManager.StressObject(category: category))
         }
     }
-    
-    func isStressCategorySelected(_ category : StressManager.StressCategories) -> Bool{
-        return stressObjects.contains(where: {$0.category == category})
-    }
-    
     
     
     func submitCheckin(){
@@ -184,18 +172,26 @@ final class CheckinViewModel : ObservableObject {
             
         }
         
+        func pos() -> Int {
+            return Self.allCases.firstIndex(of: self)!
+        }
+        
+        var totalRoutes : Int {
+            return Self.allCases.count
+        }
+        
         func isLast() -> Bool {
             let all = Self.allCases
             let idx = all.firstIndex(of: self)!
             let next = all.index(after: idx)
             return next == all.endIndex
         }
-        
-        
     }
     
     func continueButton(_ route: Routing) {
         if route.isLast() {
+            //Reset the data
+            resetData()
             //Pop to root
             path = .init()
             
@@ -234,6 +230,36 @@ final class CheckinViewModel : ObservableObject {
         }
     }
     
+    func backButton(_ route : Routing){
+        
+        if route == .stressDetail {
+            currentStressIndex = max(0, currentStressIndex - 1)
+        }
+        path.removeLast()
+
+    }
+    
+    func getNavigationTitle(_ route : Routing) -> String {
+        
+        if route == .stressDetail || route == .stressLevel {
+            return "\(currentStressObject.category.rawValue.capitalized) Stressor"
+            
+        } else { return "" }
+        
+    }
+    
+    func getViewQuestion(_ route : Routing) -> String{
+        switch route {
+        case .howWasYourDay : return "How was your day?"
+        case .roseThornBud : return "Rose, Thorn, and Bud"
+        case .stressCategorySelection : return "What areas were most stressful today?"
+        case .stressLevel : return "How stressful was this experience?"
+        case .summary : return "Summary"
+            
+        default: return ""
+        }
+    }
+    
     
     //MARK: Testing funcs
     func buildDemo() {//-> [StressManager.StressObject]{
@@ -266,5 +292,6 @@ final class CheckinViewModel : ObservableObject {
        // return retArr
         
     }
+     
     
 }

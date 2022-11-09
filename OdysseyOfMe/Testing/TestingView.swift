@@ -77,7 +77,7 @@ struct TestingView: View {
         }
         .onAppear{
             //TODO: On appear, have view model update stress object
-            stress = StressManager(stressData: Array(stressHistory))
+            
         }
          
     }

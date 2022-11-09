@@ -21,6 +21,7 @@ struct TabNavView: View {
                     }
                 }
             
+            /*
             TestingView()
                 .tabItem{
                     VStack{
@@ -28,6 +29,7 @@ struct TabNavView: View {
                         Image(systemName: "exclamationmark.triangle")
                     }
                 }
+             */
             
             HistoryView()
                 .tabItem{
