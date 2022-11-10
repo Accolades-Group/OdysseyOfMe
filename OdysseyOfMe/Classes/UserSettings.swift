@@ -11,7 +11,7 @@ final class UserSettings : ObservableObject {
     
     private enum keys : String, CaseIterable {
         //Personal Info
-        case name, firstName, lastName, email, phone, dateOfBirth, registrationDate, profileImage, medicalHistory,
+        case name, firstName, lastName, email, phone, dateOfBirth, registrationDate, profileImageString, medicalHistory,
              
              //Care Provider Info
              providerName, providerEmail, providerPhone, providerFrequeny, isProviderCommunication,
@@ -76,14 +76,14 @@ final class UserSettings : ObservableObject {
         }
     }
     
-    /* TODO: Profile Image
+    // TODO: Profile Image
     // The date that the user registered their account
-    @Published var profileImage : Image {
+    @Published var profileImageString : String {
         didSet{
-            UserDefaults.standard.set(profileImage, forKey: keys.profileImage.rawValue )
+            UserDefaults.standard.set(profileImageString, forKey: keys.profileImageString.rawValue )
         }
     }
-     */
+
     
     @Published var medicalHistory : MedicalHistory {
         didSet{
@@ -152,8 +152,9 @@ final class UserSettings : ObservableObject {
     init(){
         //Name
         self.name = UserDefaults.standard.object(forKey: keys.name.rawValue) as? PersonNameComponents ?? PersonNameComponents()
-        self.firstName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? "No Name Given"
-        self.lastName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? "No Name Given"
+        self.firstName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? ""
+        self.lastName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? ""
+        self.profileImageString = UserDefaults.standard.object(forKey: keys.profileImageString.rawValue) as? String ?? ""
         
         //Contact
         self.email = UserDefaults.standard.object(forKey: keys.email.rawValue) as? String ?? ""
