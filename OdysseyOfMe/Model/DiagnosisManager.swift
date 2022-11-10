@@ -8,7 +8,21 @@
 import Foundation
 
 
-struct Diagnosis {
+class DiagnosisManager : ObservableObject {
+    
+}
+
+struct Diagnosis : Hashable {
+    
+    
+    static func == (lhs: Diagnosis, rhs: Diagnosis) -> Bool {
+        lhs.diagnosisName?.lowercased() == rhs.diagnosisName?.lowercased()
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(diagnosisName)
+    }
+    
     
     var diagnosisDate : Date?
     
@@ -34,6 +48,18 @@ func test() {
     
     medHistory.currentDiagnosis = [depression, anxiety]
     
+}
+
+func buildSampleMedHistory() -> MedicalHistory {
+    var medHistory : MedicalHistory = MedicalHistory()
+    
+    var depression = Diagnosis(diagnosisDate: Date.now, diagnosisName: "Depression", medications: [Medication(name: "Zoloft", frequency: .both, changeDate: Date.now)])
+    
+    var anxiety = Diagnosis(diagnosisDate: Date.distantPast, diagnosisName: "Anxiety", medications: [Medication(name: "Hydroxozone", frequency: .am, changeDate: Date.now)])
+    
+    medHistory.currentDiagnosis = [depression, anxiety]
+    
+    return medHistory
 }
 
 struct Medication {

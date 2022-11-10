@@ -36,7 +36,7 @@
 		F3EDEE11291483BE00BD4849 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE10291483BE00BD4849 /* Extensions.swift */; };
 		F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE132914916300BD4849 /* CheckinViewModel.swift */; };
 		F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE152914B62300BD4849 /* UserSettings.swift */; };
-		F3EDEE182914B6C500BD4849 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE172914B6C500BD4849 /* Diagnosis.swift */; };
+		F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */; };
 		F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +128,7 @@
 		F3EDEE10291483BE00BD4849 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F3EDEE132914916300BD4849 /* CheckinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinViewModel.swift; sourceTree = "<group>"; };
 		F3EDEE152914B62300BD4849 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		F3EDEE172914B6C500BD4849 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
+		F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisManager.swift; sourceTree = "<group>"; };
 		F3EDEE19291505F900BD4849 /* StressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -317,7 +317,6 @@
 				F3EDEE0E2914829600BD4849 /* CustomComponents.swift */,
 				F3EDEE10291483BE00BD4849 /* Extensions.swift */,
 				F3EDEE152914B62300BD4849 /* UserSettings.swift */,
-				F3EDEE172914B6C500BD4849 /* Diagnosis.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -329,6 +328,7 @@
 				F3EDEE19291505F900BD4849 /* StressManager.swift */,
 				F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */,
 				F3BFA95C2918813600059E6C /* DataController.swift */,
+				F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,7 +566,7 @@
 				F3EDEE11291483BE00BD4849 /* Extensions.swift in Sources */,
 				F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */,
 				F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */,
-				F3EDEE182914B6C500BD4849 /* Diagnosis.swift in Sources */,
+				F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */,
 				F3EDEE0A2914816500BD4849 /* HistoryView.swift in Sources */,
 				F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */,
 				F3BFA95D2918813600059E6C /* DataController.swift in Sources */,

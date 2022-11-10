@@ -28,7 +28,7 @@ final class UserSettings : ObservableObject {
     }
     
     // The displayed name for the user
-    @Published var name : PersonNameComponents {
+    @Published var name : String {
         didSet{
             UserDefaults.standard.set(name, forKey: keys.name.rawValue)
         }
@@ -93,7 +93,7 @@ final class UserSettings : ObservableObject {
     
     //Provider Info
     
-    @Published var providerName : PersonNameComponents{
+    @Published var providerName : String{
         didSet{
             UserDefaults.standard.set(providerName, forKey: keys.providerName.rawValue)
         }
@@ -151,7 +151,7 @@ final class UserSettings : ObservableObject {
     
     init(){
         //Name
-        self.name = UserDefaults.standard.object(forKey: keys.name.rawValue) as? PersonNameComponents ?? PersonNameComponents()
+        self.name = UserDefaults.standard.object(forKey: keys.name.rawValue) as? String ?? ""//PersonNameComponents ?? PersonNameComponents()
         self.firstName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? ""
         self.lastName = UserDefaults.standard.object(forKey: keys.firstName.rawValue) as? String ?? ""
         self.profileImageString = UserDefaults.standard.object(forKey: keys.profileImageString.rawValue) as? String ?? ""
@@ -167,7 +167,7 @@ final class UserSettings : ObservableObject {
         
         
         //Care Provider
-        self.providerName = UserDefaults.standard.object(forKey: keys.providerName.rawValue) as? PersonNameComponents ?? PersonNameComponents()
+        self.providerName = UserDefaults.standard.object(forKey: keys.providerName.rawValue) as? String ?? ""//PersonNameComponents ?? PersonNameComponents()
         self.providerEmail = UserDefaults.standard.object(forKey: keys.providerEmail.rawValue) as? String ?? ""
         self.providerPhone = UserDefaults.standard.object(forKey: keys.providerPhone.rawValue) as? String ?? ""
         self.isProviderCommunication = UserDefaults.standard.object(forKey: keys.isProviderCommunication.rawValue) as? Bool ?? false

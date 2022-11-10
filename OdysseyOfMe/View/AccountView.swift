@@ -80,7 +80,7 @@ struct AccountView: View {
                         }.foregroundColor(Theme.DarkGray)
                     }.padding(.top, 8)
                     
-                    NavigationLink(destination: DiagnosisInfoView()){
+                    NavigationLink(destination: DiagnosisOverView()){
                         HStack{
                             Text("Medical Info")
                                 .font(.system(size: 18))
@@ -259,103 +259,61 @@ struct PersonalInfoView : View {
     
     
     var body: some View{
-        VStack(spacing: 40){
+        VStack(spacing: 20){
             
             SectionHeader(section: .email)
             
-            if isEmailSelected {
-                 
-                HStack{
-                    
-                    
-                    TextField("Edit Email", text: $userSettings.email)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .foregroundColor(.black)
+            CustomTextEditButton(placeholder: "Email", editItem: $userSettings.email)
 
-                    
-                    Button{
-                        withAnimation{
-                            isEmailSelected = false
-                        }
-                    } label: {
-                        Image("check")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                    }
-                }
-                
-            }
-            else {
-                
-                HStack{
-                    Text("\(userSettings.email)")
-                        .foregroundColor(Theme.DarkGray)
-                    
-                    Spacer()
-                    
-                    Button{
-                        withAnimation{
-                            isEmailSelected = true
-                        }
-                    } label: {
-                        Image("forward_arrow")
-                            .resizable()
-                            .frame(width: 12.5, height: 20)
-                            .padding(.trailing)
-                    }
-                }
-                
-            }
             
             SectionHeader(section: .phone)
             
-            if isPhoneSelected {
-                 
-                HStack{
-                    
-                    
-                    TextField("Edit Phone", text: $userSettings.phone)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .foregroundColor(.black)
-
-                    
-                    Button{
-                        withAnimation{
-                            isPhoneSelected = false
-                        }
-                    } label: {
-                        Image("check")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                    }
-                }
-                
-            }
-            else {
-                
-                HStack{
-                    Text("\(userSettings.phone)")
-                        .foregroundColor(Theme.DarkGray)
-                    
-                    Spacer()
-                    
-                    Button{
-                        withAnimation{
-                            isPhoneSelected = true
-                        }
-                    } label: {
-                        Image("forward_arrow")
-                            .resizable()
-                            .frame(width: 12.5, height: 20)
-                            .padding(.trailing)
-                    }
-                }
-                
-            }
+            CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.phone)
+//            if isPhoneSelected {
+//
+//                HStack{
+//
+//
+//                    TextField("Edit Phone", text: $userSettings.phone)
+//                        .autocorrectionDisabled()
+//                        .textInputAutocapitalization(.never)
+//                        .foregroundColor(.black)
+//
+//
+//                    Button{
+//                        withAnimation{
+//                            isPhoneSelected = false
+//                        }
+//                    } label: {
+//                        Image("check")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                            .padding(.trailing)
+//                    }
+//                }
+//
+//            }
+//            else {
+//
+//                HStack{
+//                    Text("\(userSettings.phone)")
+//                        .foregroundColor(Theme.DarkGray)
+//
+//                    Spacer()
+//
+//                    Button{
+//                        withAnimation{
+//                            isPhoneSelected = true
+//                        }
+//                    } label: {
+//                        Image("forward_arrow")
+//                            .resizable()
+//                            .frame(width: 12.5, height: 20)
+//                            .padding(.trailing)
+//                    }
+//                }
+//
+//            }
             
             SectionHeader(section: .birthday)
             HStack{
@@ -368,9 +326,11 @@ struct PersonalInfoView : View {
                 
             }
             
+            Spacer()
             
         }.navigationTitle("Personal")
-            .padding()
+            .padding(.horizontal, 20)
+            .padding(.top, 40)
     }
 }
 
@@ -379,38 +339,94 @@ struct ProviderInfoView : View {
     @EnvironmentObject var userSettings : UserSettings
     
     var body: some View{
-        VStack{
+        VStack(spacing: 20){
+            
+            SectionHeader(section: .name)
+            CustomTextEditButton(placeholder: "Name", editItem: $userSettings.providerName)
             
             SectionHeader(section: .email)
-            
+            CustomTextEditButton(placeholder: "Email", editItem: $userSettings.providerEmail)
             
             SectionHeader(section: .phone)
+            CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.providerPhone)
             
             SectionHeader(section: .appointmentFrequency)
+
             
             SectionHeader(section: .therapistCommunication)
+
             
+            Spacer()
         }.navigationTitle("Care Provider")
-            .padding()
+            .padding(.horizontal)
+            .padding(.top, 40)
     }
 }
+struct DiagnosisIndividualView : View {
+    
+    var diagnosis : Diagnosis
+    
+    var body: some View{
+        VStack(spacing: 20){
+            SectionHeader(section: .dateDiagnosed)
+            
+            SectionHeader(section: .medication)
+            
+            SectionHeader(section: .medFreq)
+            
+            SectionHeader(section: .lastChange)
+            
+        }.navigationTitle(diagnosis.diagnosisName ?? "Diagnosis")
+            .padding(.horizontal)
+            .padding(.top, 40)
+    }
+    
+}
 
-struct DiagnosisInfoView : View {
+struct DiagnosisOverView : View {
     
     @EnvironmentObject var userSettings : UserSettings
+    
+    var sampleMedHistory : MedicalHistory = buildSampleMedHistory()
     
     var body: some View{
         VStack{
             
+            SectionHeader(section: .currentDiagnoses)
             
             
+            if let sampleDiagnosis = sampleMedHistory.currentDiagnosis {
+                
+                ForEach(sampleDiagnosis, id: \.self){diagnosis in
+                    
+                    NavigationLink(destination: DiagnosisIndividualView(diagnosis: diagnosis)){
+                        HStack{
+                            Text(diagnosis.diagnosisName ?? "No Name")
+                                .font(.system(size: 18))
+                            Spacer()
+                            Image("forward_arrow")
+                                .resizable()
+                                .frame(width: 12.5, height: 20)
+                                .padding(.trailing)
+                        }.foregroundColor(Theme.DarkGray)
+                    }.padding(.top, 8)
+                    
+                    
+                }
+                
+            }
             
+            
+            Spacer()
         }.navigationTitle("Diagnosis Info")
+            .padding(.horizontal)
+            .padding(.top, 40)
     }
 }
 
 fileprivate enum Sections : String {
-    case account, email, phone, birthday, appointmentFrequency = "appointment frequency", watchSettings = "Watch Settings", therapistCommunication = "Therapist Communication"
+    case account, email, phone, birthday, appointmentFrequency = "appointment frequency", watchSettings = "Watch Settings", therapistCommunication = "Therapist Communication", name,
+    currentDiagnoses = "Current Diagnoses", dateDiagnosed = "Date Diagnosed", medication, medFreq = "Medication Frequency", lastChange = "Last Changed"
     
     //TODO: Others
     
@@ -425,6 +441,8 @@ fileprivate enum Sections : String {
         case .phone : return "phone"
         case .birthday : return "cake"
         case .appointmentFrequency : return "change-catalog"
+        case .therapistCommunication : return "chat"
+        case .name : return "badge"
         default: return "notifications"
         }
     }
@@ -456,6 +474,80 @@ fileprivate struct SectionHeader : View {
                 .frame(height: 2)
         }
     }
+}
+
+fileprivate struct CustomTextEditButton : View {
+    
+    let placeholder : String
+    @State var localItem : String = ""
+    @State var isEditing = false
+    @Binding var editItem : String
+    
+    
+    var body: some View{
+        GeometryReader{geo in
+            
+            HStack{
+                
+                if isEditing || localItem.isEmpty {
+                    CustomTextField(
+                        placeholder: placeholder,
+                        text: $editItem,
+                        isEditing: $isEditing,
+                        isFirstResponder: isEditing,
+                        font: .systemFont(ofSize: 20),
+                        autocapitalization: .words,
+                        autocorrection: .no,
+                        borderStyle: .none
+                    )
+                } else {
+                    
+                    Text(localItem)
+                        .font(.system(size: 20))
+                        
+                    Spacer()
+                    
+                }
+                
+                
+                if editItem != localItem {
+                    Button(action: {
+                        //self.name = ""
+                        self.isEditing.toggle()
+                        self.localItem = editItem
+                    }) {
+                        Image("check")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(5)
+                            
+                            
+                    }
+                }
+                else if editItem == localItem {
+                    Button(action: {
+                        self.isEditing.toggle()
+                        
+                    }) {
+                        Image(self.isEditing ? "close" : "forward_arrow" )
+                            .resizable()
+                            .scaledToFit()
+                            .padding(8)
+                            
+                        
+                    }
+                }
+                
+            }
+            
+        }
+        .frame(height: 40)
+        .padding(.horizontal, 20)
+            .onAppear{
+                localItem = editItem
+            }
+    }
+    
 }
 
 /*
@@ -517,8 +609,9 @@ struct AccountView_Previews: PreviewProvider {
     
     static var previews: some View {
       //  AccountView()
-        //PersonalInfoView()
-        ProviderInfoView()
+       // PersonalInfoView()
+       // ProviderInfoView()
+        DiagnosisOverView()
             .environmentObject(UserSettings())
        // SectionHeader(section: .account)
        // ProfileHeaderView()

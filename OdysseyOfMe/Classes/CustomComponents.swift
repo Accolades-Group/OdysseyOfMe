@@ -258,14 +258,122 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
+
+struct CustomTextField: UIViewRepresentable {
+
+    class Coordinator: NSObject, UITextFieldDelegate {
+
+        @Binding var text: String
+        @Binding var isEditing: Bool
+        var didBecomeFirstResponder = false
+
+        init(text: Binding<String>, editing: Binding<Bool>) {
+            _text = text
+            _isEditing = editing
+        }
+
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
+
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            isEditing = true
+        }
+
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            isEditing = false
+        }
+
+    }
+
+    var placeholder = ""
+    @Binding var text: String
+    @Binding var isEditing: Bool
+    var isFirstResponder: Bool = false
+    var font = UIFont.systemFont(ofSize: 20)
+    var autocapitalization = UITextAutocapitalizationType.none
+    var autocorrection = UITextAutocorrectionType.default
+    var borderStyle = UITextField.BorderStyle.none
+
+    func makeUIView(context: UIViewRepresentableContext<CustomTextField>) -> UITextField {
+        let textField = UITextField(frame: .zero)
+        textField.delegate = context.coordinator
+        textField.placeholder = placeholder
+        textField.font = font
+        textField.autocapitalizationType = autocapitalization
+        textField.autocorrectionType = autocorrection
+        textField.borderStyle = borderStyle
+        return textField
+    }
+
+    func makeCoordinator() -> CustomTextField.Coordinator {
+        return Coordinator(text: $text, editing: $isEditing)
+    }
+
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<CustomTextField>) {
+        uiView.text = text
+        if isFirstResponder && !context.coordinator.didBecomeFirstResponder  {
+            uiView.becomeFirstResponder()
+            context.coordinator.didBecomeFirstResponder = true
+        } else if !isFirstResponder && context.coordinator.didBecomeFirstResponder {
+            uiView.resignFirstResponder()
+            context.coordinator.didBecomeFirstResponder = false
+        }
+    }
+}
+
+struct CustomTextView : View {
+    
+    @State var name = ""
+    @State var isEditing : Bool = false
+    var localName = ""
+    
+    var body: some View{
+        HStack{
+            CustomTextField(
+                placeholder: "Enter Name",
+                text: $name,
+                isEditing: $isEditing,
+                isFirstResponder: isEditing,
+                font: .systemFont(ofSize: 20),
+                autocapitalization: .none,
+                autocorrection: .no,
+                borderStyle: .none
+            )
+            
+            if name != name {
+                Button{
+                    self.name = ""
+                } label: {
+                    Text("Update")
+                        .font(.system(size: 15))
+                        .fontWeight(.light)
+                        .foregroundColor(.black)
+                }
+            }
+            else if name == localName {
+                Button{
+                    self.isEditing.toggle()
+                } label: {
+                    Text(self.isEditing ? "Cancel" : "Edit")
+                        .font(.system(size: 15))
+                        .fontWeight(.light)
+                        .foregroundColor(.black)
+                }
+            }
+        }
+        .padding(.horizontal, 30)
+        .frame(width: 200, height: 100)
+    }
+    
+}
+
 struct CustomComponents_Previews: PreviewProvider {
     
     static var previews: some View {
         //CustomComponents()
-        VStack{
-            ProgressBar(pos: 3, total: 5)
-            
-
-        }
+      //  var settings = UserSettings()
+       // Text("Hi")
+        CustomTextView()
     }
 }
