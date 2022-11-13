@@ -14,180 +14,95 @@ struct TestingView: View {
     
     @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
     
+    @StateObject var vm : CheckinViewModel = CheckinViewModel()
+    
 
-    @State var stress : StressManager = StressManager()
+    
     
     
     @State var name = "Tanner"
     @State var isEditing = false
+    @State var toggle = false
     @State var localName = "Tanner"
     
     var body: some View {
         
-        GeometryReader{geo in
-            
-            HStack{
-                
-                if isEditing {
-                    CustomTextField(
-                        placeholder: "Name",
-                        text: $name,
-                        isEditing: $isEditing,
-                        isFirstResponder: isEditing,
-                        font: .systemFont(ofSize: 20),
-                        autocapitalization: .words,
-                        autocorrection: .no,
-                        borderStyle: .none
-                    )
-                } else {
-                    
-                    Text(name)
-                        .font(.system(size: 20))
-                        
-                    Spacer()
-                    
-                }
-                
-                
-                if name != localName {
-                    Button(action: {
-                        //self.name = ""
-                        self.isEditing.toggle()
-                        localName = name
-                    }) {
-                        Image("check")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(10)
-                    }
-                }
-                else if name == localName {
-                    Button(action: {
-                        self.isEditing.toggle()
-                        
-                    }) {
-                        Image(self.isEditing ? "close" : "forward_arrow" )
-                            .resizable()
-                            .scaledToFit()
-                            .padding(10)
-                        
-                    }
-                }
-                
-            }
-            
-        }.frame(height: 50)
-            .background(.purple.opacity(0.25))
-            .padding(20)
-        
-        
-//        HStack{
-//            VStack(alignment: .leading){
-//                if isEditing{
-//
-//                    CustomTextField(
-//                        placeholder: "Name",
-//                        text: $name,
-//                        isEditing: $isEditing,
-//                        isFirstResponder: isEditing,
-//                        font: .systemFont(ofSize: 20),
-//                        autocapitalization: .words,
-//                        autocorrection: .no,
-//                        borderStyle: .none
-//                    )
-//
-//
-//                    .padding(.leading, 5)
-//                } else {
-//
-//                    Text(name)
-//                        .padding(.leading)
-//
-//                }
-//            }
-//
-//
-//            if name != localName {
-//                Button(action: {
-//                    //self.name = ""
-//                    self.isEditing.toggle()
-//                    localName = name
-//                }) {
-//                    Text("Update")
-//                        .font(.system(size: 15))
-//                        .fontWeight(.light)
-//                        .foregroundColor( Color.black )
-//                }
-//            }
-//            else if name == localName {
-//                Button(action: {
-//                    self.isEditing.toggle()
-//
-//                }) {
-//                    Text(self.isEditing ? "Cancel" : "Edit")
-//                        .font(.system(size: 15))
-//                        .fontWeight(.light)
-//                        .foregroundColor( Color.black )
-//                }
-//            }
-//
-//        }
-//        .padding(.horizontal, 50)
-        /*
         VStack{
-            Text("Stressors: \(stressHistory.count)")
-            Text("Checkins: \(checkinHistory.count)")
-            if let str = stress {
+            
+            Text("checkin count: \(checkinHistory.count)")
+            Text("stressor count: \(stressHistory.count)")
+    //        Text("diagnosis count: \(medicalHistory.count)")
+            
 
-                GeometryReader{geo in
-                    VStack{
-                        ForEach(checkinHistory){check in
-                            
-                            Text("Checkin: ") + Text(check.date ?? Date.distantFuture, style: .date)
-                            Text("Day Rating (fires): \(check.dayRating)")
-                            
-                            Divider()
-                            
-                            ForEach(check.stressorDetails?.allObjects as [StressDetail]){detail in
-                                
-                                Text("Time(s) of day:")
-                                if let times = detail.timesOfDay {
-                                    HStack{
-                                        ForEach(times, id: \.self){time in
-                                            Text(time)
-                                        }
-                                    }
-                                }
-                                
-                                //if let times = detail.
-                                
-                                Divider()
-                            }
-                            
-                        }
+            
+            GeometryReader{geo in
+                
+                
+                
+                HStack{
+                    
+                    if isEditing {
+                        CustomTextField(
+                            placeholder: "Name",
+                            text: $name,
+                            isEditing: $isEditing,
+                            isFirstResponder: isEditing,
+                            font: .systemFont(ofSize: 20),
+                            autocapitalization: .words,
+                            autocorrection: .no,
+                            borderStyle: .none
+                        )
+                    } else {
                         
+                        Text(name)
+                            .font(.system(size: 20))
                         
-                        Divider()
-                        
-                        
-                        ForEach(stressHistory){stressor in
-                            
-                            Text("Rating: \(stressor.rating)")
-                            if let checkdate = stressor.checkin?.date {
-                                Text("Checkin Date: ") + Text(checkdate, style: .date)
-                            }
-                            //Text("Checkin date: \(stressor.che)")
-                            
-                        }
+                        Spacer()
                         
                     }
+                    
+                    
+                    if name != localName {
+                        Button(action: {
+                            //self.name = ""
+                            self.isEditing.toggle()
+                            localName = name
+                        }) {
+                            Image("check")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(10)
+                        }
+                    }
+                    else if name == localName {
+                        Button(action: {
+                            self.isEditing.toggle()
+                            
+                        }) {
+                            Image(self.isEditing ? "close" : "forward_arrow" )
+                                .resizable()
+                                .scaledToFit()
+                                .padding(10)
+                            
+                        }
+                    }
+                    
                 }
                 
-                
-            }
+            }.frame(height: 50)
+                .background(.purple.opacity(0.25))
+                .padding(20)
+            
+            
+            Button{
+                self.toggle.toggle()
+                print("toggle")
+                print(self.toggle)
+            }label: {
+                Text("Toggle")
+            }//.buttonStyle(TagToggleButtonStyle(isSelected: $toggle))
             
         }
-*/
          
     }
 }

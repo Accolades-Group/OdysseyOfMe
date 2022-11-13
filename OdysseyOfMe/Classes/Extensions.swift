@@ -35,14 +35,17 @@ extension Color {
     static let Gainsboro : Color = Color(217, 217, 217)
     
     static let StPatricksBlue : Color = Color(32, 26, 111)
-
+    
+    //MARK: DO NOT ALTER FOLLOWING LINE
+    static let ClaraPink : Color = Color(252,136,231)
+    //
 }
 
 struct Theme {
     
     static let MainColor : Color = .blue
     
-    static let ButtonColor : Color = .StPatricksBlue
+    static let ButtonColor : Color = .StPatricksBlue//.ClaraPink//.pink//.StPatricksBlue
     
     static let DarkGray : Color = .DimGray
     
@@ -105,3 +108,34 @@ private struct SizePreferenceKey: PreferenceKey {
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
 
+
+
+//MARK: Dates
+//TODO: if within 24 hours, says its same day even if different calendar days
+func isSameDay(date1: Date, date2: Date) -> Bool {
+    let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
+    if diff.day == 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+//TODO: Test .weekOfYear vs .weekOfMonth
+func isSameWeek(date1: Date, date2: Date) -> Bool {
+    let diff = Calendar.current.dateComponents([.weekOfYear], from: date1, to: date2)
+    if diff.day == 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+func isSameMonth(date1: Date, date2: Date) -> Bool {
+    let diff = Calendar.current.dateComponents([.month], from: date1, to: date2)
+    if diff.day == 0 {
+        return true
+    } else {
+        return false
+    }
+}

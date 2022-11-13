@@ -9,66 +9,56 @@ import Foundation
 
 
 class DiagnosisManager : ObservableObject {
-    
+    @Published var diagnosis : [Diagnosis] = buildSampleMedHistory()
 }
 
 struct Diagnosis : Hashable {
     
-    
     static func == (lhs: Diagnosis, rhs: Diagnosis) -> Bool {
-        lhs.diagnosisName?.lowercased() == rhs.diagnosisName?.lowercased()
+        lhs.name.lowercased() == rhs.name.lowercased()
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(diagnosisName)
+        hasher.combine(name)
     }
     
     
     var diagnosisDate : Date?
     
-    var diagnosisName : String?
+    var name : String
     
-    var medications : [Medication]?
-    
-}
-
-struct MedicalHistory {
-    
-    var currentDiagnosis : [Diagnosis]?
+    var medications : [Medication] = []
     
 }
 
-func test() {
+
+func buildSampleMedHistory() -> [Diagnosis] {
+
     
-    var medHistory : MedicalHistory = MedicalHistory()
+    var depression = Diagnosis(diagnosisDate: Date.now, name: "Depression", medications: [Medication(name: "Zoloft", frequency: Medication.MedicationFrequency.both.rawValue, changeDate: Date.now)])
     
-    var depression = Diagnosis(diagnosisDate: Date.now, diagnosisName: "Depression", medications: [Medication(name: "Zoloft", frequency: .both, changeDate: Date.now)])
+    var anxiety = Diagnosis(diagnosisDate: Date.distantPast, name: "Anxiety", medications: [Medication(name: "Hydroxyzine", frequency: Medication.MedicationFrequency.am.rawValue, changeDate: Date.now)])
     
-    var anxiety = Diagnosis(diagnosisDate: Date.distantPast, diagnosisName: "Anxiety", medications: [Medication(name: "Hydroxozone", frequency: .am, changeDate: Date.now)])
     
-    medHistory.currentDiagnosis = [depression, anxiety]
-    
+    return [depression, anxiety]
 }
 
-func buildSampleMedHistory() -> MedicalHistory {
-    var medHistory : MedicalHistory = MedicalHistory()
+struct Medication : Hashable {
     
-    var depression = Diagnosis(diagnosisDate: Date.now, diagnosisName: "Depression", medications: [Medication(name: "Zoloft", frequency: .both, changeDate: Date.now)])
+    var name : String = ""
     
-    var anxiety = Diagnosis(diagnosisDate: Date.distantPast, diagnosisName: "Anxiety", medications: [Medication(name: "Hydroxozone", frequency: .am, changeDate: Date.now)])
-    
-    medHistory.currentDiagnosis = [depression, anxiety]
-    
-    return medHistory
-}
-
-struct Medication {
-    
-    var name : String?
-    
-    var frequency : MedicationFrequency?
+    var frequency : String = ""
     
     var changeDate : Date?
+    
+    static func == (lhs: Medication, rhs: Medication) -> Bool {
+        lhs.name.lowercased() == rhs.name.lowercased()
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    
     
     enum MedicationFrequency : String {
         case am = "AM",
@@ -77,3 +67,4 @@ struct Medication {
     }
     
 }
+

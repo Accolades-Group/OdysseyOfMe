@@ -12,6 +12,8 @@ import CoreData
 final class CheckinViewModel : ObservableObject {
     
     var moc : NSManagedObjectContext?
+    @Published var todayStreak : Int = 0
+    @Published var maxStreak : Int = 0
     
     //MARK: Satisfaction
     enum Satisfaction_Types : Int, CaseIterable{
@@ -60,7 +62,7 @@ final class CheckinViewModel : ObservableObject {
     
     
     //MARK: Stress
-    @Published var stressManager : StressManager = StressManager()
+    @Published var stressManager : StressManager = StressManager(withTags: true)
     @Published var stressObjects : [StressManager.StressObject] = []
     @Published var currentStressIndex : Int = 0
     
@@ -91,8 +93,8 @@ final class CheckinViewModel : ObservableObject {
         }
     }
     
-    
-    func submitCheckin(){
+
+    func submitCheckin() {
         
         if let unwrappedMoc = moc{
             
@@ -128,6 +130,9 @@ final class CheckinViewModel : ObservableObject {
             
             do {
                 try unwrappedMoc.save()
+                
+                
+                
             }catch let err {
                 print("Error submitting checkin")
                 print(err)
@@ -189,6 +194,8 @@ final class CheckinViewModel : ObservableObject {
     }
     
     func continueButton(_ route: Routing) {
+        
+        //This shouldn't ever happen...
         if route.isLast() {
             //Reset the data
             resetData()
@@ -222,7 +229,7 @@ final class CheckinViewModel : ObservableObject {
             
             //submit checkin
             submitCheckin()
-            
+            resetData()
             path.append(route.next())
             
         } else {
@@ -260,6 +267,57 @@ final class CheckinViewModel : ObservableObject {
         }
     }
     
+    func getStreak(checkinHistory : [Checkin]) -> (current: Int, max: Int) {
+        
+        //get current streak
+        //sort by most recent
+        var history = checkinHistory.sorted(by: {$0.date! > $1.date!})
+        
+        var current : Int = 0
+        var index : Int = 0
+        var todayStreak : Int = 0
+        for h in history{
+            let compareDate = Calendar.current.date(byAdding: .day, value: -index, to: Date.now)!
+            if isSameDay(date1: h.date!, date2: compareDate){
+                index = index + 1
+                current = current + 1
+            }else{
+                break
+            }
+        }
+        todayStreak = current
+        //TODO: Algorithm for max streak
+        
+        var streaks : [Int] = []
+        index = 0
+        current = 0
+        
+        for h in history{
+            
+            let compareDate = Calendar.current.date(byAdding: .day, value: -index, to: Date.now)!
+            
+            if isSameDay(date1: h.date!, date2: compareDate){
+                current = current + 1
+            }else{//break in streak
+                streaks.append(current)
+                current = 0
+            }
+            
+            
+            index = index + 1
+        }
+        
+        
+        print(todayStreak)
+        print(streaks)
+        let max = streaks.sorted(by: {$0 < $1}).last ?? current
+        
+        self.todayStreak = todayStreak
+        self.maxStreak = max
+        
+        //don't need return?
+        return (current: todayStreak, max: max)
+    }
     
     //MARK: Testing funcs
     func buildDemo() {//-> [StressManager.StressObject]{

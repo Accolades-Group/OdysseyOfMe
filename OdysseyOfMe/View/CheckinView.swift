@@ -13,6 +13,8 @@ struct CheckinView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
 
+    @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
+    
     
     var body: some View {
         
@@ -35,8 +37,12 @@ struct CheckinView: View {
         .environmentObject(viewModel)
         .onAppear{
             
+            
             viewModel.stressManager.build(stressData: Array(stressHistory))
+            
             viewModel.moc = moc
+            
+            viewModel.getStreak(checkinHistory: Array(checkinHistory))
             
         }
         
@@ -84,14 +90,6 @@ struct CheckinView: View {
         }
     }
     
-    fileprivate struct AvatarButtonRoute : View {
-        @EnvironmentObject var viewModel : CheckinViewModel
-        var body: some View{
-            Button("Avatar"){
-                //TODO: Routing
-            }.buttonStyle(RoundedButtonStyle())
-        }
-    }
     
 
     
@@ -131,17 +129,23 @@ struct CheckinView: View {
                         CheckinSummaryView()
                         
                     case .congratulations:
-                        GifImage("congratulations")
+                        GifImage("confetti")
+                            .task{
+                                try? await Task.sleep(nanoseconds: 4_000_000_000)
+                                viewModel.resetData()
+                                //Pop to root
+                                viewModel.path = .init()
+                            }
                         
                     }
                 }
                 
                 Spacer()
-                
-                Button(route == .summary ? "Submit" : "Continue"){
-                    viewModel.continueButton(route)
-                }.buttonStyle(RoundedButtonStyle())
-                
+                if route != .congratulations {
+                    Button(route == .summary ? "Submit" : "Continue"){
+                        viewModel.continueButton(route)
+                    }.buttonStyle(RoundedButtonStyle())
+                }
             }
         }
     }
@@ -159,14 +163,28 @@ fileprivate struct CheckinHomeView : View {
     
     var body : some View {
         VStack{
-            Rectangle()
-                .fill(Color.ERROR_COLOR)
-                .overlay{
-                    Text("Place holder for the avatar image")
-                        .foregroundColor(.white)
-                        .font(.title3)
-                }.frame(height: 350)
-                .padding()
+            
+            VStack(spacing: 0){
+            
+            Image("avatar")
+            
+            if viewModel.todayStreak > 0 {
+                Text("\(viewModel.todayStreak)")
+                    .font(.system(size: 60))
+                    .bold()
+                
+                Text("day streak!")
+                    .font(.system(size: 30))
+            } else {
+                
+                Text("No streak :(")
+                    .font(.system(size: 30))
+                
+            }
+
+        }
+        .frame(height: 350)
+        .padding()
             
             
             Spacer()
@@ -246,58 +264,82 @@ fileprivate struct RoseThornBudView : View {
     @EnvironmentObject var viewModel : CheckinViewModel
     
     var body: some View{
-            VStack{
-                Spacer()
-                //Questions
-                VStack{
-                    //Rose
-                    HStack{
-                        
-                        Image("rose")
-                        
-                        Text("What was your favorite part of today?")
-                            .font(.system(size: 18))
-                        
-                    }
-                    TextField("Add Note", text: $viewModel.rose)
-                        .frame(width: 275, height: 35)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    Spacer()
-                    
-                    //Thorn
-                    HStack{
-                        
-                        Image("thorn")
-                        
-                        Text("What was the most challenging part of today?")
-                            .font(.system(size: 18))
-                        
-                    }
-                    TextField("Add Note", text: $viewModel.bud)
-                        .frame(width: 275, height: 35)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    Spacer()
-                    
-                    //Bud
-                    HStack{
-                        
-                        Image("bud")
-                        
-                        Text("What are you most looking forward to?")
-                            .font(.system(size: 18))
-                        
-                    }
-                    TextField("Add Note", text: $viewModel.thorn)
-                        .frame(width: 275, height: 35)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    Spacer()
-                }.frame(height: 400)
-                Spacer()
+
+        VStack(spacing: 50){
+            
+            //Rose
+            VStack(alignment: .leading){
                 
-        }
+                HStack(spacing: 15){
+                    
+                    Image("rose")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                    
+                   
+                    Text("What was your favorite part of today?")
+                    
+                   
+                }
+                
+                TextField("Add Note", text: $viewModel.rose)
+                    .textFieldStyle(.roundedBorder)
+                
+                
+            }
+            
+            //Thorn
+            VStack(alignment: .leading){
+                
+                HStack(spacing: 15){
+                    
+                    Image("thorn")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                    
+                    
+                    
+                    Text("What was the most challenging part of today?")
+                    
+                    
+                }
+                
+                TextField("Add Note", text: $viewModel.thorn)
+                    .textFieldStyle(.roundedBorder)
+                
+                
+            }//.background(.yellow.opacity(0.25))
+            
+            //Bud
+            VStack(alignment: .leading){
+                
+                HStack(spacing: 15){
+                    
+                    Image("bud")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                    
+                    
+                    
+                    Text("What are you most looking forward to?")
+                    
+                    
+                }
+                
+                TextField("Add Note", text: $viewModel.bud)
+                    .textFieldStyle(.roundedBorder)
+                
+                
+            }
+            
+            
+
+            
+            Spacer()
+        }.padding(.top, 40)
+            .padding(.horizontal, 50)
+        
+
     }
 }
 
@@ -317,30 +359,9 @@ fileprivate struct StressCategorySelectionView : View {
                         
                         let isSelected : Bool = viewModel.stressObjects.contains(where: {$0.category == category})
                         
-                        ZStack{
-                            
-                            Circle()
-                                .fill(isSelected ? Theme.ButtonColor : Theme.MainColor)
-                            
-                            VStack{
-                                
-                                category.icon
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, isSelected ? 30 : 40)
-                                    
-                                    
-                                
-                                if !isSelected{
-                                    Text(category.rawValue)
-                                        .foregroundColor(isSelected ? .clear : .white)
-                                }
-                                    
-                                
-                            }
-                            
-                        }.frame(width: 150, height: 150)
+
+                        StressCategoryButton(category: category, isSelected: isSelected)
+                           //.frame(width: 150, height: 150)
                             .onTapGesture {
                                 withAnimation{
                                     viewModel.stressButtonSelected(category)
@@ -355,8 +376,8 @@ fileprivate struct StressCategorySelectionView : View {
 
         }
     }
-    
 }
+
 
 
 fileprivate struct StressDetailView : View {
@@ -374,16 +395,15 @@ fileprivate struct StressDetailView : View {
                             //Time Tags
                             Text("What time of day?")
 
-                            
-                            
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.TimeTags,
                                 spacing: tagSpacing, alignment: .leading){item in
                                     
-                                    TagItemView(item: item, type: .times)
+                                    TagItemView(tag: item, type: .times)
                                     
                                 }.padding(.bottom, 5)
+                            
                             
                             //Activity Tags
                             Text("What were you doing?")
@@ -392,7 +412,7 @@ fileprivate struct StressDetailView : View {
                                 data: viewModel.stressManager.ActivityTags,
                                 spacing: tagSpacing, alignment: .leading){item in
                                     
-                                    TagItemView(item: item, type: .activities)
+                                    TagItemView(tag: item, type: .activities)
                                     
                                 }
                             
@@ -404,7 +424,7 @@ fileprivate struct StressDetailView : View {
                                 data: viewModel.stressManager.PhysicalSymptomTags,
                                 spacing: tagSpacing, alignment: .leading ){item in
                                     
-                                    TagItemView(item: item, type: .physicalSymptoms)
+                                    TagItemView(tag: item, type: .physicalSymptoms)
                                     
                                 }.padding(.bottom, 5)
                             
@@ -418,19 +438,19 @@ fileprivate struct StressDetailView : View {
                                 data: viewModel.stressManager.SubjectTypeTags,
                                 spacing: tagSpacing, alignment: .leading){item in
                                     
-                                    TagItemView(item: item, type: .subjectTypes)
+                                    TagItemView(tag: item, type: .subjectTypes)
                                     
                                 }.padding(.bottom, 5)
                             
                             //Activity Tags
-                            Text("Identify the individual)s)")
+                            Text("Identify the individual(s)")
                             
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.IndividualsTags,
                                 spacing: tagSpacing, alignment: .leading){item in
                                     
-                                    TagItemView(item: item, type: .individuals)
+                                    TagItemView(tag: item, type: .individuals)
                                     
                                 }.padding(.bottom, 5)
                             
@@ -452,126 +472,220 @@ fileprivate struct StressDetailView : View {
     
 }
 
-struct TagItemView : View {
+struct TimeTagItem : View {
     
     @EnvironmentObject var viewModel : CheckinViewModel
     
-    let item : String
-    let type : StressManager.Details
+    let tag : String
+    
     @State var newTag : String = ""
+    @State var refresh : Bool = false
+    @State var isSelected : Bool = false
     
-    @State var color : Color = Theme.DarkGray
     
-    //TODO: This not working when first adding new tag. Current solution is to not select new tags when they are added
-    func updateColor() {
+    var body: some View{
         
-        let tag = newTag.isEmpty ? item : newTag
-        
-        switch type {
+        VStack{
             
-            
-        case .times:
-            color = viewModel.currentStressObject.times.contains(tag) ? Theme.MainColor : Theme.DarkGray
-            
-        case .activities:
-            color = viewModel.currentStressObject.activities.contains(tag) ? Theme.MainColor : Theme.DarkGray
-        case .physicalSymptoms:
-            color = viewModel.currentStressObject.symptoms.contains(tag) ? Theme.MainColor : Theme.DarkGray
-        case .subjectTypes:
-           color = viewModel.currentStressObject.subjectTypes.contains(tag) ? Theme.MainColor : Theme.DarkGray
-        case .individuals:
-            color = viewModel.currentStressObject.individuals.contains(tag) ? Theme.MainColor : Theme.DarkGray
-        }
-    }
-    
-    var body: some View {
-        
-        Group{
-            if String(item) == "+" {
-                
-                
+            if String(tag) == "+" {
                 
                 TextField("Add +", text: $newTag)
                     .submitLabel(.done)
                     .autocorrectionDisabled(true)
                     .font(.system(size: 16))
                     .padding(8)
-                    .foregroundColor(color)
+                    .foregroundColor(Theme.DarkGray)
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(Theme.DarkGray, lineWidth: 2)
+                                .padding(2)
+                        )
+                /*
+                    .font(.system(size: 16))
+                    .padding(8)
+                    .foregroundColor(isSelected ? Theme.MainColor : Theme.DarkGray)
                     .overlay(
                         RoundedRectangle(cornerRadius: 40)
-                            .stroke(color, lineWidth: 2)
+                            .stroke(isSelected ? Theme.MainColor : Theme.DarkGray, lineWidth: 2)
                             .padding(2)
                     )
+                */
                     .onSubmit {
-                        if !newTag.isEmpty {
-                            switch type {
-                            case .times:
-                                viewModel.stressManager.addTimeTag(newTag)
-                                    viewModel.currentStressObject.times.append(newTag)
-                                
-                            case .activities:
-                                viewModel.stressManager.addActivityTag(newTag)
-                                   viewModel.currentStressObject.activities.append(newTag)
-                                
-                                
-                            case .physicalSymptoms:
-                                viewModel.stressManager.addSymptomTag(newTag)
-                                   viewModel.currentStressObject.symptoms.append(newTag)
-                                
-                            case .subjectTypes:
-                                viewModel.stressManager.addSubjectTag(newTag)
-                                  viewModel.currentStressObject.subjectTypes.append(newTag)
-                                
-                            case .individuals:
-                                viewModel.stressManager.addIndividualsTag(newTag)
-                                   viewModel.currentStressObject.individuals.append(newTag)
-                                
-                            }
-                        }
                         
-                             updateColor()
+                        if !newTag.isEmpty {
+                            
+                            let success = viewModel.stressManager.addTimeTag(newTag)
+                            if success {
+                                viewModel.currentStressObject.toggleTimes(newTag)
+                            //self.color = Theme.MainColor
+                                self.isSelected = true
+                            }else if !success{
+                                self.newTag = ""
+                            }
+                            refresh.toggle()
+                        }
                         
                     }
                 
-            } else {
+            }
+            
+            else {
+                
+                Button {
+                    
+                    viewModel.currentStressObject.toggleTimes(tag)
+                    print(tag)
+                    print(viewModel.currentStressObject.times.contains(where: {$0.lowercased() == tag.lowercased()}))
+                    //refresh.toggle()
+                    self.isSelected = viewModel.currentStressObject.times.contains(where: {$0.lowercased() == tag.lowercased()})
+                    
+                } label: {
+                    
+                    Text(String(tag).capitalized)
+
+                }.buttonStyle(TagToggleButtonStyle(isSelected: $isSelected))
+            }
+        }
+        .onAppear{
+            self.isSelected = viewModel.currentStressObject.times.contains(where: {$0.lowercased() == tag.lowercased()})
+        }
+    }
+}
+
+
+
+struct TagItemView : View {
+    
+    @EnvironmentObject var viewModel : CheckinViewModel
+    
+    let tag : String
+    let type : StressManager.Details
+    @State var newTag : String = ""
+    @State var isSelected : Bool = false
+    
+    //TODO: This not working when first adding new tag. Current solution is to not select new tags when they are added
+    
+    func checkIsSelected() {
+        
+        switch type {
+            
+        case .times :  self.isSelected = viewModel.currentStressObject.times.contains(tag.lowercased())
+            
+        case .activities :  self.isSelected = viewModel.currentStressObject.activities.contains(tag.lowercased())
+            
+        case .physicalSymptoms : self.isSelected = viewModel.currentStressObject.symptoms.contains(tag.lowercased())
+            
+        case .subjectTypes : self.isSelected = viewModel.currentStressObject.subjectTypes.contains(tag.lowercased())
+            
+        case .individuals : self.isSelected = viewModel.currentStressObject.individuals.contains(tag.lowercased())
+        }
+        
+    }
+    
+    func toggleTag(_ toggleTag : String?) {
+        
+        var toggle : String = toggleTag ?? tag
+
+        switch type {
+        case .times:
+            viewModel.currentStressObject.toggleTimes(toggle.lowercased())
+        case .activities:
+            viewModel.currentStressObject.toggleActivities(toggle.lowercased())
+        case .physicalSymptoms:
+            viewModel.currentStressObject.toggleSymptoms(toggle.lowercased())
+        case .subjectTypes:
+            viewModel.currentStressObject.toggleSubjectTypes(toggle.lowercased())
+        case .individuals:
+            viewModel.currentStressObject.toggleIndividuals(toggle.lowercased())
+        }
+    }
+
+    var body: some View {
+        
+        VStack{
+            
+            if String(tag) == "+" {
+                
+                TextField("Add +", text: $newTag)
+                    .submitLabel(.done)
+                    .autocorrectionDisabled(true)
+                    .font(.system(size: 16))
+                    .padding(8)
+                    .foregroundColor(Theme.DarkGray)
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(Theme.DarkGray, lineWidth: 2)
+                                .padding(2)
+                        )
+
+                    .onSubmit {
+                        
+                        if !newTag.isEmpty {
+                            
+                            var success : Bool = false
+                            
+                            switch type {
+                            case .times:
+                                success =  viewModel.stressManager.addTimeTag(newTag.lowercased())
+
+                                
+                            case .activities:
+                                success =  viewModel.stressManager.addActivityTag(newTag.lowercased())
+
+                                
+                            case .physicalSymptoms:
+                                success =  viewModel.stressManager.addSymptomTag(newTag.lowercased())
+
+                            case .subjectTypes:
+                                success =  viewModel.stressManager.addSubjectTag(newTag.lowercased())
+                                
+                            case .individuals:
+                                success =  viewModel.stressManager.addIndividualsTag(newTag.lowercased())
+                            }
+                            
+                            if success {
+                                toggleTag(newTag)
+                                checkIsSelected()
+                            }
+                            newTag.removeAll()
+                            
+                        }
+                    }
+            }
+            
+            else {
                 
                 Button {
                     
                     switch type {
                     case .times:
-                        viewModel.currentStressObject.toggleTimes(item)
+                        viewModel.currentStressObject.toggleTimes(tag.lowercased())
                     case .activities:
-                        viewModel.currentStressObject.toggleActivities(item)
+                        viewModel.currentStressObject.toggleActivities(tag.lowercased())
                     case .physicalSymptoms:
-                        viewModel.currentStressObject.toggleSymptoms(item)
+                        viewModel.currentStressObject.toggleSymptoms(tag.lowercased())
                     case .subjectTypes:
-                        viewModel.currentStressObject.toggleSubjectTypes(item)
+                        viewModel.currentStressObject.toggleSubjectTypes(tag.lowercased())
                     case .individuals:
-                        viewModel.currentStressObject.toggleIndividuals(item)
+                        viewModel.currentStressObject.toggleIndividuals(tag.lowercased())
                     }
                     
-                    updateColor()
+                    checkIsSelected()
                     
-                } label : {
+                    print(isSelected)
                     
-                    Text(String(item).capitalized)
-                        .font(.system(size: 16))
-                        .padding(8)
-                        .foregroundColor(color)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                                .stroke(color, lineWidth: 2)
-                                .padding(2)
-                        )
+                } label: {
                     
-                }
+                    Text(String(tag).capitalized)
+
+                }.buttonStyle(TagToggleButtonStyle(isSelected: $isSelected))
             }
-        }.onAppear{
-            updateColor()
+        }
+        .onAppear{
+            checkIsSelected()
         }
     }
 }
-
 
 struct StressLevelView : View {
     
@@ -620,7 +734,6 @@ struct StressLevelView : View {
             Spacer()
     }
 }
-
 
 struct CheckinSummaryView : View {
     
@@ -794,23 +907,21 @@ struct StressSummaryView : View {
 
 
 
-
-
-
 struct CheckinView_Previews: PreviewProvider {
     static var previews: some View {
        // CheckinView()
         VStack{
-            HowWasYourDayView()
-            // StressDetailView()
+           // HowWasYourDayView()
+           //  StressDetailView()
             // CheckinSummaryView()
-            //RoseThornBudView()
-            //CheckinView()
+       // RoseThornBudView()
+          //  CheckinView()
             // CongratsView()
+            StressCategorySelectionView()
                 .environmentObject(CheckinViewModel())
-            Button("Continue"){
+          //  Button("Continue"){
                 
-            }.buttonStyle(RoundedButtonStyle())
+         //   }.buttonStyle(RoundedButtonStyle())
         }
     }
 }

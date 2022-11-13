@@ -76,17 +76,45 @@ class StressManager : ObservableObject {
     var StressCategoryTags : [String]
     var IndividualsTags : [String]
     
-    init(){
+    init(withTags : Bool = false){
         TimeTags = []
         ActivityTags = []
         PhysicalSymptomTags = []
         SubjectTypeTags = []
         StressCategoryTags = []
         IndividualsTags = []
+        
+        if withTags {
+            TimesOfDay.allCases.forEach{element in
+                TimeTags.append(element.rawValue)
+            }
+            
+            Activites.allCases.forEach{element in
+                ActivityTags.append(element.rawValue)
+            }
+            
+            PhysicalSymptoms.allCases.forEach{element in
+                PhysicalSymptomTags.append(element.rawValue)
+            }
+            
+            SubjectType.allCases.forEach{element in
+                SubjectTypeTags.append(element.rawValue)
+            }
+            
+            StressCategories.allCases.forEach{element in
+                StressCategoryTags.append(element.rawValue)
+            }
+        }
     }
     
     func build(stressData : [StressDetail]){
 
+        TimeTags = []
+        ActivityTags = []
+        PhysicalSymptomTags = []
+        SubjectTypeTags = []
+        StressCategoryTags = []
+        IndividualsTags = []
         
         TimesOfDay.allCases.forEach{element in
             TimeTags.append(element.rawValue)
@@ -154,20 +182,43 @@ class StressManager : ObservableObject {
     }
     
     
-    func addTimeTag(_ tag : String){
-        if !TimeTags.contains(tag) { TimeTags.insert(tag, at: TimeTags.count-1)}
+    
+    func addTimeTag(_ tag : String) -> Bool{
+        if !TimeTags.contains(tag.lowercased()) {
+            TimeTags.insert(tag.lowercased(), at: TimeTags.count-1)
+            return true
+        }
+        return false
+        
     }
-    func addActivityTag(_ tag : String){
-        if !ActivityTags.contains(tag) { ActivityTags.insert(tag, at: ActivityTags.count-1) }
+    
+    func addActivityTag(_ tag : String) -> Bool {
+        if !ActivityTags.contains(tag.lowercased()) {
+            ActivityTags.insert(tag.lowercased(), at: ActivityTags.count-1)
+            return true
+        }
+        return false
     }
-    func addSymptomTag(_ tag : String){
-        if !PhysicalSymptomTags.contains(tag) { PhysicalSymptomTags.insert(tag, at: PhysicalSymptomTags.count-1) }
+    func addSymptomTag(_ tag : String) -> Bool{
+        if !PhysicalSymptomTags.contains(tag.lowercased()) {
+            PhysicalSymptomTags.insert(tag.lowercased(), at: PhysicalSymptomTags.count-1)
+            return true
+        }
+        return false
     }
-    func addSubjectTag(_ tag : String){
-        if !SubjectTypeTags.contains(tag) { SubjectTypeTags.insert(tag, at: SubjectTypeTags.count-1) }
+    func addSubjectTag(_ tag : String) -> Bool{
+        if !SubjectTypeTags.contains(tag.lowercased()) {
+            SubjectTypeTags.insert(tag.lowercased(), at: SubjectTypeTags.count-1)
+            return true
+        }
+        return false
     }
-    func addIndividualsTag(_ tag : String){
-        if !IndividualsTags.contains(tag) { IndividualsTags.insert(tag, at: IndividualsTags.count-1) }
+    func addIndividualsTag(_ tag : String) -> Bool{
+        if !IndividualsTags.contains(tag.lowercased()) {
+            IndividualsTags.insert(tag.lowercased(), at: IndividualsTags.count-1)
+            return true
+        }
+        return false
     }
     
     

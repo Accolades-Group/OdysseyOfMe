@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3B9F449291C395500DAA956 /* congratulations.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3B9F448291C395500DAA956 /* congratulations.gif */; };
+		F3A520E629206A5B0024EF98 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3A520E529206A5B0024EF98 /* confetti.gif */; };
 		F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
 		F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3BFA9552917418000059E6C /* ProgressNotes.rtf */; };
 		F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */; };
@@ -93,7 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F3B9F448291C395500DAA956 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = congratulations.gif; path = ../../../../../Downloads/congratulations.gif; sourceTree = "<group>"; };
+		F3A520E529206A5B0024EF98 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = confetti.gif; path = ../../../../../Downloads/confetti.gif; sourceTree = "<group>"; };
 		F3B9F44B291C399900DAA956 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		F3BFA9532915C51F00059E6C /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		F3BFA9552917418000059E6C /* ProgressNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ProgressNotes.rtf; sourceTree = "<group>"; };
@@ -182,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B9F44B291C399900DAA956 /* congratulations.gif */,
+				F3A520E529206A5B0024EF98 /* confetti.gif */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -189,7 +190,6 @@
 		F3BFA95E2918B0BB00059E6C /* Testing */ = {
 			isa = PBXGroup;
 			children = (
-				F3B9F448291C395500DAA956 /* congratulations.gif */,
 				F3BFA95F2918B0C700059E6C /* TestingView.swift */,
 			);
 			path = Testing;
@@ -506,7 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3B9F449291C395500DAA956 /* congratulations.gif in Resources */,
+				F3A520E629206A5B0024EF98 /* confetti.gif in Resources */,
 				F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */,
 				F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */,
 				F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */,

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AccountView: View {
     
-    //@EnvironmentObject var userSettings : UserSettings
-    @StateObject var userSettings = UserSettings()
+    @EnvironmentObject var userSettings : UserSettings
+    //@StateObject var userSettings = UserSettings()
     
     var body: some View {
         NavigationStack{
@@ -18,7 +18,7 @@ struct AccountView: View {
                 
                 //Profile image
 
-                HStack(alignment: .top){
+                HStack(alignment: .center){
                     Spacer()
                     //TODO: Check if profile image exists, else:
                     Image("zen")
@@ -32,15 +32,13 @@ struct AccountView: View {
                     
                     Spacer()
                     
-                    VStack(spacing: 10){
+                    VStack(alignment: .leading, spacing: 5){
                         
-                        Text("\(userSettings.firstName) \(userSettings.lastName)")
+                        Text("\(userSettings.name)")
                             .font(.title2)
-                        
-                        Text("\(userSettings.email)")
-                        
-                        
+
                     }.padding(.top, 10)
+                    
                     Spacer()
                     
                 }
@@ -50,8 +48,7 @@ struct AccountView: View {
                 
                 //Account
                 
-                
-                VStack(alignment: .leading, spacing: 10){
+                VStack(alignment: .leading, spacing: 5){
 
                     SectionHeader(section: .account)
                     
@@ -261,68 +258,40 @@ struct PersonalInfoView : View {
     var body: some View{
         VStack(spacing: 20){
             
-            SectionHeader(section: .email)
+            VStack(spacing: 0){
+                SectionHeader(section: .name)
+                CustomTextEditButton(placeholder: "Name", editItem: $userSettings.name)
+            }
             
-            CustomTextEditButton(placeholder: "Email", editItem: $userSettings.email)
+            VStack(spacing:0){
+                SectionHeader(section: .email)
+                CustomTextEditButton(placeholder: "Email", editItem: $userSettings.email)
+            }
+            
+            VStack(spacing: 0){
+                SectionHeader(section: .phone)
+                CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.phone)
+            }
+            
+            VStack(spacing: 5){
+                SectionHeader(section: .birthday)
+                ZStack{
+                    
+                    HStack{
+                        Spacer()
+                        DatePicker("label", selection: $userSettings.dateOfBirth, displayedComponents: [.date])
+                            .datePickerStyle(CompactDatePickerStyle())
+                            .scaleEffect(x: 1.2)
+                        
+                            .labelsHidden()
+                    }.padding(.trailing)
 
-            
-            SectionHeader(section: .phone)
-            
-            CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.phone)
-//            if isPhoneSelected {
-//
-//                HStack{
-//
-//
-//                    TextField("Edit Phone", text: $userSettings.phone)
-//                        .autocorrectionDisabled()
-//                        .textInputAutocapitalization(.never)
-//                        .foregroundColor(.black)
-//
-//
-//                    Button{
-//                        withAnimation{
-//                            isPhoneSelected = false
-//                        }
-//                    } label: {
-//                        Image("check")
-//                            .resizable()
-//                            .frame(width: 20, height: 20)
-//                            .padding(.trailing)
-//                    }
-//                }
-//
-//            }
-//            else {
-//
-//                HStack{
-//                    Text("\(userSettings.phone)")
-//                        .foregroundColor(Theme.DarkGray)
-//
-//                    Spacer()
-//
-//                    Button{
-//                        withAnimation{
-//                            isPhoneSelected = true
-//                        }
-//                    } label: {
-//                        Image("forward_arrow")
-//                            .resizable()
-//                            .frame(width: 12.5, height: 20)
-//                            .padding(.trailing)
-//                    }
-//                }
-//
-//            }
-            
-            SectionHeader(section: .birthday)
-            HStack{
-                DatePicker(selection: $userSettings.dateOfBirth, in: ...Date(), displayedComponents: .date) {
-
-                }.datePickerStyle(.compact)
-                    .frame(width: 100)
+                    SectionContentItemLabel(labelText: userSettings.dateOfBirth.formatted(date: .abbreviated, time: .omitted))
+                        .userInteractionDisabled()
+                    
+                    
+                }.frame(height: 30)
                 
-
                 
             }
             
@@ -341,20 +310,30 @@ struct ProviderInfoView : View {
     var body: some View{
         VStack(spacing: 20){
             
-            SectionHeader(section: .name)
-            CustomTextEditButton(placeholder: "Name", editItem: $userSettings.providerName)
+            VStack(spacing: 0){
+                SectionHeader(section: .name)
+                CustomTextEditButton(placeholder: "Name", editItem: $userSettings.providerName)
+            }
             
-            SectionHeader(section: .email)
-            CustomTextEditButton(placeholder: "Email", editItem: $userSettings.providerEmail)
+            VStack(spacing: 0){
+                SectionHeader(section: .email)
+                CustomTextEditButton(placeholder: "Email", editItem: $userSettings.providerEmail)
+            }
             
-            SectionHeader(section: .phone)
-            CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.providerPhone)
+            VStack(spacing: 0){
+                SectionHeader(section: .phone)
+                CustomTextEditButton(placeholder: "Phone", editItem: $userSettings.providerPhone)
+            }
             
-            SectionHeader(section: .appointmentFrequency)
-
+            VStack(spacing: 0){
+                SectionHeader(section: .appointmentFrequency)
+                SectionContentItemLabel(labelText: "Weekly")
+            }
             
-            SectionHeader(section: .therapistCommunication)
-
+            VStack(spacing: 0){
+                SectionHeader(section: .therapistCommunication)
+                SectionContentItemLabel(labelText: "Send Data")
+            }
             
             Spacer()
         }.navigationTitle("Care Provider")
@@ -362,21 +341,36 @@ struct ProviderInfoView : View {
             .padding(.top, 40)
     }
 }
+
+//TODO: Combine meds and frequency into single line to share? For multiple different medications
 struct DiagnosisIndividualView : View {
     
     var diagnosis : Diagnosis
     
     var body: some View{
-        VStack(spacing: 20){
+        VStack(spacing: 10){
             SectionHeader(section: .dateDiagnosed)
+            SectionContentItemLabel(labelText: diagnosis.diagnosisDate?.formatted(date: .abbreviated, time: .omitted) ?? "")
             
             SectionHeader(section: .medication)
+            ForEach(diagnosis.medications, id: \.self){ med in
+                //let label = "\(med.name)"
+                SectionContentItemLabel(labelText: med.name)
+            }
             
             SectionHeader(section: .medFreq)
+            ForEach(diagnosis.medications, id: \.self){ med in
+                SectionContentItemLabel(labelText: med.frequency)
+            }
             
             SectionHeader(section: .lastChange)
+            ForEach(diagnosis.medications, id: \.self){ med in
+                SectionContentItemLabel(labelText: med.changeDate?.formatted(date: .abbreviated, time: .omitted) ?? "")
+            }
             
-        }.navigationTitle(diagnosis.diagnosisName ?? "Diagnosis")
+            Spacer()
+            
+        }.navigationTitle(diagnosis.name)
             .padding(.horizontal)
             .padding(.top, 40)
     }
@@ -387,38 +381,25 @@ struct DiagnosisOverView : View {
     
     @EnvironmentObject var userSettings : UserSettings
     
-    var sampleMedHistory : MedicalHistory = buildSampleMedHistory()
+    @StateObject var diagnosisManager : DiagnosisManager = DiagnosisManager()
     
     var body: some View{
-        VStack{
-            
+        
+        VStack(spacing: 20){
             SectionHeader(section: .currentDiagnoses)
             
-            
-            if let sampleDiagnosis = sampleMedHistory.currentDiagnosis {
+            ForEach(diagnosisManager.diagnosis, id: \.self){diagnosis in
+                NavigationLink(destination: DiagnosisIndividualView(diagnosis: diagnosis)){
+                    
+                    SectionContentItemLabel(labelText: diagnosis.name)
+                        
                 
-                ForEach(sampleDiagnosis, id: \.self){diagnosis in
-                    
-                    NavigationLink(destination: DiagnosisIndividualView(diagnosis: diagnosis)){
-                        HStack{
-                            Text(diagnosis.diagnosisName ?? "No Name")
-                                .font(.system(size: 18))
-                            Spacer()
-                            Image("forward_arrow")
-                                .resizable()
-                                .frame(width: 12.5, height: 20)
-                                .padding(.trailing)
-                        }.foregroundColor(Theme.DarkGray)
-                    }.padding(.top, 8)
-                    
-                    
                 }
-                
             }
             
-            
             Spacer()
-        }.navigationTitle("Diagnosis Info")
+            
+        }.navigationTitle("Diagnoses")
             .padding(.horizontal)
             .padding(.top, 40)
     }
@@ -443,6 +424,11 @@ fileprivate enum Sections : String {
         case .appointmentFrequency : return "change-catalog"
         case .therapistCommunication : return "chat"
         case .name : return "badge"
+        case .dateDiagnosed : return "time-outlined"
+        case .medication : return "medication"
+        case .medFreq : return "calendar"
+        case .lastChange : return "change-catalog"
+        case .currentDiagnoses : return "health-cross"
         default: return "notifications"
         }
     }
@@ -476,6 +462,28 @@ fileprivate struct SectionHeader : View {
     }
 }
 
+fileprivate struct SectionContentItemLabel : View {
+    
+    let labelText : String
+    
+    var body: some View{
+        HStack{
+            
+            Text(labelText)
+                .font(.system(size: 18))
+                .foregroundColor(Theme.DarkGray)
+            
+            Spacer()
+            
+            Image("forward_arrow")
+                .resizable()
+                .scaledToFit()
+                .padding(5)
+            
+        }.frame(height: 30)
+    }
+}
+
 fileprivate struct CustomTextEditButton : View {
     
     let placeholder : String
@@ -495,7 +503,7 @@ fileprivate struct CustomTextEditButton : View {
                         text: $editItem,
                         isEditing: $isEditing,
                         isFirstResponder: isEditing,
-                        font: .systemFont(ofSize: 20),
+                        font: .systemFont(ofSize: 18),
                         autocapitalization: .words,
                         autocorrection: .no,
                         borderStyle: .none
@@ -503,7 +511,7 @@ fileprivate struct CustomTextEditButton : View {
                 } else {
                     
                     Text(localItem)
-                        .font(.system(size: 20))
+                        .font(.system(size: 18))
                         
                     Spacer()
                     
@@ -542,7 +550,7 @@ fileprivate struct CustomTextEditButton : View {
             
         }
         .frame(height: 40)
-        .padding(.horizontal, 20)
+        .foregroundColor(Theme.DarkGray)
             .onAppear{
                 localItem = editItem
             }
@@ -550,7 +558,7 @@ fileprivate struct CustomTextEditButton : View {
     
 }
 
-/*
+//TODO: make this work
 struct ProfileHeaderView : View {
     
     @State private var image : Image?
@@ -596,28 +604,49 @@ struct ProfileHeaderView : View {
     func save(){
         guard image != nil else { return }
         
+        //TODO: Save to documents, so it can load from documents
         let imageID = UUID()
         do{
-            let fileName = getDocumentsD
+           // let fileName = getDocumentsDirectory()??
         }
         
     }
 }
-*/
+
 
 struct AccountView_Previews: PreviewProvider {
     
     static var previews: some View {
       //  AccountView()
-       // PersonalInfoView()
+        PersonalInfoView()
        // ProviderInfoView()
-        DiagnosisOverView()
+      //  DiagnosisOverView()
             .environmentObject(UserSettings())
        // SectionHeader(section: .account)
        // ProfileHeaderView()
     }
 }
 
+//MARK: Extensions for date picker to work behind label
+fileprivate struct NoHitTesting: ViewModifier {
+    func body(content: Content) -> some View {
+        SwiftUIWrapper { content }.allowsHitTesting(false)
+    }
+}
+
+fileprivate extension View {
+    func userInteractionDisabled() -> some View {
+        self.modifier(NoHitTesting())
+    }
+}
+
+fileprivate struct SwiftUIWrapper<T: View>: UIViewControllerRepresentable {
+    let content: () -> T
+    func makeUIViewController(context: Context) -> UIHostingController<T> {
+        UIHostingController(rootView: content())
+    }
+    func updateUIViewController(_ uiViewController: UIHostingController<T>, context: Context) {}
+}
 
 
 

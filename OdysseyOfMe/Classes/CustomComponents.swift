@@ -27,10 +27,25 @@ struct RoundedButtonStyle: ButtonStyle{
 }
 
 
-
-
+struct TagToggleButtonStyle_Depreciated : ButtonStyle {
     
+    var isSelected : Bool = false
 
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .font(.system(size: 16))
+            .padding(8)
+            .foregroundColor(isSelected ? Theme.MainColor : Theme.DarkGray)
+            .overlay(
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(isSelected ? Theme.MainColor : Theme.DarkGray , lineWidth: 2)
+                        .padding(2)
+                )
+    }
+    
+}
+
+/*
 struct TagButtonStyle: ButtonStyle{
 
     var isSelected : Bool
@@ -41,14 +56,40 @@ struct TagButtonStyle: ButtonStyle{
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             .background(Capsule()
-                .stroke(isSelected ? Theme.MainColor : Theme.DarkGray, lineWidth: 1))
+                .stroke(isSelected ? Theme.MainColor : Theme.DarkGray, lineWidth: 3))
             .cornerRadius(100)
             .opacity(configuration.isPressed ? 0.5 : 1)
             .foregroundColor(isSelected ? Theme.MainColor : Theme.DarkGray)
     }
 }
+*/
 
-
+struct TagToggleButtonStyle: ButtonStyle{
+    
+    @Binding var isSelected : Bool
+    
+    func makeBody(configuration: Configuration) -> some View{
+        configuration.label
+            .font(.system(size: 16))
+            //.bold(isSelected)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(
+                VStack{
+                    if isSelected{
+                        Capsule()
+                            .fill(Theme.MainColor)
+                    } else {
+                        Capsule()
+                            .stroke(Theme.DarkGray, lineWidth: 3)
+                    }
+                }
+            )
+            .cornerRadius(100)
+            .opacity(configuration.isPressed ? 0.5 : 1)
+            .foregroundColor(isSelected ? .white : Theme.DarkGray)
+    }
+}
 
 struct ProgressBar : View {
     let pos : CGFloat
@@ -127,7 +168,6 @@ struct FlexibleTagView<Data: Collection, Content: View>: View where Data.Element
         return rows
     }
 }
-
 
 /**
  A gif image view to display Gifs
@@ -258,7 +298,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-
 struct CustomTextField: UIViewRepresentable {
 
     class Coordinator: NSObject, UITextFieldDelegate {
@@ -368,12 +407,69 @@ struct CustomTextView : View {
     
 }
 
+
+struct StressCategoryButton : View {
+    
+    let category : StressManager.StressCategories
+    
+    let isSelected : Bool
+    
+    var body: some View {
+        
+        ZStack{
+            
+            Circle()
+                .fill(isSelected ? Theme.MainColor : .clear)
+                
+            
+            Circle()
+                .stroke(isSelected ? Theme.MainColor : Theme.DarkGray, lineWidth: 2)
+            
+            
+            
+            VStack{
+                
+                category.icon
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(isSelected ? .white : Theme.DarkGray)
+                    .padding(.horizontal, isSelected ? 30 : 40)
+                    
+
+                if !isSelected{
+                    Text(category.rawValue)
+                        .foregroundColor(isSelected ? .clear : Theme.DarkGray)
+                }
+            }
+            
+        }
+        
+    }
+}
+
 struct CustomComponents_Previews: PreviewProvider {
     
     static var previews: some View {
         //CustomComponents()
       //  var settings = UserSettings()
        // Text("Hi")
-        CustomTextView()
+        
+        HStack{
+            //Selected
+            StressCategoryButton(category: .health, isSelected: true)
+            
+            //Deselected
+            StressCategoryButton(category: .health, isSelected: false)
+//            Button("Selected Tag"){
+//
+//            }.buttonStyle(TagToggleButtonStyle(isSelected: true))
+//
+//            Button("Deselected Tag"){
+//
+//            }.buttonStyle(TagToggleButtonStyle(isSelected: false))
+            
+        }
+        
+       // CustomTextView()
     }
 }

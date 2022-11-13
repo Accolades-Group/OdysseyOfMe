@@ -17,7 +17,7 @@ final class UserSettings : ObservableObject {
              providerName, providerEmail, providerPhone, providerFrequeny, isProviderCommunication,
         
         //Watch
-        isEpisodeTracking, isExerciseTracking, isSleepTracking
+        isEpisodeTracking, isExerciseTracking, isSleepTracking, isWatchTracking
     }
     
     // Resets all user data
@@ -85,11 +85,11 @@ final class UserSettings : ObservableObject {
     }
 
     
-    @Published var medicalHistory : MedicalHistory {
-        didSet{
-            UserDefaults.standard.set(medicalHistory, forKey: keys.medicalHistory.rawValue)
-        }
-    }
+//    @Published var medicalHistory : MedicalHistory {
+//        didSet{
+//            UserDefaults.standard.set(medicalHistory, forKey: keys.medicalHistory.rawValue)
+//        }
+//    }
     
     //Provider Info
     
@@ -149,6 +149,13 @@ final class UserSettings : ObservableObject {
         }
     }
     
+    // Is the watch tracking user data
+    @Published var isWatchTracking : Bool {
+        didSet{
+            UserDefaults.standard.set(isWatchTracking, forKey: keys.isWatchTracking.rawValue)
+        }
+    }
+    
     init(){
         //Name
         self.name = UserDefaults.standard.object(forKey: keys.name.rawValue) as? String ?? ""//PersonNameComponents ?? PersonNameComponents()
@@ -163,7 +170,7 @@ final class UserSettings : ObservableObject {
         self.dateOfBirth = UserDefaults.standard.object(forKey: keys.dateOfBirth.rawValue) as? Date ?? Date.now
         self.registrationDate = UserDefaults.standard.object(forKey: keys.registrationDate.rawValue) as? Date ?? Calendar.current.date(byAdding: .month, value: -1, to: Date.now)!
         
-        self.medicalHistory = UserDefaults.standard.object(forKey: keys.medicalHistory.rawValue) as? MedicalHistory ?? MedicalHistory()
+      //  self.medicalHistory = UserDefaults.standard.object(forKey: keys.medicalHistory.rawValue) as? MedicalHistory ?? MedicalHistory()
         
         
         //Care Provider
@@ -176,6 +183,8 @@ final class UserSettings : ObservableObject {
         self.isEpisodeTracking = UserDefaults.standard.object(forKey: keys.isEpisodeTracking.rawValue) as? Bool ?? false
         self.isExerciseTracking = UserDefaults.standard.object(forKey: keys.isExerciseTracking.rawValue) as? Bool ?? false
         self.isSleepTracking = UserDefaults.standard.object(forKey: keys.isExerciseTracking.rawValue) as? Bool ?? false
+        self.isWatchTracking = UserDefaults.standard.object(forKey: keys.isWatchTracking.rawValue) as? Bool ?? false
+
     }
     
 }

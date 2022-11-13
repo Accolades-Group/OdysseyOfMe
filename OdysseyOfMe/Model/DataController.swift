@@ -48,7 +48,7 @@ class DataController : ObservableObject {
         case day, week, month, all
     }
 */
-    
+    //TODO: Break into sub funcs
     func clearAllData(){
         
         let fetchStressRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "StressDetail")
@@ -71,7 +71,7 @@ class DataController : ObservableObject {
     //MARK: Sample Data
     func createSampleCheckin(){
         
-        let date = Date.now
+        let date = Calendar.current.date(byAdding: .day, value: -3, to: Date.now)
         
         let stressor1 : StressDetail = StressDetail(context: container.viewContext)
         stressor1.id = UUID()
