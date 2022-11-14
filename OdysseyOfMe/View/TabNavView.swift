@@ -22,13 +22,13 @@ struct TabNavView: View {
                 }
             
             
-            TestingView()
-                .tabItem{
-                    VStack{
-                        Text("Testing")
-                        Image(systemName: "exclamationmark.triangle")
-                    }
-                }
+//            TestingView()
+//                .tabItem{
+//                    VStack{
+//                        Text("Testing")
+//                        Image(systemName: "exclamationmark.triangle")
+//                    }
+//                }
              
             
             HistoryView()

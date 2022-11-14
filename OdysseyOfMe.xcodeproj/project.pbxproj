@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F3A520E629206A5B0024EF98 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3A520E529206A5B0024EF98 /* confetti.gif */; };
+		F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5211A2922AA140024EF98 /* CheckIn.swift */; };
 		F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
 		F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3BFA9552917418000059E6C /* ProgressNotes.rtf */; };
 		F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */; };
@@ -94,6 +95,7 @@
 
 /* Begin PBXFileReference section */
 		F3A520E529206A5B0024EF98 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = confetti.gif; path = ../../../../../Downloads/confetti.gif; sourceTree = "<group>"; };
+		F3A5211A2922AA140024EF98 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		F3B9F44B291C399900DAA956 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		F3BFA9532915C51F00059E6C /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		F3BFA9552917418000059E6C /* ProgressNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ProgressNotes.rtf; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */,
 				F3BFA95C2918813600059E6C /* DataController.swift */,
 				F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */,
+				F3A5211A2922AA140024EF98 /* CheckIn.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 			files = (
 				F3EDEE0C2914817F00BD4849 /* AccountView.swift in Sources */,
 				F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */,
+				F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */,
 				F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */,
 				F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */,
 				F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */,

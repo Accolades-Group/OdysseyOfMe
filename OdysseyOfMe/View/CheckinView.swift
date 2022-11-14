@@ -166,7 +166,18 @@ fileprivate struct CheckinHomeView : View {
             
             VStack(spacing: 0){
             
-            Image("avatar")
+            //Image("avatar")
+                Image("journey")
+                    .resizable()
+                    .frame(width: 300, height: 300)
+            
+                
+                
+
+
+        }
+        .frame(height: 350)
+        .padding()
             
             if viewModel.todayStreak > 0 {
                 Text("\(viewModel.todayStreak)")
@@ -175,24 +186,14 @@ fileprivate struct CheckinHomeView : View {
                 
                 Text("day streak!")
                     .font(.system(size: 30))
-            } else {
-                
-                Text("No streak :(")
-                    .font(.system(size: 30))
-                
             }
-
-        }
-        .frame(height: 350)
-        .padding()
             
-            
-            Spacer()
-            
-            Text("Check-in every day to lower stress, build your streak and style your avatar!")
-                .font(.system(size: 25))
-                .multilineTextAlignment(.center)
-                .padding()
+//            Spacer()
+//
+//            Text("Check-in every day to lower stress, build your streak and style your avatar!")
+//                .font(.system(size: 25))
+//                .multilineTextAlignment(.center)
+//                .padding()
             
             Spacer()
         }
@@ -231,7 +232,7 @@ fileprivate struct HowWasYourDayView : View {
             Spacer()
             
             HStack{
-                ForEach(CheckinViewModel.Satisfaction_Types.allCases, id: \.self){type in
+                ForEach(Satisfaction_Types.allCases, id: \.self){type in
                     Spacer()
                     Button{
                         withAnimation{ //TODO: Keep animation? If so, move to vm
@@ -246,6 +247,7 @@ fileprivate struct HowWasYourDayView : View {
                 }
                 Spacer()
             }
+            .padding(.horizontal)
 
             
             Spacer()

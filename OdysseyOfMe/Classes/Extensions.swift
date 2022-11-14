@@ -113,12 +113,15 @@ private struct SizePreferenceKey: PreferenceKey {
 //MARK: Dates
 //TODO: if within 24 hours, says its same day even if different calendar days
 func isSameDay(date1: Date, date2: Date) -> Bool {
-    let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
-    if diff.day == 0 {
-        return true
-    } else {
-        return false
-    }
+    let calendar = Calendar.current
+    
+    return calendar.isDate(date1, inSameDayAs: date2)
+//    let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
+//    if diff.day == 0 {
+//        return true
+//    } else {
+//        return false
+//    }
 }
 
 //TODO: Test .weekOfYear vs .weekOfMonth

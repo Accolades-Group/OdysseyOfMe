@@ -21,7 +21,8 @@ class DataController : ObservableObject {
                 print("Core data failed to load: \(error.localizedDescription)")
             }else{
                 
-              //  self.clearAllData()
+                
+             //   self.clearAllData()
              //   self.createSampleTags()
              //   self.createSampleCheckin()
 
@@ -80,20 +81,20 @@ class DataController : ObservableObject {
         stressor1.category = StressManager.StressCategories.relationships.rawValue
         stressor1.individuals = ["Tom", "Sarah"]
         stressor1.rating = 3
-        stressor1.subjectTypes = [StressManager.SubjectType.family.rawValue]
-        stressor1.symptoms = [StressManager.PhysicalSymptoms.sweating.rawValue, StressManager.PhysicalSymptoms.tension.rawValue]
-        stressor1.timesOfDay = [StressManager.TimesOfDay.morning.rawValue]
+        stressor1.subjectTypes = [StressManager.SubjectType.family.tag]
+        stressor1.symptoms = [StressManager.PhysicalSymptoms.sweating.tag, StressManager.PhysicalSymptoms.tension.tag]
+        stressor1.timesOfDay = [StressManager.TimesOfDay.morning.tag]
         
         
         let stressor2 : StressDetail = StressDetail(context: container.viewContext)
         stressor2.id = UUID()
         stressor1.addDate = date
-        stressor2.activities = [StressManager.Activites.exercising.rawValue]
+        stressor2.activities = [StressManager.Activites.exercising.tag]
         stressor2.category = StressManager.StressCategories.health.rawValue
         stressor2.individuals = ["Dad", "Tim"]
         stressor2.rating = 4
-        stressor2.subjectTypes = [StressManager.SubjectType.stranger.rawValue]
-        stressor2.symptoms = [StressManager.PhysicalSymptoms.tension.rawValue, StressManager.PhysicalSymptoms.racing_thoughts.rawValue]
+        stressor2.subjectTypes = [StressManager.SubjectType.stranger.tag]
+        stressor2.symptoms = [StressManager.PhysicalSymptoms.tension.tag, StressManager.PhysicalSymptoms.racing_thoughts.rawValue]
         stressor2.timesOfDay = ["Lunch"]
         
         

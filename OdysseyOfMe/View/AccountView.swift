@@ -48,7 +48,7 @@ struct AccountView: View {
                 
                 //Account
                 
-                VStack(alignment: .leading, spacing: 5){
+                VStack(alignment: .leading, spacing: 15){
 
                     SectionHeader(section: .account)
                     
@@ -90,10 +90,25 @@ struct AccountView: View {
                     }.padding(.top, 8)
                     
                     
+                    NavigationLink(destination: AvatarView()){
+                        HStack{
+                            Text("Avatar")
+                                .font(.system(size: 18))
+                            Spacer()
+                            Image("forward_arrow")
+                                .resizable()
+                                .frame(width: 12.5, height: 20)
+                                .padding(.trailing)
+                        }.foregroundColor(Theme.DarkGray)
+                    }.padding(.top, 8)
+                    
+                    
                 }.padding([.top, .horizontal], 20)
                 //End Account
                 
                 //TODO: Put section below on scrollable view that only scrolls if all 3 are selected?
+                //NOTE: Watch settings currently deleted. All data will be approved upon user selecting Healthkit settings
+                /*
                 //Watch Settings
                 VStack(alignment: .leading, spacing: 0){
                     
@@ -232,7 +247,7 @@ struct AccountView: View {
                     .padding(.top, 10)
                     
                     
-                
+                */
                 
 
                 
@@ -245,6 +260,22 @@ struct AccountView: View {
             }
         }
     }
+}
+
+struct AvatarView : View {
+    
+    @EnvironmentObject var userSettings : UserSettings
+    
+    var body: some View{
+        VStack{
+            Text("Avatar View")
+            Text("Work in progress...")
+            
+        }.navigationTitle("Avatar")
+            .padding(.horizontal)
+            .padding(.top, 40)
+    }
+    
 }
                     
 struct PersonalInfoView : View {
@@ -349,6 +380,7 @@ struct DiagnosisIndividualView : View {
     
     var body: some View{
         VStack(spacing: 10){
+            
             SectionHeader(section: .dateDiagnosed)
             SectionContentItemLabel(labelText: diagnosis.diagnosisDate?.formatted(date: .abbreviated, time: .omitted) ?? "")
             
@@ -370,6 +402,8 @@ struct DiagnosisIndividualView : View {
             
             Spacer()
             
+            
+            
         }.navigationTitle(diagnosis.name)
             .padding(.horizontal)
             .padding(.top, 40)
@@ -382,6 +416,8 @@ struct DiagnosisOverView : View {
     @EnvironmentObject var userSettings : UserSettings
     
     @StateObject var diagnosisManager : DiagnosisManager = DiagnosisManager()
+    
+    @State var isShowingPrompt : Bool = false
     
     var body: some View{
         
@@ -398,6 +434,25 @@ struct DiagnosisOverView : View {
             }
             
             Spacer()
+            
+            Text("Demo Mode - Adding Disabled")
+                .foregroundColor(isShowingPrompt ? .red : .clear)
+            
+            Spacer()
+            
+            Button{
+                
+                
+                Task {
+                    isShowingPrompt = true
+                    try? await Task.sleep(nanoseconds: 2_500_000_000)
+                    isShowingPrompt = false
+                }
+                
+            } label: {
+                Text("Add Diagnosis")
+            }
+            .buttonStyle(RoundedButtonStyle())
             
         }.navigationTitle("Diagnoses")
             .padding(.horizontal)
@@ -617,8 +672,8 @@ struct ProfileHeaderView : View {
 struct AccountView_Previews: PreviewProvider {
     
     static var previews: some View {
-      //  AccountView()
-        PersonalInfoView()
+        AccountView()
+      //  PersonalInfoView()
        // ProviderInfoView()
       //  DiagnosisOverView()
             .environmentObject(UserSettings())

@@ -17,23 +17,66 @@ class StressManager : ObservableObject {
     //MARK: Default Enum Values
     enum Details : String, CaseIterable {
         case times, activities, physicalSymptoms, subjectTypes, individuals
+        
+        var tag : String {
+            return self.rawValue.lowercased()
+        }
+        
+        var name : String {
+            return self.rawValue.capitalized
+        }
     }
     
     enum TimesOfDay : String, CaseIterable {
         case morning, afternoon, evening, night
+        
+        var tag : String {
+            return self.rawValue.lowercased()
+        }
+        
+        var name : String {
+            return self.rawValue.capitalized
+        }
     }
     
     enum Activites : String, CaseIterable {
         case eating, sleeping, socializing, driving, hobbies, exercising
+        
+        var tag : String {
+            return self.rawValue.lowercased()
+        }
+        
+        var name : String {
+            return self.rawValue.capitalized
+        }
     }
     
     enum PhysicalSymptoms : String, CaseIterable {
         case sweating, increased_HR = "Increased HR", trembling, tension, racing_thoughts = "Racing Thoughts"
+        
+        var tag : String {
+            return self.rawValue.lowercased()
+        }
+        
+        var name : String {
+            return self.rawValue.capitalized
+        }
     }
     
     enum SubjectType : String, CaseIterable {
         case family, friend, stranger, coworker
+        
+        var tag : String {
+            return self.rawValue.lowercased()
+        }
+        
+        var name : String {
+            return self.rawValue.capitalized
+        }
     }
+    
+
+
     
     enum StressCategories : String, CaseIterable {
         case housing, work, financial, relationships, health, other, none
@@ -86,19 +129,19 @@ class StressManager : ObservableObject {
         
         if withTags {
             TimesOfDay.allCases.forEach{element in
-                TimeTags.append(element.rawValue)
+                TimeTags.append(element.tag)
             }
             
             Activites.allCases.forEach{element in
-                ActivityTags.append(element.rawValue)
+                ActivityTags.append(element.tag)
             }
             
             PhysicalSymptoms.allCases.forEach{element in
-                PhysicalSymptomTags.append(element.rawValue)
+                PhysicalSymptomTags.append(element.tag)
             }
             
             SubjectType.allCases.forEach{element in
-                SubjectTypeTags.append(element.rawValue)
+                SubjectTypeTags.append(element.tag)
             }
             
             StressCategories.allCases.forEach{element in
@@ -117,19 +160,19 @@ class StressManager : ObservableObject {
         IndividualsTags = []
         
         TimesOfDay.allCases.forEach{element in
-            TimeTags.append(element.rawValue)
+            TimeTags.append(element.tag)
         }
         
         Activites.allCases.forEach{element in
-            ActivityTags.append(element.rawValue)
+            ActivityTags.append(element.tag)
         }
         
         PhysicalSymptoms.allCases.forEach{element in
-            PhysicalSymptomTags.append(element.rawValue)
+            PhysicalSymptomTags.append(element.tag)
         }
         
         SubjectType.allCases.forEach{element in
-            SubjectTypeTags.append(element.rawValue)
+            SubjectTypeTags.append(element.tag)
         }
         
         StressCategories.allCases.forEach{element in
@@ -380,3 +423,61 @@ class StressManager : ObservableObject {
     
 }
 
+extension StressDetail {
+    
+    
+    func getAllTagsStringArr() -> [String]{
+        
+        var retArr : [String] = []
+        
+        if let unwrapped = self.timesOfDay {
+            
+            unwrapped.forEach{item in
+                
+                if !retArr.contains(item.lowercased()){
+                    retArr.append(item.lowercased())
+                }
+                
+            }
+        }
+
+        
+        if let unwrapped = self.activities {
+            
+            unwrapped.forEach{item in
+                
+                if !retArr.contains(item.lowercased()){
+                    retArr.append(item.lowercased())
+                }
+                
+            }
+        }
+        
+        if let unwrapped = self.symptoms {
+            
+            unwrapped.forEach{item in
+                
+                if !retArr.contains(item.lowercased()){
+                    retArr.append(item.lowercased())
+                }
+                
+            }
+        }
+        
+        if let unwrapped = self.individuals {
+            
+            unwrapped.forEach{item in
+                
+                if !retArr.contains(item.lowercased()){
+                    retArr.append(item.lowercased())
+                }
+                
+            }
+        }
+        
+        
+        return retArr
+        
+    }
+    
+}

@@ -15,36 +15,7 @@ final class CheckinViewModel : ObservableObject {
     @Published var todayStreak : Int = 0
     @Published var maxStreak : Int = 0
     
-    //MARK: Satisfaction
-    enum Satisfaction_Types : Int, CaseIterable{
-        case very_dissatisfied = 0
-        case dissatisfied = 1
-        case neutral = 2
-        case satisfied = 3
-        case very_satisfied = 4
-        
-        var name : String {
-            switch self{
-            case .very_dissatisfied: return "Very Dissatisfied"
-            case .dissatisfied: return "Dissatisfied"
-            case .neutral: return "Neutral"
-            case .satisfied: return "Satisfied"
-            case .very_satisfied: return "Very Satisfied"
-            }
-        }
-        
-        var icon : Image {
-            switch self {
-            case .very_dissatisfied : return Image("sentiment_very_dissatisfied")
-            case .dissatisfied : return Image("sentiment_dissatisfied")
-            case .neutral: return Image("sentiment_neutral")
-            case .satisfied: return Image("sentiment_satisfied")
-            case .very_satisfied: return Image("sentiment_very_satisfied")
-            }
-        }
-        
-    }
-    
+
     @Published var selectedType : Satisfaction_Types? = nil
     
     func selectType(_ type : Satisfaction_Types){
@@ -185,6 +156,12 @@ final class CheckinViewModel : ObservableObject {
             return Self.allCases.count
         }
         
+        func isFirst() -> Bool {
+            let all = Self.allCases
+            let idx = all.firstIndex(of: self)!
+            return idx == 0
+        }
+        
         func isLast() -> Bool {
             let all = Self.allCases
             let idx = all.firstIndex(of: self)!
@@ -242,8 +219,12 @@ final class CheckinViewModel : ObservableObject {
         if route == .stressDetail {
             currentStressIndex = max(0, currentStressIndex - 1)
         }
-        path.removeLast()
-
+        
+        else if route.isFirst(){
+            path = .init() //Prevent bug where same gets added twice?
+        } else {
+            path.removeLast()
+        }
     }
     
     func getNavigationTitle(_ route : Routing) -> String {
