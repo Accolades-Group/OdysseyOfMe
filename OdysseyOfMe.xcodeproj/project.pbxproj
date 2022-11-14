@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3A520E629206A5B0024EF98 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3A520E529206A5B0024EF98 /* confetti.gif */; };
 		F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5211A2922AA140024EF98 /* CheckIn.swift */; };
 		F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
 		F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3BFA9552917418000059E6C /* ProgressNotes.rtf */; };
@@ -39,6 +38,7 @@
 		F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE152914B62300BD4849 /* UserSettings.swift */; };
 		F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */; };
 		F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
+		F3F4068A2923049000CE2ED7 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3F406892923049000CE2ED7 /* confetti.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F3A520E529206A5B0024EF98 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = confetti.gif; path = ../../../../../Downloads/confetti.gif; sourceTree = "<group>"; };
 		F3A5211A2922AA140024EF98 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		F3B9F44B291C399900DAA956 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		F3BFA9532915C51F00059E6C /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
@@ -132,6 +131,7 @@
 		F3EDEE152914B62300BD4849 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisManager.swift; sourceTree = "<group>"; };
 		F3EDEE19291505F900BD4849 /* StressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressManager.swift; sourceTree = "<group>"; };
+		F3F406892923049000CE2ED7 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = confetti.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +183,8 @@
 		F3B9F44A291C398500DAA956 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				F3F406892923049000CE2ED7 /* confetti.gif */,
 				F3B9F44B291C399900DAA956 /* congratulations.gif */,
-				F3A520E529206A5B0024EF98 /* confetti.gif */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -509,7 +509,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3A520E629206A5B0024EF98 /* confetti.gif in Resources */,
+				F3F4068A2923049000CE2ED7 /* confetti.gif in Resources */,
 				F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */,
 				F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */,
 				F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */,
