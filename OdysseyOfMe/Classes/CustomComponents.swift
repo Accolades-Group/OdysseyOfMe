@@ -33,7 +33,7 @@ struct TagToggleButtonStyle_Depreciated : ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View{
         configuration.label
-            .font(.system(size: 16))
+            .font(Theme.Font(16))
             .padding(8)
             .foregroundColor(isSelected ? Theme.MainColor : Theme.DarkGray)
             .overlay(
@@ -70,7 +70,7 @@ struct TagToggleButtonStyle: ButtonStyle{
     
     func makeBody(configuration: Configuration) -> some View{
         configuration.label
-            .font(.system(size: 16))
+            .font(Theme.Font(16))
             //.bold(isSelected)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
@@ -385,7 +385,7 @@ struct CustomTextView : View {
                     self.name = ""
                 } label: {
                     Text("Update")
-                        .font(.system(size: 15))
+                        .font(Theme.Font(15))
                         .fontWeight(.light)
                         .foregroundColor(.black)
                 }
@@ -395,7 +395,7 @@ struct CustomTextView : View {
                     self.isEditing.toggle()
                 } label: {
                     Text(self.isEditing ? "Cancel" : "Edit")
-                        .font(.system(size: 15))
+                        .font(Theme.Font(15))
                         .fontWeight(.light)
                         .foregroundColor(.black)
                 }

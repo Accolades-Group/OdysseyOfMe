@@ -13,6 +13,9 @@ final class UserSettings : ObservableObject {
         //Personal Info
         case name, firstName, lastName, email, phone, dateOfBirth, registrationDate, profileImageString, medicalHistory,
              
+             //TOS?
+             isTermsAndPrivacyAccepted,
+             
              //Care Provider Info
              providerName, providerEmail, providerPhone, providerFrequeny, isProviderCommunication,
         
@@ -90,6 +93,12 @@ final class UserSettings : ObservableObject {
 //            UserDefaults.standard.set(medicalHistory, forKey: keys.medicalHistory.rawValue)
 //        }
 //    }
+
+    @Published var isTermsAndPrivacyAccepted : Bool{
+        didSet{
+            UserDefaults.standard.set(isTermsAndPrivacyAccepted, forKey: keys.isTermsAndPrivacyAccepted.rawValue)
+        }
+    }
     
     //Provider Info
     
@@ -156,6 +165,15 @@ final class UserSettings : ObservableObject {
         }
     }
     
+//    @Published var shouldShowTOS : Bool {
+//        get{
+//            return !self.isTermsAndPrivacyAccepted
+//        }
+//        set{
+//            UserDefaults.standard.set(isWatchTracking, forKey: keys.isWatchTracking.rawValue)
+//        }
+//    }
+    
     init(){
         //Name
         self.name = UserDefaults.standard.object(forKey: keys.name.rawValue) as? String ?? ""//PersonNameComponents ?? PersonNameComponents()
@@ -171,6 +189,8 @@ final class UserSettings : ObservableObject {
         self.registrationDate = UserDefaults.standard.object(forKey: keys.registrationDate.rawValue) as? Date ?? Calendar.current.date(byAdding: .month, value: -1, to: Date.now)!
         
       //  self.medicalHistory = UserDefaults.standard.object(forKey: keys.medicalHistory.rawValue) as? MedicalHistory ?? MedicalHistory()
+        
+        self.isTermsAndPrivacyAccepted = UserDefaults.standard.object(forKey: keys.isTermsAndPrivacyAccepted.rawValue) as? Bool ?? false
         
         
         //Care Provider

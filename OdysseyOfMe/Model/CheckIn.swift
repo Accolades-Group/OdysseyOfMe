@@ -17,11 +17,11 @@ enum Satisfaction_Types : Int, CaseIterable{
     
     var name : String {
         switch self{
-        case .very_dissatisfied: return "Very Dissatisfied"
-        case .dissatisfied: return "Dissatisfied"
+        case .very_dissatisfied: return "Awful"
+        case .dissatisfied: return "Bad"
         case .neutral: return "Neutral"
-        case .satisfied: return "Satisfied"
-        case .very_satisfied: return "Very Satisfied"
+        case .satisfied: return "Good"
+        case .very_satisfied: return "Amazing"
         }
     }
     
@@ -35,4 +35,17 @@ enum Satisfaction_Types : Int, CaseIterable{
         }
     }
     
+}
+
+class CheckinObject : ObservableObject {
+    @Published var date : Date
+    @Published var rating : Satisfaction_Types
+    
+    @Published var stressDetails : [StressManager.StressObject]
+    
+    init(date : Date, rating : Satisfaction_Types, details : [StressManager.StressObject]){
+        self.date = date
+        self.rating = rating
+        self.stressDetails = details
+    }
 }

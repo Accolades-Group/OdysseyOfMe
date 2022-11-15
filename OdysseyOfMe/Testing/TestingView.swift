@@ -33,9 +33,16 @@ struct TestingView: View {
             Text("stressor count: \(stressHistory.count)")
     //        Text("diagnosis count: \(medicalHistory.count)")
             
-
+            Spacer()
+            Text("Default Font Size")
+            Text("Body font size")
+                .font(.body)
+            Text("17 font size")
+                .font(.system(size: 17))
+Spacer()
             
             GeometryReader{geo in
+                
                 
                 
                 

@@ -66,6 +66,7 @@ struct CheckinView: View {
                 .navigationBarBackButtonHidden(true)
                 .navigationTitle(
                     viewModel.getNavigationTitle(route)
+
                 )
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
@@ -102,7 +103,8 @@ struct CheckinView: View {
                 ProgressBar(pos: route.pos() + 1 , total: route.totalRoutes - 1 )
                 
                 Text(viewModel.getViewQuestion(route))
-                    .font(.system(size: 30))
+                    .font(Theme.Font(30))
+                    .bold()
                     .multilineTextAlignment(.center)
                 
                 Spacer()
@@ -131,7 +133,7 @@ struct CheckinView: View {
                     case .congratulations:
                         GifImage("confetti")
                             .task{
-                                try? await Task.sleep(nanoseconds: 4_000_000_000)
+                                try? await Task.sleep(nanoseconds: 3_000_000_000)
                                 viewModel.resetData()
                                 //Pop to root
                                 viewModel.path = .init()
@@ -181,11 +183,11 @@ fileprivate struct CheckinHomeView : View {
             
             if viewModel.todayStreak > 0 {
                 Text("\(viewModel.todayStreak)")
-                    .font(.system(size: 60))
+                    .font(Theme.Font(60))
                     .bold()
                 
                 Text("day streak!")
-                    .font(.system(size: 30))
+                    .font(Theme.Font(30))
             }
             
 //            Spacer()
@@ -223,7 +225,7 @@ fileprivate struct HowWasYourDayView : View {
                     
                     
                     Text(type.name)
-                        .font(.system(size: 18))
+                        .font(Theme.Font(18))
                         .bold()
                 }
                 
@@ -280,12 +282,14 @@ fileprivate struct RoseThornBudView : View {
                     
                    
                     Text("What was your favorite part of today?")
+                        .font(Theme.Font())
                     
                    
                 }
                 
                 TextField("Add Note", text: $viewModel.rose)
                     .textFieldStyle(.roundedBorder)
+                    .font(Theme.Font())
                 
                 
             }
@@ -302,12 +306,14 @@ fileprivate struct RoseThornBudView : View {
                     
                     
                     Text("What was the most challenging part of today?")
+                      //  .font(Theme.Font())
                     
                     
                 }
                 
                 TextField("Add Note", text: $viewModel.thorn)
                     .textFieldStyle(.roundedBorder)
+                    //.font(Theme.Font())
                 
                 
             }//.background(.yellow.opacity(0.25))
@@ -324,12 +330,14 @@ fileprivate struct RoseThornBudView : View {
                     
                     
                     Text("What are you most looking forward to?")
+                        .font(Theme.Font())
                     
                     
                 }
                 
                 TextField("Add Note", text: $viewModel.bud)
                     .textFieldStyle(.roundedBorder)
+                    .font(Theme.Font())
                 
                 
             }
@@ -494,7 +502,7 @@ struct TimeTagItem : View {
                 TextField("Add +", text: $newTag)
                     .submitLabel(.done)
                     .autocorrectionDisabled(true)
-                    .font(.system(size: 16))
+                    .font(Theme.Font(16))
                     .padding(8)
                     .foregroundColor(Theme.DarkGray)
                     .overlay(
@@ -611,7 +619,7 @@ struct TagItemView : View {
                 TextField("Add +", text: $newTag)
                     .submitLabel(.done)
                     .autocorrectionDisabled(true)
-                    .font(.system(size: 16))
+                    .font(Theme.Font(16))
                     .padding(8)
                     .foregroundColor(Theme.DarkGray)
                     .overlay(

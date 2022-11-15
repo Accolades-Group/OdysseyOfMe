@@ -39,6 +39,11 @@
 		F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */; };
 		F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
 		F3F4068A2923049000CE2ED7 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3F406892923049000CE2ED7 /* confetti.gif */; };
+		F3F4068C2923EFDF00CE2ED7 /* TermsSheetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4068B2923EFDF00CE2ED7 /* TermsSheetViews.swift */; };
+		F3F4068E2923FB3200CE2ED7 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4068D2923FB3200CE2ED7 /* Styles.swift */; };
+		F3F406902923FCEB00CE2ED7 /* raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F4068F2923FCEB00CE2ED7 /* raleway.ttf */; };
+		F3F406912923FCEB00CE2ED7 /* raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F4068F2923FCEB00CE2ED7 /* raleway.ttf */; };
+		F3F4069429240D6900CE2ED7 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4069329240D6900CE2ED7 /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +137,11 @@
 		F3EDEE172914B6C500BD4849 /* DiagnosisManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisManager.swift; sourceTree = "<group>"; };
 		F3EDEE19291505F900BD4849 /* StressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressManager.swift; sourceTree = "<group>"; };
 		F3F406892923049000CE2ED7 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = confetti.gif; sourceTree = "<group>"; };
+		F3F4068B2923EFDF00CE2ED7 /* TermsSheetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsSheetViews.swift; sourceTree = "<group>"; };
+		F3F4068D2923FB3200CE2ED7 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		F3F4068F2923FCEB00CE2ED7 /* raleway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = raleway.ttf; sourceTree = "<group>"; };
+		F3F406922923FD1300CE2ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F3F4069329240D6900CE2ED7 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,13 +190,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F3B9F44A291C398500DAA956 /* Animations */ = {
+		F3B9F44A291C398500DAA956 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				F3F4068F2923FCEB00CE2ED7 /* raleway.ttf */,
+				F3EDEDAC29147F6200BD4849 /* Assets.xcassets */,
 				F3F406892923049000CE2ED7 /* confetti.gif */,
 				F3B9F44B291C399900DAA956 /* congratulations.gif */,
 			);
-			path = Animations;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		F3BFA95E2918B0BB00059E6C /* Testing */ = {
@@ -226,14 +238,14 @@
 		F3EDEDA729147F6100BD4849 /* OdysseyOfMe */ = {
 			isa = PBXGroup;
 			children = (
-				F3B9F44A291C398500DAA956 /* Animations */,
+				F3F406922923FD1300CE2ED7 /* Info.plist */,
+				F3B9F44A291C398500DAA956 /* Assets */,
 				F3BFA95E2918B0BB00059E6C /* Testing */,
 				F3EDEE122914915500BD4849 /* Model */,
 				F3EDEE0D2914827E00BD4849 /* Classes */,
 				F3EDEE0429147FF100BD4849 /* View */,
 				F3EDEDA829147F6100BD4849 /* OdysseyOfMeApp.swift */,
 				F3EDEDAA29147F6100BD4849 /* ContentView.swift */,
-				F3EDEDAC29147F6200BD4849 /* Assets.xcassets */,
 				F3EDEDAE29147F6200BD4849 /* Preview Content */,
 				F3BFA9552917418000059E6C /* ProgressNotes.rtf */,
 			);
@@ -309,6 +321,8 @@
 				F3EDEE092914816500BD4849 /* HistoryView.swift */,
 				F3EDEE0B2914817F00BD4849 /* AccountView.swift */,
 				F3BFA9532915C51F00059E6C /* NavigationTest.swift */,
+				F3F4068B2923EFDF00CE2ED7 /* TermsSheetViews.swift */,
+				F3F4069329240D6900CE2ED7 /* ProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,6 +333,7 @@
 				F3EDEE0E2914829600BD4849 /* CustomComponents.swift */,
 				F3EDEE10291483BE00BD4849 /* Extensions.swift */,
 				F3EDEE152914B62300BD4849 /* UserSettings.swift */,
+				F3F4068D2923FB3200CE2ED7 /* Styles.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -513,6 +528,7 @@
 				F3EDEDB029147F6200BD4849 /* Preview Assets.xcassets in Resources */,
 				F3EDEDAD29147F6200BD4849 /* Assets.xcassets in Resources */,
 				F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */,
+				F3F406902923FCEB00CE2ED7 /* raleway.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +552,7 @@
 			files = (
 				F3EDEDD829147F6300BD4849 /* Preview Assets.xcassets in Resources */,
 				F3EDEDD529147F6300BD4849 /* Assets.xcassets in Resources */,
+				F3F406912923FCEB00CE2ED7 /* raleway.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +581,7 @@
 				F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */,
 				F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */,
 				F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */,
+				F3F4068C2923EFDF00CE2ED7 /* TermsSheetViews.swift in Sources */,
 				F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */,
 				F3EDEE162914B62300BD4849 /* UserSettings.swift in Sources */,
 				F3EDEE0F2914829600BD4849 /* CustomComponents.swift in Sources */,
@@ -572,9 +590,11 @@
 				F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */,
 				F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */,
 				F3EDEE0A2914816500BD4849 /* HistoryView.swift in Sources */,
+				F3F4068E2923FB3200CE2ED7 /* Styles.swift in Sources */,
 				F3EDEDA929147F6100BD4849 /* OdysseyOfMeApp.swift in Sources */,
 				F3BFA95D2918813600059E6C /* DataController.swift in Sources */,
 				F3EDEE062914800400BD4849 /* TabNavView.swift in Sources */,
+				F3F4069429240D6900CE2ED7 /* ProgressView.swift in Sources */,
 				F3BFA9602918B0C700059E6C /* TestingView.swift in Sources */,
 				F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */,
 			);
@@ -837,6 +857,7 @@
 				DEVELOPMENT_TEAM = NKAA46P4LV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OdysseyOfMe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -872,6 +893,7 @@
 				DEVELOPMENT_TEAM = NKAA46P4LV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OdysseyOfMe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OdysseyOfMe;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

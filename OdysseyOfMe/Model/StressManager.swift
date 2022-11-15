@@ -421,7 +421,90 @@ class StressManager : ObservableObject {
     }
     
     
+    static func getSampleNames() -> [String]{ return ["Sam", "Steeve", "Jim", "Susan", "Sarah", "Mike", "Tim", "Kathy"] }
+    
+    static func BuildCheckinObjects(_ num : Int) -> (stressors : [StressObject], checks : [CheckinObject]){
+        
+        var retStressItems : [StressObject] = []
+        var retChecks : [CheckinObject] = []
+        
+
+        
+        for i in 0..<num{
+            
+            var stressItems : [StressObject] = []
+            let date = Calendar.current.date(byAdding: .day, value: -i, to: Date())!
+
+            var isTwoStressors = Bool.random()
+            
+            var tagArray : [String] = []
+            var tagNum : Int = 0
+            
+            repeat {
+                //first stressor in checkin
+                var stressor : StressObject = StressObject(category: .other)
+                stressor.category = StressCategories.allCases.randomElement() ?? stressor.category
+                stressor.rating = Int.random(in: 1..<6)
+                
+                
+                //Times:
+                tagArray.removeAll()
+                tagNum = Int.random(in: 1..<3)
+                for _ in 0..<tagNum{
+                    tagArray.append(StressManager.TimesOfDay.allCases.randomElement()!.tag)
+                }
+                stressor.times = tagArray
+                
+                //activities:
+                tagArray.removeAll()
+                tagNum = Int.random(in: 0..<3)
+                for _ in 0..<tagNum{
+                    tagArray.append(StressManager.Activites.allCases.randomElement()!.tag)
+                }
+                stressor.activities = tagArray
+                
+                //symptoms:
+                tagArray.removeAll()
+                tagNum = Int.random(in: 0..<3)
+                for _ in 0..<tagNum{
+                    tagArray.append(StressManager.PhysicalSymptoms.allCases.randomElement()!.tag)
+                }
+                stressor.symptoms = tagArray
+                
+                //subjects:
+                tagArray.removeAll()
+                tagNum = Int.random(in: 0..<3)
+                for _ in 0..<tagNum{
+                    tagArray.append(StressManager.SubjectType.allCases.randomElement()!.tag)
+                }
+                stressor.subjectTypes = tagArray
+                
+                //individuals:
+                tagArray.removeAll()
+                tagNum = Int.random(in: 0..<3)
+                for _ in 0..<tagNum{
+                    tagArray.append(getSampleNames().randomElement() ?? "Jax")
+                }
+                stressor.individuals = tagArray
+                
+                stressItems.append(stressor)
+                
+            }while(isTwoStressors && stressItems.count < 2)
+            
+            let dayRating = Int.random(in: 1..<6)
+            let check = CheckinObject(date: date, rating: .allCases.first(where: {$0.rawValue == dayRating}) ?? .neutral, details: stressItems)
+            
+            retStressItems.append(contentsOf: stressItems)
+            retChecks.append(check)
+        }
+        
+        return (retStressItems, retChecks)
+
+    }
+    
 }
+
+
 
 extension StressDetail {
     

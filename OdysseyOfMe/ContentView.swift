@@ -11,8 +11,30 @@ struct ContentView: View {
     
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
     
+    @EnvironmentObject var userSettings : UserSettings
+    
+    @State var isShowingTOS : Bool = false
+    
+
+    init(){
+        
+    }
+    
     var body: some View {
-        TabNavView()
+        
+        if !userSettings.isTermsAndPrivacyAccepted{
+            
+            TermsAndPrivacy()
+            
+        } else { //All good, go home
+            
+            TabNavView()
+                .onAppear{
+                   // userSettings.resetData()
+                }
+            
+        }
+        
     }
 }
 

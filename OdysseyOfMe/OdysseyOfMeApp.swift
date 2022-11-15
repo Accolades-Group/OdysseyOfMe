@@ -20,6 +20,7 @@ struct OdysseyOfMeApp: App {
             ContentView()
                 .environmentObject(userSettings)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+            
         }
     }
     

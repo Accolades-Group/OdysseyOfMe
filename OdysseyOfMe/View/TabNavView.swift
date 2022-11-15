@@ -21,8 +21,8 @@ struct TabNavView: View {
                     }
                 }
             
-            
-//            TestingView()
+//            
+//            ProgressView()
 //                .tabItem{
 //                    VStack{
 //                        Text("Testing")
@@ -47,11 +47,13 @@ struct TabNavView: View {
                     }
                 }
         }
+        .font(Theme.Font())
     }
 }
 
 struct TabNavView_Previews: PreviewProvider {
     static var previews: some View {
         TabNavView()
+            .environmentObject(UserSettings())
     }
 }

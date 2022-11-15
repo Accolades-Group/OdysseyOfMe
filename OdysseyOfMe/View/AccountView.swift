@@ -35,7 +35,7 @@ struct AccountView: View {
                     VStack(alignment: .leading, spacing: 5){
                         
                         Text("\(userSettings.name)")
-                            .font(.title2)
+                            .font(Theme.Font(.title2))
 
                     }.padding(.top, 10)
                     
@@ -56,7 +56,7 @@ struct AccountView: View {
                     NavigationLink(destination: PersonalInfoView()){
                         HStack{
                             Text("Personal")
-                                .font(.system(size: 18))
+                                .font(Theme.Font(18))
                             Spacer()
                             Image("forward_arrow")
                                 .resizable()
@@ -68,7 +68,7 @@ struct AccountView: View {
                     NavigationLink(destination: ProviderInfoView()){
                         HStack{
                             Text("Care Provider")
-                                .font(.system(size: 18))
+                                .font(Theme.Font(18))
                             Spacer()
                             Image("forward_arrow")
                                 .resizable()
@@ -80,7 +80,7 @@ struct AccountView: View {
                     NavigationLink(destination: DiagnosisOverView()){
                         HStack{
                             Text("Medical Info")
-                                .font(.system(size: 18))
+                                .font(Theme.Font(18))
                             Spacer()
                             Image("forward_arrow")
                                 .resizable()
@@ -93,7 +93,7 @@ struct AccountView: View {
                     NavigationLink(destination: AvatarView()){
                         HStack{
                             Text("Avatar")
-                                .font(.system(size: 18))
+                                .font(Theme.Font(18))
                             Spacer()
                             Image("forward_arrow")
                                 .resizable()
@@ -504,7 +504,7 @@ fileprivate struct SectionHeader : View {
                     .frame(width: 30, height: 30)
                 
                 Text(section.name)
-                    .font(.system(size: 18))
+                    .font(Theme.Font(18))
                     .bold()
                 
                 
@@ -525,7 +525,7 @@ fileprivate struct SectionContentItemLabel : View {
         HStack{
             
             Text(labelText)
-                .font(.system(size: 18))
+                .font(Theme.Font(18))
                 .foregroundColor(Theme.DarkGray)
             
             Spacer()
@@ -566,8 +566,8 @@ fileprivate struct CustomTextEditButton : View {
                 } else {
                     
                     Text(localItem)
-                        .font(.system(size: 18))
-                        
+                        .font(Theme.Font(18))
+
                     Spacer()
                     
                 }
@@ -630,8 +630,8 @@ struct ProfileHeaderView : View {
                 Color.purple
                 Text("Tap to select picture")
                     .foregroundColor(.white)
-                    .font(.headline)
-                
+                    .font(Theme.Font(.headline))
+
                 image?
                     .resizable()
                     .scaledToFit()

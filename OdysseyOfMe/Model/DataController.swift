@@ -158,6 +158,13 @@ class DataController : ObservableObject {
         stressor.symptoms = [StressManager.PhysicalSymptoms.sweating.rawValue, StressManager.PhysicalSymptoms.tension.rawValue]
         stressor.timesOfDay = [StressManager.TimesOfDay.morning.rawValue]
         
+        
+        
+        
+        
+        
+        
+        
         do {
            try container.viewContext.save()
         } catch let err {
