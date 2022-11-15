@@ -18,6 +18,7 @@ struct OdysseyOfMeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.colorScheme, .light)
                 .environmentObject(userSettings)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
             

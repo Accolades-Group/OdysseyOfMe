@@ -62,10 +62,8 @@ struct Theme {
             }
         }
         
-        static let FONT_FAMILY : String = "raleway"
-        
-        
-        
+        static let FONT_FAMILY : String = "Raleway-Regular"
+
         
     }
     
