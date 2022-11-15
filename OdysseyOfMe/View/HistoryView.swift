@@ -222,6 +222,7 @@ struct CustomDatePicker : View {
     struct CheckTabView : View{
         
         @State var isSelected : Bool = false
+        @State var isPresenting : Bool = false
         
         @EnvironmentObject var viewModel : CalendarViewModel
         
@@ -253,7 +254,18 @@ struct CustomDatePicker : View {
                         .foregroundColor(.white)
                         .bold()
                     
+                    Spacer()
 
+                    //Image("forward_arrow")
+                    Button{
+                        isPresenting = true
+                    } label: {
+                        Image(systemName: "arrowtriangle.forward.fill")
+                            .resizable()
+                            .foregroundColor(isSelected ? .white : .clear)
+                            .frame(width: 15, height: 25)
+                            .padding(.trailing)
+                    }.disabled(!isSelected)
                     //Text(check.date!, style: .time)
                 }
                 .padding(.vertical, 10)
@@ -276,91 +288,268 @@ struct CustomDatePicker : View {
                     VStack(spacing: 10){
                         ForEach(details, id: \.self){detail in
                             
-                            
-                            HStack(spacing: 10){
-                                
-                                if let cat = StressManager.StressCategories(rawValue: detail.category ?? "") {
-                                    
-                                    VStack(spacing: 5){
-                                        cat.icon
-                                            .resizable()
-                                            .scaledToFit()
-                                            .scaleEffect(cat.rawValue.contains("relationships") ? 0.75 : 1)
-                                            .foregroundColor(.white)
-                                            
-                                        
-                                        Text(cat.rawValue.capitalized)
-                                            .font(.title3)
-                                            .bold()
-                                            .foregroundColor(.white)
-                                    }
+                            StressItemView(detail: detail)
 
-                                }
-                                
-                                let tags = detail.getAllTagsStringArr()
-                                
-                                Spacer()
-                                
-                                HStack{
-                                    let rating = detail.rating
-                                    ForEach(0..<5){i in
-                                        
-                                        Image("fire")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundColor(i <= rating ? .red : .DimGray)
-                                        
-                                        
-                                    }
-                                }
-                                
-                                Spacer()
-                                
-                                if !tags.isEmpty{
-                                    Text("Tags: \(tags.count)")
-                                    
-                                    Spacer()
-                                }
-                                
-                                
-                            }
-                            
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .frame(height: 80)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal)
-                                .background(
-                                    
-                                    
-                                    Theme.MainColor.opacity(0.5)
-                                        .cornerRadius(10)
-                                )
-                            
                             
                         }
                     }
-                  //  .padding(.vertical, 10)
-                  //  .padding(.horizontal)
+                }
+            }
+            .sheet(isPresented: $isPresenting){
+                CheckinDetailSummaryView(check: check.toCheckinObject())
+            }
+        }
+    }
+    
+    fileprivate struct CheckinDetailSummaryView : View {
+        
+        let check : CheckinObject
+        
+        var body: some View{
+            
+            
+            VStack(alignment: .center, spacing: 0){
+                
+                Spacer()
+                
+                VStack{
+                    Text("You were ")
+                    +
+                    Text(check.rating.name)
+                        .bold()
+                    +
+                    Text(" with today")
                     
-//                    .background(
-//
-//
-//                        Theme.MainColor.opacity(0.5)
-//                            .cornerRadius(10)
-//                    )
+                    
+                    check.rating.icon
+                        .resizable()
+                    //.scaledToFit()
+                        .frame(width: 75, height: 75)
+                        .foregroundColor(Theme.MainColor)
+                    
+                    
+                }.padding(.bottom, 20)
+                
+                
+                Spacer()
+                
+                if(!check.stressDetails.isEmpty){
+                    
+                    VStack(alignment: .center){
+                        Text("Stressors")
+                        
+                        HStack{
+                            
+                            
+                            Spacer()
+                            
+                            StressSummaryView(stressor: check.stressDetails[0])
+                            
+                            
+                            
+                            
+                            if(check.stressDetails.count > 1){
+                                
+                                //                            Rectangle()
+                                //                                .fill(Theme.MainColor)
+                                //                                .frame(width: 1)
+                                
+                                
+                                StressSummaryView(stressor: check.stressDetails[1])
+                                
+                            }
+                            
+                            Spacer()
+                            
+                        }.padding(.horizontal)
+                        
+                        
+                        
+                    }
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 0,
+                        maxHeight: 425
+                    )
+                    //  .background(.pink)
+                    
                     
                 }
+                Spacer()
+                //            VStack{}
+                //                .frame(
+                //                minWidth: 0,
+                //                maxWidth: .infinity,
+                //                minHeight: 0,
+                //                maxHeight: .infinity
+                //            )
+                //                .background(.yellow)
                 
                 
-            
                 
             }
-
-
+            
+            
             
         }
+            
+            
         
         
+    }
+    
+    struct StressItemView : View {
+        
+        let detail : StressDetail
+        @State var isSelected : Bool = false
+        
+        var body: some View{
+            VStack{
+                Spacer()
+                HStack(spacing: 10){
+                    
+                    if let cat = StressManager.StressCategories(rawValue: detail.category ?? "") {
+                        
+                        VStack(spacing: 5){
+                            cat.icon
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(cat.rawValue.contains("relationships") ? 0.75 : 1)
+                                .foregroundColor(.white)
+                            
+                            
+                            Text(cat.rawValue.capitalized)
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
+                        
+                    }
+                    
+                    let tags = detail.getAllTagsStringArr()
+                    
+                    Spacer()
+                    
+                    HStack{
+                        let rating = detail.rating
+                        ForEach(0..<5){i in
+                            
+                            Image("fire")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(i < rating ? .red : .DimGray)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+
+                    
+                    
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 80)
+            .padding(.vertical, 10)
+            .padding(.horizontal)
+            .background(
+                Theme.MainColor.opacity(0.5)
+                    .cornerRadius(10)
+            )
+            .onTapGesture {
+                isSelected = true
+            }
+            .sheet(isPresented: $isSelected){
+                
+                StressDetailSummaryView(detail: detail)
+                
+            }
+        }
+        
+    }
+    
+    fileprivate struct StressDetailSummaryView : View {
+        
+        let detail : StressDetail
+
+        var body: some View {
+            VStack{
+                
+                Spacer(minLength: 40)
+                
+                GeometryReader{geo in
+                    let width = min(geo.size.width , 250)
+                    let category = StressManager.StressCategories.allCases.first(where: {$0.rawValue == detail.category}) ?? .other
+                    VStack(spacing: 5){
+                        
+                        //Category Icon
+                        HStack{
+                            
+                            //stressor.category.icon
+                            Text(category.rawValue.capitalized)
+                        }
+                        .foregroundColor(Theme.DarkGray)
+                        .padding(8)
+                        .frame(width: width)
+                        .overlay(
+                            Capsule(style: .circular)
+                                .stroke(Theme.DarkGray, lineWidth: 2)
+                                .padding(2)//Prevents Cutoff
+                        )
+                        
+                        
+                        
+                        //Stress Level
+                        HStack{
+                            ForEach(0..<5){i in
+                                Image("fire")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(i < detail.rating ? .red : Theme.DeselectedGray)
+                            }
+                        }.frame(width: width, height: (width/6))
+                        
+                        
+                        
+                        Text("Tags:")
+                            .foregroundColor(Theme.DarkGray)
+                            .padding(.top, 5)
+                        
+                        
+                        let tags = detail.getAllTagStringArr()
+                        //TODO: Be more specific with vertical axis
+                        ScrollView(tags.count > 7 ? .vertical : [],showsIndicators: false){
+                            
+                            VStack(spacing: 3){
+                                ForEach(tags, id: \.self){tag in
+                                    Text(tag.capitalized)
+                                        .padding(8)
+                                        .foregroundColor(Theme.DarkGray)
+                                        .frame(width: width)
+                                        .overlay(
+                                            Capsule(style: .circular)
+                                                .stroke(Theme.DeselectedGray, lineWidth: 2)
+                                                .padding(2)//Prevents cutoff
+                                        )
+                                }
+                            }
+                            
+                        }
+                        .frame(width: width)
+                        
+                    }.frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 0,
+                        maxHeight: .infinity,
+                        alignment: .top
+                    )
+                }
+                .padding(20)
+            }
+        }
     }
     
     @ViewBuilder

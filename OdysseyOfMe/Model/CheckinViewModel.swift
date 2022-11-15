@@ -216,13 +216,14 @@ final class CheckinViewModel : ObservableObject {
     
     func backButton(_ route : Routing){
         
-        if route == .stressDetail {
-            currentStressIndex = max(0, currentStressIndex - 1)
-        }
-        
-        else if route.isFirst(){
-            path = .init() //Prevent bug where same gets added twice?
-        } else {
+        if route.isFirst(){
+            
+            path = .init()
+            
+        }else {
+            if route == .stressDetail {
+                currentStressIndex = max(0, currentStressIndex - 1)
+            }
             path.removeLast()
         }
     }
@@ -288,9 +289,6 @@ final class CheckinViewModel : ObservableObject {
             index = index + 1
         }
         
-        
-        print(todayStreak)
-        print(streaks)
         let max = streaks.sorted(by: {$0 < $1}).last ?? current
         
         self.todayStreak = todayStreak

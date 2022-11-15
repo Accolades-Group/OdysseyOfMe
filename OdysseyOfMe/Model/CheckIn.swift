@@ -27,7 +27,7 @@ enum Satisfaction_Types : Int, CaseIterable{
     
     var icon : Image {
         switch self {
-        case .very_dissatisfied : return Image("sentiment_very_dissatisfied")
+        case .very_dissatisfied : return Image("sentiment_very_dissatisfied")//Image("sad")
         case .dissatisfied : return Image("sentiment_dissatisfied")
         case .neutral: return Image("sentiment_neutral")
         case .satisfied: return Image("sentiment_satisfied")
@@ -47,5 +47,29 @@ class CheckinObject : ObservableObject {
         self.date = date
         self.rating = rating
         self.stressDetails = details
+    }
+    
+    init(date : Date, ratingInt : Int, details : [StressManager.StressObject]){
+        self.date = date
+        self.rating = Satisfaction_Types.allCases.first(where: {$0.rawValue == ratingInt}) ?? .neutral
+        self.stressDetails = details
+    }
+}
+
+extension Checkin{
+    
+    
+    func toCheckinObject() -> CheckinObject{
+        
+        var stressObjects : [StressManager.StressObject] = []
+        if let stressors = self.stressorDetails?.allObjects as? [StressDetail] {
+            
+            stressors.forEach{stress in
+                stressObjects.append(stress.toStressObject())
+            }
+            
+        }
+        
+        return CheckinObject(date: self.date!, ratingInt: Int(self.dayRating), details: stressObjects )
     }
 }

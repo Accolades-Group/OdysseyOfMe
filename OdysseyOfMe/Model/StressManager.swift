@@ -564,3 +564,64 @@ extension StressDetail {
     }
     
 }
+
+
+extension StressDetail {
+    
+    func getAllTagStringArr() -> [String]{
+        var retArr : [String] = []
+        
+        timesOfDay?.forEach{tag in
+            if !retArr.contains(tag){
+                retArr.append(tag)
+            }
+        }
+        
+        activities?.forEach{tag in
+            if !retArr.contains(tag){
+                retArr.append(tag)
+            }
+        }
+        
+        symptoms?.forEach{tag in
+            if !retArr.contains(tag){
+                retArr.append(tag)
+            }
+        }
+        
+        subjectTypes?.forEach{tag in
+            if !retArr.contains(tag){
+                retArr.append(tag)
+            }
+        }
+        
+        individuals?.forEach{tag in
+            if !retArr.contains(tag){
+                retArr.append(tag)
+            }
+        }
+        
+        
+        return retArr
+    }
+    
+    func toStressObject() -> StressManager.StressObject {
+        
+        let category = StressManager.StressCategories.allCases.first(where: {$0.rawValue == self.category}) ?? .other
+        var tagStr : [String] = []
+        
+        var returnObject : StressManager.StressObject = StressManager.StressObject(category: category)
+        returnObject.rating = Int(self.rating)
+        
+        returnObject.times = self.timesOfDay ?? []
+        returnObject.activities = self.activities ?? []
+        returnObject.symptoms = self.symptoms ?? []
+        returnObject.subjectTypes = self.subjectTypes ?? []
+        returnObject.individuals = self.individuals ?? []
+
+        
+        
+        return returnObject
+    }
+    
+}
