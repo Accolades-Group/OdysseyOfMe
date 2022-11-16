@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import CoreData
 
+
+
 /**
  The class that manages new stress items/objects
  */
@@ -102,12 +104,19 @@ class StressManager : ObservableObject {
             }
         }
         
+        var name : String {
+            return self.rawValue.capitalized
+        }
+        
         func getSizedIconView(height: CGFloat) -> AnyView {
             return AnyView(self.icon
                 .resizable()
                 .frame(width: self == .relationships ? height * 1.8 : height, height: height))
         }
         
+        func getCategoryFromString(_ categoryString : String) -> StressCategories {
+            return Self.allCases.first(where: {$0.rawValue.lowercased() == categoryString.lowercased()}) ?? .other
+        }
         
     }
     
@@ -421,6 +430,7 @@ class StressManager : ObservableObject {
     }
     
     
+    //MARK: Sample Data
     static func getSampleNames() -> [String]{ return ["Sam", "Steeve", "Jim", "Susan", "Sarah", "Mike", "Tim", "Kathy"] }
     
     static func BuildCheckinObjects(_ num : Int) -> (stressors : [StressObject], checks : [CheckinObject]){
@@ -435,14 +445,14 @@ class StressManager : ObservableObject {
             var stressItems : [StressObject] = []
             let date = Calendar.current.date(byAdding: .day, value: -i, to: Date())!
 
-            var isTwoStressors = Bool.random()
+            let isTwoStressors = Bool.random()
             
             var tagArray : [String] = []
             var tagNum : Int = 0
             
             repeat {
                 //first stressor in checkin
-                var stressor : StressObject = StressObject(category: .other)
+                let stressor : StressObject = StressObject(category: .other)
                 stressor.category = StressCategories.allCases.randomElement() ?? stressor.category
                 stressor.rating = Int.random(in: 1..<6)
                 
@@ -504,66 +514,6 @@ class StressManager : ObservableObject {
     
 }
 
-
-
-extension StressDetail {
-    
-    
-    func getAllTagsStringArr() -> [String]{
-        
-        var retArr : [String] = []
-        
-        if let unwrapped = self.timesOfDay {
-            
-            unwrapped.forEach{item in
-                
-                if !retArr.contains(item.lowercased()){
-                    retArr.append(item.lowercased())
-                }
-                
-            }
-        }
-
-        
-        if let unwrapped = self.activities {
-            
-            unwrapped.forEach{item in
-                
-                if !retArr.contains(item.lowercased()){
-                    retArr.append(item.lowercased())
-                }
-                
-            }
-        }
-        
-        if let unwrapped = self.symptoms {
-            
-            unwrapped.forEach{item in
-                
-                if !retArr.contains(item.lowercased()){
-                    retArr.append(item.lowercased())
-                }
-                
-            }
-        }
-        
-        if let unwrapped = self.individuals {
-            
-            unwrapped.forEach{item in
-                
-                if !retArr.contains(item.lowercased()){
-                    retArr.append(item.lowercased())
-                }
-                
-            }
-        }
-        
-        
-        return retArr
-        
-    }
-    
-}
 
 
 extension StressDetail {

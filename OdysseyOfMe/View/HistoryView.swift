@@ -393,66 +393,69 @@ struct CustomDatePicker : View {
             
             
         }
-            
-            
-        
-        
     }
     
-    struct StressItemView : View {
+    fileprivate struct StressItemView : View {
         
-        let detail : StressDetail
+        //let detail : StressDetail
+        var stressObject : StressManager.StressObject
+        
         @State var isSelected : Bool = false
+        
+        let frameHeight : CGFloat = 80
+        
+        init(detail : StressDetail){
+            self.stressObject = detail.toStressObject()
+        }
         
         var body: some View{
             VStack{
                 Spacer()
+                
+                
                 HStack(spacing: 10){
                     
-                    if let cat = StressManager.StressCategories(rawValue: detail.category ?? "") {
+                    //Category icon & name
+                    VStack(spacing: 5){
+                        self.stressObject.category.icon
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(self.stressObject.category == .relationships ? 0.75 : 1)
+                            .foregroundColor(.white)
                         
-                        VStack(spacing: 5){
-                            cat.icon
-                                .resizable()
-                                .scaledToFit()
-                                .scaleEffect(cat.rawValue.contains("relationships") ? 0.75 : 1)
-                                .foregroundColor(.white)
-                            
-                            
-                            Text(cat.rawValue.capitalized)
-                                .font(.title3)
-                                .bold()
-                                .foregroundColor(.white)
-                        }
+                        
+                        Text(self.stressObject.category.rawValue.capitalized)
+                        //.font(.title3)
+                            .font(Theme.Font(500))
+                            .minimumScaleFactor(0.01)
+                            .bold()
+                            .foregroundColor(.white)
                         
                     }
-                    
-                    let tags = detail.getAllTagsStringArr()
-                    
+                    .frame(width: 80, height: frameHeight)
+
                     Spacer()
                     
+                    //Rating
                     HStack{
-                        let rating = detail.rating
+                        //let rating = detail.rating
                         ForEach(0..<5){i in
                             
                             Image("fire")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(i < rating ? .red : .DimGray)
+                                .foregroundColor(i < self.stressObject.rating ? .red : .DimGray)
                         }
                     }
+                    .frame(height: frameHeight)
                     
                     Spacer()
-                    
-
-                    
-                    
                 }
                 Spacer()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: 80)
-            .padding(.vertical, 10)
+            .frame(height: frameHeight)
+            //.padding(.vertical, 10)
             .padding(.horizontal)
             .background(
                 Theme.MainColor.opacity(0.5)
@@ -462,9 +465,7 @@ struct CustomDatePicker : View {
                 isSelected = true
             }
             .sheet(isPresented: $isSelected){
-                
-                StressDetailSummaryView(detail: detail)
-                
+                StressDetailSummaryView(stressObject: self.stressObject )
             }
         }
         
@@ -472,7 +473,7 @@ struct CustomDatePicker : View {
     
     fileprivate struct StressDetailSummaryView : View {
         
-        let detail : StressDetail
+        let stressObject : StressManager.StressObject
 
         var body: some View {
             VStack{
@@ -481,14 +482,14 @@ struct CustomDatePicker : View {
                 
                 GeometryReader{geo in
                     let width = min(geo.size.width , 250)
-                    let category = StressManager.StressCategories.allCases.first(where: {$0.rawValue == detail.category}) ?? .other
+                    
                     VStack(spacing: 5){
                         
                         //Category Icon
                         HStack{
                             
                             //stressor.category.icon
-                            Text(category.rawValue.capitalized)
+                            Text(stressObject.category.name)
                         }
                         .foregroundColor(Theme.DarkGray)
                         .padding(8)
@@ -507,7 +508,7 @@ struct CustomDatePicker : View {
                                 Image("fire")
                                     .resizable()
                                     .scaledToFit()
-                                    .foregroundColor(i < detail.rating ? .red : Theme.DeselectedGray)
+                                    .foregroundColor(i < stressObject.rating ? .red : Theme.DeselectedGray)
                             }
                         }.frame(width: width, height: (width/6))
                         
@@ -518,7 +519,7 @@ struct CustomDatePicker : View {
                             .padding(.top, 5)
                         
                         
-                        let tags = detail.getAllTagStringArr()
+                        let tags = stressObject.getAllTagStringArr()
                         //TODO: Be more specific with vertical axis
                         ScrollView(tags.count > 7 ? .vertical : [],showsIndicators: false){
                             
@@ -687,5 +688,6 @@ extension Date{
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryView()
+            
     }
 }
