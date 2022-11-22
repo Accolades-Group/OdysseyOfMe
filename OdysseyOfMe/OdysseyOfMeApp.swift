@@ -14,6 +14,7 @@ struct OdysseyOfMeApp: App {
     @StateObject var userSettings : UserSettings = UserSettings()
 
     @StateObject var dataController : DataController = DataController()
+    
 
     var body: some Scene {
         WindowGroup {

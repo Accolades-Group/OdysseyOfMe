@@ -10,7 +10,9 @@ import SwiftUI
 struct CheckinView: View {
     
     @StateObject var viewModel : CheckinViewModel = CheckinViewModel()
+    
     @Environment(\.managedObjectContext) var moc
+    
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
 
     @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
@@ -22,15 +24,48 @@ struct CheckinView: View {
             
             VStack{
                 //Home view
-                CheckinHomeView()
+                HomeView
                 
                 //Checkin button and route
-                CheckinButtonRoute()
-                
-                
-                //Avatar button and route
-                //AvatarButtonRoute() Move to profile section?
-                
+                CheckinButton
+                    .navigationDestination(for: CheckinViewModel.Routing.self){route in
+                        
+                        //MARK: Navigation Route Page
+                        VStack(spacing: 0){
+                            //Progress Bar
+                            RouteProgress(route: route)
+
+                            //Body
+                            GeometryReader{geo in
+                                RouteBody(route: route)
+                                    .frame(width: geo.size.width, height: geo.size.height)
+                            }
+                            
+                            //Next button
+                            if route != .congratulations {
+                                Button(route == .summary ? "Submit" : "Continue"){
+                                    viewModel.continueButton(route)
+                                }.buttonStyle(RoundedButtonStyle())
+                            }
+                            
+                        }
+                        .navigationBarBackButtonHidden(true)
+                        .navigationTitle(
+                            viewModel.getNavigationTitle(route)
+                        )
+                        .toolbar{
+                            ToolbarItem(placement: .navigationBarLeading){
+                                
+                                Button{
+                                    viewModel.backButton(route)
+                                } label: {
+                                    BackButtonLabel
+                                }
+                                
+                            }
+                        }
+                        
+                    }
             }
             
         }
@@ -47,151 +82,12 @@ struct CheckinView: View {
         }
         
     }
-    
-    fileprivate struct CheckinButtonRoute : View {
-        @EnvironmentObject var viewModel : CheckinViewModel
-        var body: some View{
-            
-            Button("Check-In"){
-                
-                viewModel.path.append(CheckinViewModel.Routing.howWasYourDay)
-                
-            }.navigationDestination(for: CheckinViewModel.Routing.self){route in
-                VStack(spacing: 0){
-                    
-                    CheckinRouteBody(route: route)
-                    
-
-                }
-                .navigationBarBackButtonHidden(true)
-                .navigationTitle(
-                    viewModel.getNavigationTitle(route)
-
-                )
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Button{
-                            
-                            viewModel.backButton(route)
-                            
-                        } label: {
-                            
-                            Image("back_arrow")
-                                .resizable()
-                                .frame(width: 12, height: 20)
-                                .foregroundColor(Theme.DarkGray)
-                            
-                        }
-                    }
-                }
-                //TODO: Fix toolbar lag?
-                .toolbar(.hidden, for: .tabBar)
-
-            }.buttonStyle(RoundedButtonStyle())
-        }
-    }
-    
-    
-
-    
-    fileprivate struct CheckinRouteBody : View {
-        @EnvironmentObject var viewModel : CheckinViewModel
-        let route : CheckinViewModel.Routing
-        
-        var body: some View{
-            VStack{
-                ProgressBar(pos: route.pos() + 1 , total: route.totalRoutes - 1 )
-                
-                Text(viewModel.getViewQuestion(route))
-                    .font(Theme.Font(30))
-                    .bold()
-                    .multilineTextAlignment(.center)
-                
-                Spacer()
-                
-                VStack{
-                    switch route {
-                        
-                    case .howWasYourDay :
-                        HowWasYourDayView()
-                        
-                    case .roseThornBud :
-                        RoseThornBudView()
-                        
-                    case .stressCategorySelection :
-                        StressCategorySelectionView()
-                        
-                    case .stressDetail :
-                        StressDetailView()
-                        
-                    case .stressLevel :
-                        StressLevelView()
-                        
-                    case .summary :
-                        CheckinSummaryView()
-                        
-                    case .congratulations:
-                        GifImage("confetti")
-                            .task{
-                                try? await Task.sleep(nanoseconds: 3_000_000_000)
-                                viewModel.resetData()
-                                //Pop to root
-                                viewModel.path = .init()
-                            }
-                        
-                    }
-                }
-                
-                Spacer()
-                if route != .congratulations {
-                    Button(route == .summary ? "Submit" : "Continue"){
-                        viewModel.continueButton(route)
-                    }.buttonStyle(RoundedButtonStyle())
-                }
-            }
-        }
-    }
+  
 }
 
 
 
 
-/**
- This is the home view that displays above the checkin button.
- */
-fileprivate struct CheckinHomeView : View {
-    
-    @EnvironmentObject var viewModel : CheckinViewModel
-    
-    var body : some View {
-        VStack{
-            
-            VStack(spacing: 0){
-                
-                //Image("avatar")
-                Image("journey")
-                    .resizable()
-                    .frame(width: 300, height: 300)
-                
-                
-            }
-            .frame(height: 350)
-            .padding()
-            
-            if viewModel.todayStreak > 0 {
-                Text("\(viewModel.todayStreak)")
-                    .font(Theme.Font(60))
-                    .bold()
-                
-                Text("day streak!")
-                    .font(Theme.Font(30))
-            }
-            
-            Spacer()
-        }
-    }
-    
-}
 
 /**
  This is the first view shown that asks a user to rank their day from 0-5
@@ -252,7 +148,7 @@ fileprivate struct HowWasYourDayView : View {
     }
 }
 
-
+//MARK: Body Views
 fileprivate struct RoseThornBudView : View {
     
     @EnvironmentObject var viewModel : CheckinViewModel
@@ -369,9 +265,10 @@ fileprivate struct StressCategorySelectionView : View {
                         }
                 }.padding(.horizontal, 30)
                     
+                    
                 Spacer()
 
-        }
+            }//.background(.pink)
     }
 }
 
@@ -497,7 +394,7 @@ struct TagItemView : View {
     
     func toggleTag(_ toggleTag : String?) {
         
-        var toggle : String = toggleTag ?? tag
+        let toggle : String = toggleTag ?? tag
 
         switch type {
         case .times:
@@ -818,23 +715,249 @@ struct StressSummaryView : View {
     }
 }
 
+extension CheckinView {
+    
+
+    private var HomeView : some View {
+        VStack{
+            
+            VStack(spacing: 0){
+                
+                //Image("avatar")
+                Image("journey")
+                    .resizable()
+                    .frame(width: 300, height: 300)
+                
+                
+            }
+            .frame(height: 350)
+            .padding()
+            
+            if viewModel.todayStreak > 0 {
+                Text("\(viewModel.todayStreak)")
+                    .font(Theme.Font(60))
+                    .bold()
+                
+                Text("day streak!")
+                    .font(Theme.Font(30))
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private var CheckinButton : some View {
+        Button("Check-In"){
+
+            if viewModel.path.isEmpty {
+                viewModel.path.append(CheckinViewModel.Routing.allCases.first!)
+            }
+            
+        }.buttonStyle(RoundedButtonStyle())
+    }
+    
+    private var BackButtonLabel : some View {
+        Image("back_arrow")
+            .resizable()
+            .frame(width: 12, height: 20)
+            .foregroundColor(Theme.DarkGray)
+    }
+    
+    @ViewBuilder
+    func RouteProgress(route : CheckinViewModel.Routing) -> some View{
+        ProgressBar(pos: route.pos() + 1 , total: route.totalRoutes - 1)
+    }
+    
+    @ViewBuilder
+    func RouteBody(route : CheckinViewModel.Routing) -> some View{
+        VStack(spacing: 0){
+            //Question
+            Text(viewModel.getViewQuestion(route))
+                .font(Theme.Font(30))
+                .bold()
+                .multilineTextAlignment(.center)
+            
+            Spacer()
+            //Route view
+            switch route {
+                
+            case .howWasYourDay :
+                HowWasYourDayView()
+                
+            case .roseThornBud :
+                RoseThornBudView()
+                
+            case .stressCategorySelection :
+                StressCategorySelectionView()
+                
+            case .stressDetail :
+                StressDetailView()
+                
+            case .stressLevel :
+                StressLevelView()
+                
+            case .summary :
+                CheckinSummaryView()
+                
+            case .congratulations:
+                GifImage("confetti")
+                    .task{
+                        try? await Task.sleep(nanoseconds: 3_000_000_000)
+                        viewModel.resetData()
+                        //Pop to root
+                        viewModel.path = .init()
+                    }
+            }
+            Spacer()
+            
+        }
+    }
+    
+
+}
 
 
 struct CheckinView_Previews: PreviewProvider {
     static var previews: some View {
         CheckinView()
-      //  VStack{
-           // HowWasYourDayView()
-           //  StressDetailView()
-            // CheckinSummaryView()
-       // RoseThornBudView()
-          //  CheckinView()
-            // CongratsView()
-           // StressCategorySelectionView()
-                .environmentObject(CheckinViewModel())
-          //  Button("Continue"){
-                
-         //   }.buttonStyle(RoundedButtonStyle())
-     //   }
+        
+            .environmentObject(CheckinViewModel())
+        
     }
 }
+
+
+//MARK: Depreciated Code:
+/*
+fileprivate struct CheckinButtonRoute : View {
+    @EnvironmentObject var viewModel : CheckinViewModel
+    var body: some View{
+        
+        Button("Check-In"){
+            
+            viewModel.path.append(CheckinViewModel.Routing.howWasYourDay)
+            
+        }.navigationDestination(for: CheckinViewModel.Routing.self){route in
+            VStack(spacing: 0){
+                
+                CheckinRouteBody(route: route)
+                
+                
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle(
+                viewModel.getNavigationTitle(route)
+                
+            )
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button{
+                        
+                        viewModel.backButton(route)
+                        
+                    } label: {
+                        
+                        Image("back_arrow")
+                            .resizable()
+                            .frame(width: 12, height: 20)
+                            .foregroundColor(Theme.DarkGray)
+                        
+                    }
+                }
+            }
+            //TODO: Fix toolbar lag?
+            .toolbar(.hidden, for: .tabBar)
+            
+        }.buttonStyle(RoundedButtonStyle())
+    }
+}
+*/
+
+/*
+ fileprivate struct CheckinRouteBody : View {
+     @EnvironmentObject var viewModel : CheckinViewModel
+     let route : CheckinViewModel.Routing
+     
+     var body: some View{
+         VStack{
+             
+             Text(viewModel.getViewQuestion(route))
+                 .font(Theme.Font(30))
+                 .bold()
+                 .multilineTextAlignment(.center)
+             
+             Spacer()
+             
+             VStack{
+                 switch route {
+                     
+                 case .howWasYourDay :
+                     HowWasYourDayView()
+                     
+                 case .roseThornBud :
+                     RoseThornBudView()
+                     
+                 case .stressCategorySelection :
+                     StressCategorySelectionView()
+                     
+                 case .stressDetail :
+                     StressDetailView()
+                     
+                 case .stressLevel :
+                     StressLevelView()
+                     
+                 case .summary :
+                     CheckinSummaryView()
+                     
+                 case .congratulations:
+                     GifImage("confetti")
+                         .task{
+                             try? await Task.sleep(nanoseconds: 3_000_000_000)
+                             viewModel.resetData()
+                             //Pop to root
+                             viewModel.path = .init()
+                         }
+                 }
+             }
+             Spacer()
+         }
+     }
+ }
+ */
+
+///**
+// This is the home view that displays above the checkin button.
+// */
+//fileprivate struct CheckinHomeView : View {
+//
+//    //@EnvironmentObject var viewModel : CheckinViewModel
+//
+//    var body : some View {
+//        VStack{
+//
+//            VStack(spacing: 0){
+//
+//                //Image("avatar")
+//                Image("journey")
+//                    .resizable()
+//                    .frame(width: 300, height: 300)
+//
+//
+//            }
+//            .frame(height: 350)
+//            .padding()
+//
+//            if viewModel.todayStreak > 0 {
+//                Text("\(viewModel.todayStreak)")
+//                    .font(Theme.Font(60))
+//                    .bold()
+//
+//                Text("day streak!")
+//                    .font(Theme.Font(30))
+//            }
+//
+//            Spacer()
+//        }
+//    }
+//
+//}
