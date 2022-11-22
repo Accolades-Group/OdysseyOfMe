@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F39BB1AA292AAB9E00D61AFD /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */; };
 		F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5211A2922AA140024EF98 /* CheckIn.swift */; };
 		F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
 		F3BFA9562917418000059E6C /* ProgressNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3BFA9552917418000059E6C /* ProgressNotes.rtf */; };
@@ -60,6 +61,12 @@
 		F3F406DC29243E4500CE2ED7 /* Raleway-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F406CA29243E4500CE2ED7 /* Raleway-LightItalic.ttf */; };
 		F3F406DD29243E4500CE2ED7 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F406CB29243E4500CE2ED7 /* Raleway-Black.ttf */; };
 		F3F406DE29243E4500CE2ED7 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F406CC29243E4500CE2ED7 /* Raleway-Regular.ttf */; };
+		F3F406E12925A51100CE2ED7 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E02925A51100CE2ED7 /* HealthKitHelper.swift */; };
+		F3F406E22925A51100CE2ED7 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E02925A51100CE2ED7 /* HealthKitHelper.swift */; };
+		F3F406E42925C01D00CE2ED7 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E32925C01D00CE2ED7 /* DataLoader.swift */; };
+		F3F406E52925C01D00CE2ED7 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E32925C01D00CE2ED7 /* DataLoader.swift */; };
+		F3F406E729260C9300CE2ED7 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E629260C9300CE2ED7 /* Timer.swift */; };
+		F3F406E829260C9300CE2ED7 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F406E629260C9300CE2ED7 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +182,9 @@
 		F3F406CA29243E4500CE2ED7 /* Raleway-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-LightItalic.ttf"; sourceTree = "<group>"; };
 		F3F406CB29243E4500CE2ED7 /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Black.ttf"; sourceTree = "<group>"; };
 		F3F406CC29243E4500CE2ED7 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		F3F406E02925A51100CE2ED7 /* HealthKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
+		F3F406E32925C01D00CE2ED7 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		F3F406E629260C9300CE2ED7 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +377,9 @@
 				F3EDEE10291483BE00BD4849 /* Extensions.swift */,
 				F3EDEE152914B62300BD4849 /* UserSettings.swift */,
 				F3F4068D2923FB3200CE2ED7 /* Styles.swift */,
+				F3F406E02925A51100CE2ED7 /* HealthKitHelper.swift */,
+				F3F406E32925C01D00CE2ED7 /* DataLoader.swift */,
+				F3F406E629260C9300CE2ED7 /* Timer.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -651,7 +664,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F406E42925C01D00CE2ED7 /* DataLoader.swift in Sources */,
 				F3EDEE0C2914817F00BD4849 /* AccountView.swift in Sources */,
+				F3F406E12925A51100CE2ED7 /* HealthKitHelper.swift in Sources */,
 				F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */,
 				F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */,
 				F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */,
@@ -671,6 +686,7 @@
 				F3F4069429240D6900CE2ED7 /* ProgressView.swift in Sources */,
 				F3BFA9602918B0C700059E6C /* TestingView.swift in Sources */,
 				F3BFA9592917426000059E6C /* DataStore.xcdatamodeld in Sources */,
+				F3F406E729260C9300CE2ED7 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,8 +711,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F406E52925C01D00CE2ED7 /* DataLoader.swift in Sources */,
 				F3EDEDD329147F6200BD4849 /* ContentView.swift in Sources */,
+				F3F406E22925A51100CE2ED7 /* HealthKitHelper.swift in Sources */,
+				F3F406E829260C9300CE2ED7 /* Timer.swift in Sources */,
 				F3EDEDD129147F6200BD4849 /* OdysseyOfMeApp.swift in Sources */,
+				F39BB1AA292AAB9E00D61AFD /* DataStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
