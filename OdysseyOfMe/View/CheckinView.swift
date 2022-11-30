@@ -286,6 +286,7 @@ fileprivate struct StressDetailView : View {
                             
                             //Time Tags
                             Text("What time of day?")
+                                
 
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
@@ -294,11 +295,12 @@ fileprivate struct StressDetailView : View {
                                     
                                     TagItemView(tag: item, type: .times)
                                     
-                                }.padding(.bottom, 5)
+                                }
                             
                             
                             //Activity Tags
                             Text("What were you doing?")
+                                .padding([.top])
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.ActivityTags,
@@ -310,7 +312,8 @@ fileprivate struct StressDetailView : View {
                             
                             //Activity Tags
                             Text("What physical symptoms did you experience?")
-                            
+                                .padding([.top])
+
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.PhysicalSymptomTags,
@@ -318,13 +321,14 @@ fileprivate struct StressDetailView : View {
                                     
                                     TagItemView(tag: item, type: .physicalSymptoms)
                                     
-                                }.padding(.bottom, 5)
+                                }
                             
                             
                             //Activity Tags
                             
                             Text("Who or what was stressful to you?")
-                            
+                                .padding([.top])
+
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.SubjectTypeTags,
@@ -332,11 +336,12 @@ fileprivate struct StressDetailView : View {
                                     
                                     TagItemView(tag: item, type: .subjectTypes)
                                     
-                                }.padding(.bottom, 5)
+                                }
                             
                             //Activity Tags
                             Text("Identify the individual(s)")
-                            
+                                .padding([.top])
+
                             FlexibleTagView(
                                 availableWidth: geo.size.width,
                                 data: viewModel.stressManager.IndividualsTags,
@@ -344,17 +349,10 @@ fileprivate struct StressDetailView : View {
                                     
                                     TagItemView(tag: item, type: .individuals)
                                     
-                                }.padding(.bottom, 5)
-                            
-                            
-                            
+                                }
                         }
-                        //.padding(.leading)
-                        
-                        
                     }
-                    
-                }//.padding(.trailing)
+                }
             }
             .padding(.horizontal, 10)
             
@@ -524,10 +522,10 @@ struct StressLevelView : View {
                                 viewModel.currentStressObject.rating = selectedStressVal
                             }
                         }label: {
-                            Image("fire")
+                            
+                            Image(i <= selectedStressVal ? "flame_filled" : "flame_not_filled")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(i <= selectedStressVal ? .red : .DimGray)
                         }
                     }
                     Spacer()
@@ -595,10 +593,6 @@ struct CheckinSummaryView : View {
                         
                         if(stressors.count > 1){
                             
-//                            Rectangle()
-//                                .fill(Theme.MainColor)
-//                                .frame(width: 1)
-                            
                             
                             StressSummaryView(stressor: stressors[1])
                             
@@ -617,20 +611,10 @@ struct CheckinSummaryView : View {
                     minHeight: 0,
                     maxHeight: 425
                 )
-              //  .background(.pink)
-                
-                
+
             }
             Spacer()
-//            VStack{}
-//                .frame(
-//                minWidth: 0,
-//                maxWidth: .infinity,
-//                minHeight: 0,
-//                maxHeight: .infinity
-//            )
-//                .background(.yellow)
-                
+
 
             
         }
@@ -669,10 +653,10 @@ struct StressSummaryView : View {
                 //Stress Level
                 HStack{
                     ForEach(0..<5){i in
-                        Image("fire")
+                        Image(i < stressor.rating ?  "flame_filled" : "flame_not_filled")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(i < stressor.rating ? .red : Theme.DeselectedGray)
+
                     }
                 }.frame(width: width, height: (width/6))
  

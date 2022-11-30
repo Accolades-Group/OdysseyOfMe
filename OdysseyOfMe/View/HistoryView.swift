@@ -618,10 +618,10 @@ struct CustomDatePicker : View {
                         //let rating = detail.rating
                         ForEach(0..<5){i in
                             
-                            Image("fire")
+                            Image(i < self.stressObject.rating ? "flame_filled" : "flame_not_filled")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(i < self.stressObject.rating ? .red : .DimGray)
+
                         }
                     }
                     .frame(height: frameHeight)
@@ -682,10 +682,10 @@ struct CustomDatePicker : View {
                         //Stress Level
                         HStack{
                             ForEach(0..<5){i in
-                                Image("fire")
+                                Image(i < stressObject.rating ? "flame_filled" : "flame_not_filled")
                                     .resizable()
                                     .scaledToFit()
-                                    .foregroundColor(i < stressObject.rating ? .red : Theme.DeselectedGray)
+
                             }
                         }.frame(width: width, height: (width/6))
                         
