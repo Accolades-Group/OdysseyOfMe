@@ -55,21 +55,3 @@ class CheckinObject : ObservableObject {
         self.stressDetails = details
     }
 }
-
-extension Checkin{
-    
-    
-    func toCheckinObject() -> CheckinObject{
-        
-        var stressObjects : [StressManager.StressObject] = []
-        if let stressors = self.stressorDetails?.allObjects as? [StressDetail] {
-            
-            stressors.forEach{stress in
-                stressObjects.append(stress.toStressObject())
-            }
-            
-        }
-        
-        return CheckinObject(date: self.date!, ratingInt: Int(self.dayRating), details: stressObjects )
-    }
-}

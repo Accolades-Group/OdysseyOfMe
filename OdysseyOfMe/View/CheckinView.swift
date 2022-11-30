@@ -64,6 +64,9 @@ struct CheckinView: View {
                                 
                             }
                         }
+                        //TODO: Fix toolbar lag?
+                        .toolbar(.hidden, for: .tabBar)
+
                         
                     }
             }
@@ -77,16 +80,13 @@ struct CheckinView: View {
             
             viewModel.moc = moc
             
-            viewModel.getStreak(checkinHistory: Array(checkinHistory))
+            viewModel.setStreak(checkinHistory: Array(checkinHistory))
             
         }
         
     }
   
 }
-
-
-
 
 
 /**

@@ -249,11 +249,11 @@ final class CheckinViewModel : ObservableObject {
         }
     }
     
-    func getStreak(checkinHistory : [Checkin]) -> (current: Int, max: Int) {
+    func setStreak(checkinHistory : [Checkin]){
         
         //get current streak
         //sort by most recent
-        var history = checkinHistory.sorted(by: {$0.date! > $1.date!})
+        let history = checkinHistory.sorted(by: {$0.date! > $1.date!})
         
         var current : Int = 0
         var index : Int = 0
@@ -295,7 +295,7 @@ final class CheckinViewModel : ObservableObject {
         self.maxStreak = max
         
         //don't need return?
-        return (current: todayStreak, max: max)
+       // return (current: todayStreak, max: max)
     }
     
     //MARK: Testing funcs

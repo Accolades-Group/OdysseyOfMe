@@ -660,7 +660,7 @@ struct ProfileHeaderView : View {
         guard image != nil else { return }
         
         //TODO: Save to documents, so it can load from documents
-        let imageID = UUID()
+        //let imageID = UUID()
         do{
            // let fileName = getDocumentsDirectory()??
         }

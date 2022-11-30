@@ -21,8 +21,9 @@ struct TabNavView: View {
                     }
                 }
             
-//            
-//            ProgressView()
+            
+//           // ProgressView()
+//            TestingView()
 //                .tabItem{
 //                    VStack{
 //                        Text("Testing")

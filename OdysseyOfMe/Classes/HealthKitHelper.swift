@@ -178,7 +178,7 @@ func loadHeartRateData( startDate : Date, endDate : Date ) async -> [Date:Int] {
     healthStore.execute(query)
     
     //TODO: Better timeout method?
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){
@@ -226,7 +226,7 @@ func loadAudioExposureData (startDate : Date, endDate : Date) async -> [Date:Int
     
     healthStore.execute(query)
     
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){
@@ -250,8 +250,7 @@ func loadStepData(startDate: Date, endDate: Date) async -> Int {
     var isLoaded : Bool = false
     var isTimeout : Bool = false
     var returnData : Int = 0
-    
-    var hasTimeOut = false
+
     let unit : HKUnit = HKUnit.count()
     let sampleType : HKQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
     
@@ -275,7 +274,7 @@ func loadStepData(startDate: Date, endDate: Date) async -> Int {
     
     healthStore.execute(query)
     
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){
@@ -322,7 +321,7 @@ func loadRecentRestingHR(startDate: Date, endDate: Date) async -> Int {
     
     healthStore.execute(sampleQuery)
 
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){
@@ -369,7 +368,7 @@ func loadRecentWalkingHR(startDate: Date, endDate: Date) async -> Int {
     
     healthStore.execute(sampleQuery)
     
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){
@@ -417,7 +416,7 @@ func loadRecentHRV(startDate: Date, endDate: Date) async -> Int {
     
     healthStore.execute(sampleQuery)
     
-    var timer = TimeoutTimer(timeout: timeoutSeconds)
+    let timer = TimeoutTimer(timeout: timeoutSeconds)
     timer.run()
     
     while(!isLoaded && !isTimeout){

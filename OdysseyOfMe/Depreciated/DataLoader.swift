@@ -6,6 +6,11 @@
 //
 // This class is used to load all of the user's data to/from core data or health kit in order to be properly used throughout the app
 
+/*
+ DEPRECIATED: Data no longer saved to / loaded from health kit, but instead directly to cloudkit
+ 
+ 
+
 import Foundation
 import OSLog
 import CoreData
@@ -62,7 +67,7 @@ final class DataLoader : ObservableObject {
         LOGGER.trace("Begin loading data from Health Kit")
         
         //Get episode samples from Health Kit Helper
-        var episodeSamples = await getEpisodeSamples()
+        let episodeSamples = await getEpisodeSamples()
         
         if episodeSamples.isEmpty {
             LOGGER.log("No samples to add")
@@ -95,6 +100,23 @@ final class DataLoader : ObservableObject {
                     let recentHRV = await loadRecentHRV(startDate: startDate, endDate: endDate)
                     
                     //TODO: Create a biometric object and save to it
+                    let bioData = EpisodeBiometricData(context: moc)
+                    bioData.heartRates = heartRateData
+                    bioData.soundDbs = soundData
+                    bioData.steps = Int16(stepData)
+                    bioData.recentWalkingHR = Int16(recentWalkingHR)
+                    bioData.recentRestingHR = Int16(recentRestingHR)
+                    bioData.recentHRV = Int16(recentHRV)
+                    bioData.startDate = startDate
+                    bioData.endDate = endDate
+                    bioData.duration = Int32(duration)
+                    bioData.id = UUID()
+                    
+                    do{
+                        try moc.save()
+                    }catch{
+                        LOGGER.error("ERROR saving new EpisodeBioData object: \(error.localizedDescription)")
+                    }
                 }
 
                 
@@ -114,12 +136,12 @@ final class DataLoader : ObservableObject {
      */
     func cleanData(_ episodeData : [StressDetail]) async {
         
-        for data in episodeData {
-            var delete = false
-            var reason = ""
-            
-
-        }
+//        for data in episodeData {
+//            var delete = false
+//            var reason = ""
+//            
+//
+//        }
         
         
         self.isCleaned = true
@@ -134,3 +156,5 @@ final class DataLoader : ObservableObject {
     }
     
 }
+
+*/

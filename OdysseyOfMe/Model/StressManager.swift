@@ -198,31 +198,31 @@ class StressManager : ObservableObject {
             
             if let times = data.timesOfDay{
                 times.forEach{time in
-                    addTimeTag(time)
+                    _ = addTimeTag(time)
                 }
             }
             
             if let activities = data.activities{
                 activities.forEach{activity in
-                    addActivityTag(activity)
+                  _ = addActivityTag(activity)
                 }
             }
             
             if let symptoms = data.symptoms{
                 symptoms.forEach{symptom in
-                    addSymptomTag(symptom)
+                    _ = addSymptomTag(symptom)
                 }
             }
             
             if let subjects = data.subjectTypes{
                 subjects.forEach{subject in
-                    addSubjectTag(subject)
+                    _ = addSubjectTag(subject)
                 }
             }
             
             if let individuals = data.individuals{
                 individuals.forEach{individual in
-                    addIndividualsTag(individual)
+                    _ = addIndividualsTag(individual)
                 }
             }
             
@@ -514,8 +514,6 @@ class StressManager : ObservableObject {
     
 }
 
-
-
 extension StressDetail {
     
     func getAllTagStringArr() -> [String]{
@@ -558,9 +556,8 @@ extension StressDetail {
     func toStressObject() -> StressManager.StressObject {
         
         let category = StressManager.StressCategories.allCases.first(where: {$0.rawValue == self.category}) ?? .other
-        var tagStr : [String] = []
         
-        var returnObject : StressManager.StressObject = StressManager.StressObject(category: category)
+        let returnObject : StressManager.StressObject = StressManager.StressObject(category: category)
         returnObject.rating = Int(self.rating)
         
         returnObject.times = self.timesOfDay ?? []

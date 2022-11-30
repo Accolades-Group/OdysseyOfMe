@@ -35,12 +35,13 @@ struct Diagnosis : Hashable {
 func buildSampleMedHistory() -> [Diagnosis] {
 
     
-    var depression = Diagnosis(diagnosisDate: Date.now, name: "Depression", medications: [Medication(name: "Zoloft", frequency: Medication.MedicationFrequency.both.rawValue, changeDate: Date.now)])
+    let depression = Diagnosis(diagnosisDate: Date.now, name: "Depression", medications: [Medication(name: "Zoloft", frequency: Medication.MedicationFrequency.both.rawValue, changeDate: Date.now)])
     
-    var anxiety = Diagnosis(diagnosisDate: Date.distantPast, name: "Anxiety", medications: [Medication(name: "Hydroxyzine", frequency: Medication.MedicationFrequency.am.rawValue, changeDate: Date.now)])
+    let anxiety = Diagnosis(diagnosisDate: Date.distantPast, name: "Anxiety", medications: [Medication(name: "Hydroxyzine", frequency: Medication.MedicationFrequency.am.rawValue, changeDate: Date.now)])
     
     
     return [depression, anxiety]
+
 }
 
 struct Medication : Hashable {

@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+
+
 //MARK: Colors
 extension Color {
     init(hex: String) {
@@ -72,7 +74,19 @@ func isSameDay(date1: Date, date2: Date) -> Bool {
     let calendar = Calendar.current
     
     return calendar.isDate(date1, inSameDayAs: date2)
-//    let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
+
+    
+}
+
+//TODO: Test .weekOfYear vs .weekOfMonth
+func isSameWeek(date1: Date, date2: Date) -> Bool {
+    return Calendar.current.isDate(date1, equalTo: date2, toGranularity: .weekOfYear)
+
+}
+
+func isSameMonth(date1: Date, date2: Date) -> Bool {
+    return Calendar.current.isDate(date1, equalTo: date2, toGranularity: .month)
+//    let diff = Calendar.current.dateComponents([.month], from: date1, to: date2)
 //    if diff.day == 0 {
 //        return true
 //    } else {
@@ -80,21 +94,36 @@ func isSameDay(date1: Date, date2: Date) -> Bool {
 //    }
 }
 
-//TODO: Test .weekOfYear vs .weekOfMonth
-func isSameWeek(date1: Date, date2: Date) -> Bool {
-    let diff = Calendar.current.dateComponents([.weekOfYear], from: date1, to: date2)
-    if diff.day == 0 {
-        return true
-    } else {
-        return false
-    }
+func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+    return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
 }
 
-func isSameMonth(date1: Date, date2: Date) -> Bool {
-    let diff = Calendar.current.dateComponents([.month], from: date1, to: date2)
-    if diff.day == 0 {
-        return true
-    } else {
-        return false
+
+//MARK: Arrays
+extension Array where Element: BinaryInteger {
+
+    /// The average value of all the items in the array
+    var average: Double {
+        if self.isEmpty {
+            return 0.0
+        } else {
+            let sum = self.reduce(0, +)
+            return Double(sum) / Double(self.count)
+        }
     }
+
+}
+
+extension Array where Element: BinaryFloatingPoint {
+
+    /// The average value of all the items in the array
+    var average: Double {
+        if self.isEmpty {
+            return 0.0
+        } else {
+            let sum = self.reduce(0, +)
+            return Double(sum) / Double(self.count)
+        }
+    }
+
 }

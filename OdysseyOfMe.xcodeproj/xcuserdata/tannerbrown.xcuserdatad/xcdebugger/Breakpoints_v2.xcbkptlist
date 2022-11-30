@@ -7,65 +7,225 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E4FF281C-E3C3-4DE8-92F5-11DA19566FD1"
+            uuid = "7079CB17-89A0-4777-B7C6-4EA4D80231CA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/Model/DataController.swift"
+            filePath = "OdysseyOfMe Watch App/EpisodeManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "clearAllData()"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "submitEpisode()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A10F79B0-5425-4213-981F-B38A1AEF1A5E"
+            uuid = "988F6323-C105-424D-A65C-12DD6B1A1AEA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/Model/DataController.swift"
+            filePath = "OdysseyOfMe Watch App/EpisodeManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "createSampleTags()"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "submitEpisode()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6412FE54-BCF4-4F3A-B199-4906B246AA8A"
+            uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/Classes/Extensions.swift"
+            filePath = "OdysseyOfMe/View/HistoryView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "isSameDay(date1:date2:)"
-            landmarkType = "9">
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getEventsOnSelectedDate()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172 - 8607c98d699be864"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OdysseyOfMe.CalendarViewModel.getEventsOnSelectedDate() -&gt; Swift.Array&lt;OdysseyOfMe.OdysseyEvent&gt;"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/HistoryView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172 - e8aec073b6d2f8d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (OdysseyOfMe.OdysseyEvent) -&gt; Swift.Bool in OdysseyOfMe.CalendarViewModel.getEventsOnSelectedDate() -&gt; Swift.Array&lt;OdysseyOfMe.OdysseyEvent&gt;"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/HistoryView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E9207E31-75DF-4376-A14A-F92A6FF686B5"
+            uuid = "A6218529-DBA1-4E3C-ABD7-273D587873BD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/Classes/Extensions.swift"
+            filePath = "OdysseyOfMe/View/HistoryView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "init(hex:)"
+            startingLineNumber = "750"
+            endingLineNumber = "750"
+            landmarkName = "DayView(value:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4A8E7C3-75B0-4CC5-AF2E-91EF33E6749E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OdysseyOfMe/View/BioDataReflectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "getYUpperBound()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08A64CD8-1D52-4783-B0B9-1AA6AAEFE48B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OdysseyOfMe/View/BioDataReflectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "getYLowerBound()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38BE9CCE-7B81-4103-8CA0-61E598E13E0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "init(bioData:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "38BE9CCE-7B81-4103-8CA0-61E598E13E0F - 5e4298517307b278"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OdysseyOfMe.BioMetricChartView.init(bioData: OdysseyOfMe.EpisodeBiometricData) -&gt; OdysseyOfMe.BioMetricChartView"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "788">
+               </Location>
+               <Location
+                  uuid = "38BE9CCE-7B81-4103-8CA0-61E598E13E0F - 80bcc2baed202875"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (OdysseyOfMe.BioMetricChartView.DataPoint, OdysseyOfMe.BioMetricChartView.DataPoint) -&gt; Swift.Bool in OdysseyOfMe.BioMetricChartView.init(bioData: OdysseyOfMe.EpisodeBiometricData) -&gt; OdysseyOfMe.BioMetricChartView"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06E19B8E-1496-4A5D-B245-72274ED13A8A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "init(bioData:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "06E19B8E-1496-4A5D-B245-72274ED13A8A - 5e4298517307b142"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OdysseyOfMe.BioMetricChartView.init(bioData: OdysseyOfMe.EpisodeBiometricData) -&gt; OdysseyOfMe.BioMetricChartView"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "06E19B8E-1496-4A5D-B245-72274ED13A8A - 9ff0fbb600fe8be5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((key: Foundation.Date, value: Swift.Int)) -&gt; () in OdysseyOfMe.BioMetricChartView.init(bioData: OdysseyOfMe.EpisodeBiometricData) -&gt; OdysseyOfMe.BioMetricChartView"
+                  moduleName = "OdysseyOfMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/BiometricData/BiometricDataChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

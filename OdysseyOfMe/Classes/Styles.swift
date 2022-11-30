@@ -36,9 +36,14 @@ extension Color {
     
     static let StPatricksBlue : Color = Color(32, 26, 111)
     
+    static let RadicalRed : Color = Color(248, 63, 94)
+    
+    static let ChartreuseYellow : Color = Color(255, 255, 0)
+
+    
     //MARK: DO NOT ALTER FOLLOWING LINE
     static let ClaraPink : Color = Color(252,136,231)
-    //
+    //DO NOT ALTER THE ABOVE LINE
 }
 
 struct Theme {

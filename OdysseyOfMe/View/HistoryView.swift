@@ -11,12 +11,34 @@ final class CalendarViewModel : ObservableObject{
     
     @Published var currentDate : Date = Date()
     
+    @Published var calendarEvents : [OdysseyEvent] = []
+    
+    @Published var path = NavigationPath()
+        
     func hasCheckin(date : Date, checkIns : [Checkin]) -> Bool {
         
         guard (checkIns.first(where: {isSameDay(date1: $0.date!, date2: date)}) != nil) else {  return false }
         
         return true
 
+    }
+    
+    func loadEvents(_ events : [OdysseyEvent]){
+        
+        
+        events.forEach{event in
+            if !self.calendarEvents.contains(where: {$0.id == event.id}){
+                self.calendarEvents.append(event)
+            }
+        }
+    }
+    
+    func hasBioData(date : Date, bioData : [EpisodeBiometricData]) -> Bool {
+        
+        guard (bioData.first(where: {isSameDay(date1: $0.startDate!, date2: date)}) != nil) else {return false}
+        
+        return true
+        
     }
     
     func getStressDetailsFromCheckIn(_ check : Checkin) -> [StressDetail] {
@@ -38,6 +60,45 @@ final class CalendarViewModel : ObservableObject{
         
     }
     
+    /**
+     Returns all of the events on the selected date on the calendar
+     */
+    func getEventsOnSelectedDate() -> [OdysseyEvent] {
+        
+        return calendarEvents.filter({isSameDay(date1: $0.date!, date2: currentDate)})
+        
+        //calendarEvents.values.filter({isSameDay(date1: $0.date!, date2: currentDate)})
+    }
+    
+    /**
+     Returns all the events for the given date on the calendar
+     */
+    func checkForEventsOnDate(date : Date) -> [OdysseyEvent]? {
+        
+        return calendarEvents.filter({isSameDay(date1: $0.date!, date2: date)})
+        
+        
+//        TODO: Fix this
+//        if let event = calendarEvents.first(where: {isSameDay(date1: $0.key, date2: date)})?.value {
+//
+//
+//
+//            var isCheckin : Bool = false
+//            var isBioData : Bool = false
+//
+//            if event is Checkin {
+//                isCheckin = true
+//            }else if event is EpisodeBiometricData{
+//                isBioData = true
+//            }
+//
+//            return (event, isCheckin, isBioData)
+//        }
+        
+  //      return nil
+        
+    }
+    
 }
 
 struct HistoryView: View {
@@ -49,21 +110,41 @@ struct HistoryView: View {
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
     
     @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
+    
+    @FetchRequest(sortDescriptors: []) var biometricHistory : FetchedResults<EpisodeBiometricData>
+
 
     var body: some View {
 
-        ScrollView(.vertical, showsIndicators: false){
+        NavigationStack(path: $viewModel.path){
             
-            VStack(spacing: 20){
+        
+            ScrollView(.vertical, showsIndicators: false){
                 
-                //Custom Date Picker
-                CustomDatePicker()
+                VStack(spacing: 20){
+                    
+                    //Custom Date Picker
+                    CustomDatePicker()
+                    
+                }
+                .padding(.vertical)
                 
             }
-            .padding(.vertical)
+        }
+        .onAppear{
+            var events : [OdysseyEvent] = []
+            
+            checkinHistory.forEach{event in
+                events.append(event.toOdysseyEvent())
+            }
+            biometricHistory.forEach{event in
+                events.append(event.toOdysseyEvent())
+            }
             
             
-        }.environmentObject(viewModel)
+            viewModel.loadEvents(events)
+        }
+        .environmentObject(viewModel)
         //safe aera view?
         /*
         .safeAreaInset(edge: .bottom){
@@ -110,115 +191,225 @@ struct CustomDatePicker : View {
     
     @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
     
+    @FetchRequest(sortDescriptors: []) var biometricHistory : FetchedResults<EpisodeBiometricData>
+
+    
     //@Binding var currentDate : Date
     
     // Month update on arrow button clicks
     @State var currentMonth = 0
     
     var body: some View {
-        VStack{
-            
-            //Days
-            let days : [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        
+        
 
-            //Month title view
-            HStack(spacing: 20){
+            VStack{
                 
-                VStack(alignment: .leading, spacing: 10){
-                    
-                    Text(extraDate()[0])
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                    
-                    Text(extraDate()[1])
-                        .font(.title.bold())
-                    
-                }
+                //Days
+                let days : [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
                 
-                Spacer(minLength: 0)
-                
-                Button {
-                    withAnimation{
-                        currentMonth -= 1
+                //Month title view
+                HStack(spacing: 20){
+                    
+                    VStack(alignment: .leading, spacing: 10){
+                        
+                        Text(extraDate()[0])
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                        
+                        Text(extraDate()[1])
+                            .font(.title.bold())
+                        
                     }
-                } label : {
-                    Image(systemName: "chevron.left")
-                        .font(.title2)
-                }
-                
-                Button {
-                    withAnimation{
-                        currentMonth += 1
-                    }
-                } label : {
-                    Image(systemName: "chevron.right")
-                        .font(.title2)
-                }
-                
-            }
-            .padding()
-            
-            //Days view
-            HStack(spacing: 0){
-                ForEach(days, id: \.self){day in
                     
-                    Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
+                    Spacer(minLength: 0)
                     
-                }
-            }
-            
-            //Dates
-            //Week day cols
-            let cols = Array(repeating: GridItem(.flexible()), count: 7)
-            
-            //Lazy grid...
-            LazyVGrid(columns: cols, spacing: 15){
-                
-                ForEach(extractDate()){value in
-                    
-                    DayView(value: value)
-                        .background(
-                            Capsule()
-                                .fill(Theme.MainColor)
-                                .padding(.horizontal, 8)
-                                .opacity(isSameDay(date1: value.date, date2: viewModel.currentDate) ? 1 : 0)
-                        )
-                        .onTapGesture {
-                            viewModel.currentDate = value.date
+                    Button {
+                        withAnimation{
+                            currentMonth -= 1
                         }
-                }
-            }
-            
-            //Daily Events
-            VStack(spacing: 15){
-                
-                Text("Events")
-                    .font(.title2.bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical)
-                
-                //TODO: For each event
-                //Checks
-                ForEach(viewModel.getChecksInDate(date: viewModel.currentDate, checkIns: Array(checkinHistory))){ check in
+                    } label : {
+                        Image(systemName: "chevron.left")
+                            .font(.title2)
+                    }
                     
-                    var isSelected : Bool = false
-                    
-                    CheckTabView(check: check)
+                    Button {
+                        withAnimation{
+                            currentMonth += 1
+                        }
+                    } label : {
+                        Image(systemName: "chevron.right")
+                            .font(.title2)
+                    }
                     
                 }
+                .padding()
                 
-            }
-            .padding()
+                //Days view
+                HStack(spacing: 0){
+                    ForEach(days, id: \.self){day in
+                        
+                        Text(day)
+                            .font(.callout)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                        
+                    }
+                }
+                
+                //Dates
+                //Week day cols
+                let cols = Array(repeating: GridItem(.flexible()), count: 7)
+                
+                //Lazy grid...
+                LazyVGrid(columns: cols, spacing: 15){
+                    
+                    ForEach(extractDate()){value in
+                        
+                        DayView(value: value)
+                            .background(
+                                Capsule()
+                                    .fill(Theme.MainColor)
+                                    .padding(.horizontal, 8)
+                                    .opacity(isSameDay(date1: value.date, date2: viewModel.currentDate) ? 1 : 0)
+                            )
+                            .onTapGesture {
+                                viewModel.currentDate = value.date
+                            }
+                    }
+                }
+                
+                //MARK: Events
+                //Daily Events
+                
+                
+                VStack(spacing: 15){
+                    
+                    Text("Events")
+                        .font(.title2.bold())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical)
+                    
+                    //TODO: For each event
+                    //LEFT OFF HERE
+                    
+                    ForEach(viewModel.getEventsOnSelectedDate(), id: \.self){event in
+                        
+                        if event.eventType == .checkin, let check = event.checkin {
+                            
+                            CheckTabView(check: check)
+                            
+                        } else if event.eventType == .episodeBio, let bio = event.bioData {
+                            
+                            EpisodeBioDataTabView(bioData: bio)
+
+                            
+                            
+                        }
+                        
+                        
+                    }
+                }
+                .padding()
         }
         .onChange(of: currentMonth){newValue in
             viewModel.currentDate = getCurrentMonth()
         }
+
     }
     
+    /**
+     Displays the tab for episode bio data that shows on the calendar when a day is selected
+     */
+    struct EpisodeBioDataTabView : View {
+        
+        @State var isSelected : Bool = false
+        @State var isPresenting : Bool = false
+        
+        @EnvironmentObject var viewModel : CalendarViewModel
+        
+        var bioData : EpisodeBiometricData
+        
+        
+        var body: some View {
+            
+            VStack(alignment: .leading, spacing: 10){
+                
+                //
+                HStack{
+                    
+                    VStack(spacing: 0){
+                        
+                        Image(systemName: "clock.arrow.circlepath")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.white)
+                            .padding(5)
+                        
+                        let (h, m, s) = secondsToHoursMinutesSeconds(Int(bioData.duration))
+                        if h > 0 {
+                            Text("\(h):\(m)")
+                        } else {
+                            Text("\(m):\(s)")
+                        }
+                        
+                    }.foregroundColor(.white)
+                        .padding(.leading, 5)
+                        .padding(.trailing, 10)
+                    
+                    
+                    
+                    Text(bioData.startDate!.formatted(date: .omitted, time: .shortened))
+                        .padding(.leading)
+                        .font(Theme.Font(.title2))
+                        .foregroundColor(.white)
+                        .bold()
+                    
+                    Spacer()
+
+                    //Image("forward_arrow")
+                    
+                    NavigationLink{
+                        
+                        //EpisodeReflectionView(bioData: bioData)
+                        BioDataReflectionView(bioData: bioData)
+                        
+                    } label: {
+                        Image(systemName: "arrowtriangle.forward.fill")
+                            .resizable()
+                            .foregroundColor(isSelected ? .white : .clear)
+                            .frame(width: 15, height: 25)
+                            .padding(.trailing)
+                        
+                    }.disabled(!isSelected)
+  
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(height: 80)
+                    .background(
+                        
+                        
+                        Color.red.opacity(0.8)
+                            .cornerRadius(10)
+                    )
+                    .onTapGesture {
+                        withAnimation{
+                            isSelected.toggle()
+                        }
+                    }
+
+            }
+            
+        }
+        
+        
+    }
     
+    /**
+     Displays the tab for a checkin that shows on the calendar when a day is selected
+     */
     struct CheckTabView : View{
         
         @State var isSelected : Bool = false
@@ -301,6 +492,7 @@ struct CustomDatePicker : View {
         }
     }
     
+    
     fileprivate struct CheckinDetailSummaryView : View {
         
         let check : CheckinObject
@@ -350,11 +542,6 @@ struct CustomDatePicker : View {
                             
                             if(check.stressDetails.count > 1){
                                 
-                                //                            Rectangle()
-                                //                                .fill(Theme.MainColor)
-                                //                                .frame(width: 1)
-                                
-                                
                                 StressSummaryView(stressor: check.stressDetails[1])
                                 
                             }
@@ -377,17 +564,7 @@ struct CustomDatePicker : View {
                     
                 }
                 Spacer()
-                //            VStack{}
-                //                .frame(
-                //                minWidth: 0,
-                //                maxWidth: .infinity,
-                //                minHeight: 0,
-                //                maxHeight: .infinity
-                //            )
-                //                .background(.yellow)
-                
-                
-                
+
             }
             
             
@@ -557,34 +734,48 @@ struct CustomDatePicker : View {
     func DayView(value : DateValue) -> some View{
         
         VStack{
+            let isToday = isSameDay(date1: value.date, date2: viewModel.currentDate)
             
             if value.day != -1 {
                 
+                Text("\(value.day)")
+                    .font(.title3.bold())
+                    .foregroundColor(isToday ? .white : .primary)
+                    .frame(maxWidth: .infinity)
                 
+                Spacer()
                 
-                if viewModel.hasCheckin(date: value.date, checkIns: Array(checkinHistory)) {
+                //Bottom square
+                VStack{
+                    if let events = viewModel.checkForEventsOnDate(date: value.date), !events.isEmpty{
+                        
+                        
+                        //MARK: Design icons for what happened in date
+                        
+                        //If there is an episodeBio & not episode...
+                        if events.contains(where: {$0.eventType == .episodeBio}){
+                            
+                            Image(systemName: "exclamationmark.bubble.fill")
+                                .foregroundColor(isToday ? .white : .red)
+                                .frame(width: 8, height: 8)
+                            
+                            
+                        } else {
+                            
+                            Circle()
+                                .fill(.pink)
+                                .frame(width: 8, height: 8)
+                            
+                        }
+                        
+                        
+                        
+                    }
+
                     
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: value.date, date2: viewModel.currentDate) ? .white : .primary)
-                        .frame(maxWidth: .infinity)
                     
-                    Spacer()
-                    
-                    Circle()
-                        .fill(.pink)
-                        .frame(width: 8, height: 8)
-                    
-                    
-                } else {
-                    
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: value.date, date2: viewModel.currentDate) ? .white : .primary)
-                        .frame(maxWidth: .infinity)
-                    
-                    Spacer()
                 }
+                .frame(height: 10)
                 
                 
             }
