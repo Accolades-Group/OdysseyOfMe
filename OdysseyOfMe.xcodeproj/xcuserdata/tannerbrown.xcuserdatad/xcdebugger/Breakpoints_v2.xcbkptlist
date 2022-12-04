@@ -39,70 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/View/HistoryView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getEventsOnSelectedDate()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172 - 8607c98d699be864"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "OdysseyOfMe.CalendarViewModel.getEventsOnSelectedDate() -&gt; Swift.Array&lt;OdysseyOfMe.OdysseyEvent&gt;"
-                  moduleName = "OdysseyOfMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/HistoryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "1851E86E-8A21-4E16-BAC2-13ECE2E02172 - e8aec073b6d2f8d4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (OdysseyOfMe.OdysseyEvent) -&gt; Swift.Bool in OdysseyOfMe.CalendarViewModel.getEventsOnSelectedDate() -&gt; Swift.Array&lt;OdysseyOfMe.OdysseyEvent&gt;"
-                  moduleName = "OdysseyOfMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tannerbrown/Documents/dev/OdysseyOfMe/OdysseyOfMe/View/HistoryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "196">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A6218529-DBA1-4E3C-ABD7-273D587873BD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OdysseyOfMe/View/HistoryView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
-            landmarkName = "DayView(value:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D4A8E7C3-75B0-4CC5-AF2E-91EF33E6749E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -226,6 +162,22 @@
                   offsetFromSymbolStart = "180">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5CAB4AB-F144-4756-B1FD-1635A8CC7A09"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OdysseyOfMe/Classes/LOGGER.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "testClass"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

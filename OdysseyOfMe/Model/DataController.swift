@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import CloudKit
 import OSLog
+import SwiftUI
 
 
 /**
@@ -26,8 +27,8 @@ class DataController : ObservableObject {
     //Shared instance
     static let shared = DataController()
     
+    
     init() {
-        
         container = NSPersistentCloudKitContainer(name: "DataStore")
         
         container.loadPersistentStores { description, error in
@@ -43,6 +44,56 @@ class DataController : ObservableObject {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        
+    }
+    
+    //MARK: Save Requests
+    func save(_ checkin : Checkin){
+        if checkin.date == nil {
+            checkin.date = Date()
+        } else if checkin.id == nil {
+            checkin.id = UUID()
+        }
+        saveContext()
+    }
+    
+    func save(_ bio : EpisodeBiometricData){
+        var canSave : Bool = true
+        var reason : String = ""
+        
+        if bio.duration < CONSTANTS.MIN_EPISODE_DURATION_SECONDS {
+            canSave = false
+            reason = "Duration of episode below minimum: \(CONSTANTS.MIN_EPISODE_DURATION_SECONDS)seconds"
+        }
+        
+        if bio.heartRates == nil {
+            canSave = false
+            reason = "Heart rates didn't record. Was the watch on the user? Did they enable health kit?"
+        }
+        //TODO: Check further things? Pull more healthkit data here?
+        if bio.id == nil {
+            bio.id = UUID()
+        }
+        
+        if(canSave){
+            saveContext()
+        }else {
+            LOGGER.critical("Tried to load but failed for reason: \(reason)")
+        }
+    }
+    
+    func save(_ stressDetail : StressDetail){
+        
+        if stressDetail.checkin != nil { //Stress detail must have a checkin?
+            
+            if stressDetail.rating > 5 { stressDetail.rating = 5 }
+            if stressDetail.rating < 0 { stressDetail.rating = 0 }
+            if stressDetail.id == nil { stressDetail.id = UUID() }
+            if stressDetail.category == nil { stressDetail.category = StressManager.StressCategories.other.name }
+            
+            saveContext()
+        }
     }
     
     func saveContext() {
@@ -52,7 +103,62 @@ class DataController : ObservableObject {
             LOGGER.critical("Error saving context: \(error.localizedDescription)")
         }
     }
-
+    
+    
+    
+    //MARK: Fetch Requests
+    func getCheckinData() -> [Checkin]  {
+        
+        let fetchRequest: NSFetchRequest<Checkin> = NSFetchRequest(entityName: "Checkin")
+        var retArray : [Checkin] = []
+        do {
+            let fetch = try container.viewContext.fetch(fetchRequest)
+            retArray = Array(fetch)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return retArray
+    }
+    
+     
+     func getStressDetailData() -> [StressDetail]  {
+         
+         let fetchRequest: NSFetchRequest<StressDetail> = NSFetchRequest(entityName: "StressDetail")
+       //  let sort = NSSortDescriptor(key: "date", ascending: false)
+        // fetchRequest.sortDescriptors = [sort]
+         var retArray : [StressDetail] = []
+         do {
+             let fetch = try container.viewContext.fetch(fetchRequest)
+             retArray = Array(fetch)
+         } catch {
+             print(error.localizedDescription)
+         }
+         return retArray
+     }
+     
+    func getEpisodeData() -> [Episode]  {
+        let fetchRequest: NSFetchRequest<Episode> = NSFetchRequest(entityName: "Episode")
+        var retArray : [Episode] = []
+        do {
+            let fetch = try container.viewContext.fetch(fetchRequest)
+            retArray = Array(fetch)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return retArray
+    }
+    
+    func getEpisodeBioData() -> [EpisodeBiometricData]  {
+        let fetchRequest: NSFetchRequest<EpisodeBiometricData> = NSFetchRequest(entityName: "EpisodeBiometricData")
+        var retArray : [EpisodeBiometricData] = []
+        do {
+            let fetch = try container.viewContext.fetch(fetchRequest)
+            retArray = Array(fetch)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return retArray
+    }
 
     //TODO: Break into sub funcs
     func clearAllData(){
@@ -67,11 +173,16 @@ class DataController : ObservableObject {
         let fetchBioRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "EpisodeBiometricData")
         let deleteBioRequest = NSBatchDeleteRequest(fetchRequest: fetchBioRequest)
         
+        let fetchEpisodeRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Episode")
+        let deleteEpisodeRequest = NSBatchDeleteRequest(fetchRequest: fetchEpisodeRequest)
+        
         do {
             //try myPersistentStoreCoordinator.execute(deleteRequest, with: myContext)
             try container.persistentStoreCoordinator.execute(deleteStressRequest, with: container.viewContext)
             try container.persistentStoreCoordinator.execute(deleteCheckinRequest, with: container.viewContext)
             try container.persistentStoreCoordinator.execute(deleteBioRequest, with: container.viewContext)
+            try container.persistentStoreCoordinator.execute(deleteEpisodeRequest, with: container.viewContext)
+            
         } catch let error as NSError {
             // TODO: handle the error
             print(error)
@@ -157,6 +268,12 @@ class DataController : ObservableObject {
         
     }
 }
+
+
+
+
+
+
 
 // Depreciated
 

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		F309DF9029359F2C000E94F1 /* BiometricDataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309DF8F29359F2C000E94F1 /* BiometricDataChartView.swift */; };
+		F309DF922939242B000E94F1 /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9532915C51F00059E6C /* NavigationTest.swift */; };
+		F309DF9329392466000E94F1 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4069329240D6900CE2ED7 /* ProgressView.swift */; };
+		F309DF97293BC196000E94F1 /* LOGGER.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309DF96293BC196000E94F1 /* LOGGER.swift */; };
+		F309DF98293BC196000E94F1 /* LOGGER.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309DF96293BC196000E94F1 /* LOGGER.swift */; };
+		F309DFA0293C129D000E94F1 /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
+		F309DFA2293C158B000E94F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309DFA1293C158B000E94F1 /* Constants.swift */; };
+		F309DFA3293C158B000E94F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309DFA1293C158B000E94F1 /* Constants.swift */; };
 		F380233C292EA0BF00AE2C4A /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380233B292EA0BF00AE2C4A /* SummaryView.swift */; };
 		F380233E292EA17600AE2C4A /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380233D292EA17600AE2C4A /* MetricsView.swift */; };
 		F3802340292EA17E00AE2C4A /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380233F292EA17E00AE2C4A /* ControlsView.swift */; };
@@ -18,7 +25,6 @@
 		F380234C2934488D00AE2C4A /* BioDataReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380234B2934488D00AE2C4A /* BioDataReflectionView.swift */; };
 		F39BB1AA292AAB9E00D61AFD /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA9572917426000059E6C /* DataStore.xcdatamodeld */; };
 		F39BB1B1292D848100D61AFD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFA95C2918813600059E6C /* DataController.swift */; };
-		F39BB1B2292D8CE100D61AFD /* StressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDEE19291505F900BD4849 /* StressManager.swift */; };
 		F39BB1B3292D8D4D00D61AFD /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5211A2922AA140024EF98 /* CheckIn.swift */; };
 		F39BB1B6292E99EB00D61AFD /* SessionPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39BB1B5292E99EB00D61AFD /* SessionPagingView.swift */; };
 		F39BB1B8292E9A1700D61AFD /* EpisodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39BB1B7292E9A1700D61AFD /* EpisodeManager.swift */; };
@@ -137,6 +143,8 @@
 
 /* Begin PBXFileReference section */
 		F309DF8F29359F2C000E94F1 /* BiometricDataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricDataChartView.swift; sourceTree = "<group>"; };
+		F309DF96293BC196000E94F1 /* LOGGER.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGGER.swift; sourceTree = "<group>"; };
+		F309DFA1293C158B000E94F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F380233B292EA0BF00AE2C4A /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		F380233D292EA17600AE2C4A /* MetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
 		F380233F292EA17E00AE2C4A /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
@@ -270,6 +278,8 @@
 		F309DF912937C78F000E94F1 /* Depreciated */ = {
 			isa = PBXGroup;
 			children = (
+				F3F4069329240D6900CE2ED7 /* ProgressView.swift */,
+				F3BFA9532915C51F00059E6C /* NavigationTest.swift */,
 				F3F406E32925C01D00CE2ED7 /* DataLoader.swift */,
 			);
 			path = Depreciated;
@@ -423,9 +433,7 @@
 				F3EDEE072914812300BD4849 /* CheckinView.swift */,
 				F3EDEE092914816500BD4849 /* HistoryView.swift */,
 				F3EDEE0B2914817F00BD4849 /* AccountView.swift */,
-				F3BFA9532915C51F00059E6C /* NavigationTest.swift */,
 				F3F4068B2923EFDF00CE2ED7 /* TermsSheetViews.swift */,
-				F3F4069329240D6900CE2ED7 /* ProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -439,6 +447,8 @@
 				F3F4068D2923FB3200CE2ED7 /* Styles.swift */,
 				F3F406E02925A51100CE2ED7 /* HealthKitHelper.swift */,
 				F3F406E629260C9300CE2ED7 /* Timer.swift */,
+				F309DF96293BC196000E94F1 /* LOGGER.swift */,
+				F309DFA1293C158B000E94F1 /* Constants.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -729,6 +739,7 @@
 				F3F406E12925A51100CE2ED7 /* HealthKitHelper.swift in Sources */,
 				F3EDEE082914812300BD4849 /* CheckinView.swift in Sources */,
 				F3A5211B2922AA140024EF98 /* CheckIn.swift in Sources */,
+				F309DFA2293C158B000E94F1 /* Constants.swift in Sources */,
 				F3EDEE142914916300BD4849 /* CheckinViewModel.swift in Sources */,
 				F3F4068C2923EFDF00CE2ED7 /* TermsSheetViews.swift in Sources */,
 				F3EDEE1A291505F900BD4849 /* StressManager.swift in Sources */,
@@ -738,6 +749,7 @@
 				F3EDEE11291483BE00BD4849 /* Extensions.swift in Sources */,
 				F3EDEDAB29147F6100BD4849 /* ContentView.swift in Sources */,
 				F3BFA9542915C51F00059E6C /* NavigationTest.swift in Sources */,
+				F309DF97293BC196000E94F1 /* LOGGER.swift in Sources */,
 				F3EDEE182914B6C500BD4849 /* DiagnosisManager.swift in Sources */,
 				F3EDEE0A2914816500BD4849 /* HistoryView.swift in Sources */,
 				F3F4068E2923FB3200CE2ED7 /* Styles.swift in Sources */,
@@ -781,14 +793,18 @@
 				F3F406E22925A51100CE2ED7 /* HealthKitHelper.swift in Sources */,
 				F39BB1B3292D8D4D00D61AFD /* CheckIn.swift in Sources */,
 				F3802341292EECC100AE2C4A /* Styles.swift in Sources */,
+				F309DF922939242B000E94F1 /* NavigationTest.swift in Sources */,
 				F380233C292EA0BF00AE2C4A /* SummaryView.swift in Sources */,
 				F3F406E829260C9300CE2ED7 /* Timer.swift in Sources */,
-				F39BB1B2292D8CE100D61AFD /* StressManager.swift in Sources */,
 				F39BB1B6292E99EB00D61AFD /* SessionPagingView.swift in Sources */,
+				F309DFA3293C158B000E94F1 /* Constants.swift in Sources */,
 				F3802342292EED0100AE2C4A /* Extensions.swift in Sources */,
 				F38023482932E26D00AE2C4A /* OdysseyEvents.swift in Sources */,
 				F3EDEDD129147F6200BD4849 /* OdysseyOfMeApp.swift in Sources */,
+				F309DF98293BC196000E94F1 /* LOGGER.swift in Sources */,
 				F380233E292EA17600AE2C4A /* MetricsView.swift in Sources */,
+				F309DF9329392466000E94F1 /* ProgressView.swift in Sources */,
+				F309DFA0293C129D000E94F1 /* StressManager.swift in Sources */,
 				F39BB1B8292E9A1700D61AFD /* EpisodeManager.swift in Sources */,
 				F39BB1AA292AAB9E00D61AFD /* DataStore.xcdatamodeld in Sources */,
 			);

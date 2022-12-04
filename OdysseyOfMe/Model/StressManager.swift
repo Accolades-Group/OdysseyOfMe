@@ -159,7 +159,7 @@ class StressManager : ObservableObject {
         }
     }
     
-    func build(stressData : [StressDetail]){
+    func build(stressData : [StressDetail]) {
 
         TimeTags = []
         ActivityTags = []
@@ -230,7 +230,6 @@ class StressManager : ObservableObject {
                 if !StressCategoryTags.contains(category) { StressCategoryTags.append(category) }
             }
         }
-        
     }
     
     

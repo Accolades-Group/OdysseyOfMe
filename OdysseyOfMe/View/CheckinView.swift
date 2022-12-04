@@ -12,11 +12,11 @@ struct CheckinView: View {
     @StateObject var viewModel : CheckinViewModel = CheckinViewModel()
     
     @Environment(\.managedObjectContext) var moc
-    
+
     @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
 
     @FetchRequest(sortDescriptors: []) var checkinHistory : FetchedResults<Checkin>
-    
+
     
     var body: some View {
         
@@ -75,12 +75,9 @@ struct CheckinView: View {
         .environmentObject(viewModel)
         .onAppear{
             
-            
-            viewModel.stressManager.build(stressData: Array(stressHistory))
-            
             viewModel.moc = moc
-            
             viewModel.setStreak(checkinHistory: Array(checkinHistory))
+            viewModel.stressManager.build(stressData: Array(stressHistory))
             
         }
         

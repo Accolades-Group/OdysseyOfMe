@@ -15,7 +15,7 @@ struct TermsAndPrivacy : View {
     
     var body: some View{
         VStack(alignment: .leading, spacing: 20){
-            
+            /*
             HStack{
                 Image("skylar1")
                     .resizable()
@@ -27,7 +27,7 @@ struct TermsAndPrivacy : View {
             }
             .frame(width: .infinity, height: 60)
             .padding([.horizontal, .bottom])
-            
+            */
             
             
             Text("Terms and Privacy")
@@ -98,7 +98,7 @@ struct CheckinReminderAndAffirmations : View {
 
 struct TermsSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        //TermsAndPrivacy()
-        CheckinReminderAndAffirmations()
+        TermsAndPrivacy()
+       // CheckinReminderAndAffirmations()
     }
 }

@@ -7,18 +7,13 @@
 
 import SwiftUI
 
+/**
+ Main container for the app's content. Initially shows terms of service if the user hasn't agreed to them, otherwise shows the apps main TabNavigationView
+ */
 struct ContentView: View {
     
-    @FetchRequest(sortDescriptors: []) var stressHistory : FetchedResults<StressDetail>
-    
     @EnvironmentObject var userSettings : UserSettings
-    
     @State var isShowingTOS : Bool = false
-    
-
-    init(){
-        
-    }
     
     var body: some View {
         
@@ -29,9 +24,6 @@ struct ContentView: View {
         } else { //All good, go home
             
             TabNavView()
-                .onAppear{
-                   // userSettings.resetData()
-                }
             
         }
         
@@ -41,5 +33,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserSettings())
     }
 }
